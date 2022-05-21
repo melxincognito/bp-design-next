@@ -8,21 +8,20 @@ import {
   Menu,
   Container,
   Avatar,
-  Button,
   Tooltip,
   MenuItem,
   Tabs,
   Tab,
+  TextField,
 } from "@mui/material";
-
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
+import { Search } from "@mui/icons-material";
 import Link from "next/link";
 
 const tabsItems = [
-  { label: "Home", link: "/", id: 1 },
-  { label: "Browse All Plans", link: "/allBlueprints", id: 2 },
-  { label: "Login", link: "/login", id: 3 },
+  { label: "Home", link: "/", id: 0 },
+  { label: "Browse All Plans", link: "/allBlueprints", id: 1 },
+  { label: "Login", link: "/login", id: 2 },
 ];
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -30,7 +29,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavBar2 = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -59,28 +58,34 @@ const NavBar2 = () => {
   };
   return (
     <AppBar position="static">
-      <Container maxWidth="xl"> hello</Container>
+      <Container
+        maxWidth="xl"
+        sx={{
+          p: 1,
+          bgcolor: "black",
+          display: "flex",
+        }}
+      >
+        {" "}
+        <Box sx={{ flexGrow: 2 }}>
+          <Typography variant="h6" noWrap component="div">
+            BP DESIGN STUDIO
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <TextField
+            variant="standard"
+            placeholder="Search by plan #"
+            sx={{
+              backgroundColor: "white",
+              borderRadius: 1.5,
+            }}
+          />
+          <Search />
+        </Box>
+      </Container>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -119,25 +124,7 @@ const NavBar2 = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+
           <Box sx={tabsContainerStyles}>
             <Tabs
               variant="scrollable"
