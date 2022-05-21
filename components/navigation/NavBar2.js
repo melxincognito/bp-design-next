@@ -13,9 +13,12 @@ import {
   Tabs,
   Tab,
   TextField,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Link from "next/link";
 
 const tabsItems = [
@@ -81,7 +84,11 @@ const NavBar2 = () => {
               borderRadius: 1.5,
             }}
           />
-          <Search />
+          <Search
+            onClick={() => {
+              console.log("hello");
+            }}
+          />
         </Box>
       </Container>
       <Container maxWidth="xl">
@@ -146,34 +153,20 @@ const NavBar2 = () => {
               ))}
             </Tabs>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+          <Box
+            display="flex"
+            sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
+          >
+            <Link href="/myfavorites">
+              <FavoriteBorderIcon sx={{ cursor: "pointer" }} />
+            </Link>
+            <Link href="/mycart">
+              <ShoppingCartOutlinedIcon sx={{ cursor: "pointer" }} />
+            </Link>
+
+            <Button variant="contained" sx={{ color: "white", padding: 0.2 }}>
+              <Link href="/login">Login</Link>
+            </Button>
           </Box>
         </Toolbar>
       </Container>
