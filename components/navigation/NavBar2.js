@@ -27,11 +27,9 @@ const tabsItems = [
   { label: "Login", link: "/login", id: 2 },
 ];
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 const NavBar2 = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -41,16 +39,9 @@ const NavBar2 = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   // styles variables
