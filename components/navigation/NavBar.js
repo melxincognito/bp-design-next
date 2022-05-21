@@ -11,8 +11,12 @@ const NavBar = () => {
         <li>
           <Link href="/allBlueprints">Browse All Blueprints</Link>{" "}
         </li>
+
         <li>
           <Link href="/myfavorites">♡</Link>{" "}
+        </li>
+        <li>
+          <Link href="/mycart">My Cart</Link>{" "}
         </li>
         <li>
           <Link href="/login">Login</Link>{" "}
