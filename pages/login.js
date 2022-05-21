@@ -1,5 +1,11 @@
+import { Card } from "@mui/material";
+
 function login() {
-  return <div>login</div>;
+  return (
+    <div>
+      <Card sx={{ padding: "2rem", backgroundColor: "red" }}> Login</Card>
+    </div>
+  );
 }
 
 export default login;
