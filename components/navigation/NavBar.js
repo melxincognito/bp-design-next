@@ -26,7 +26,7 @@ const tabsItems = [
   { label: "Custom Plan Request", link: "/customplanrequest", id: 3 },
 ];
 
-const NavBar = () => {
+export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const [value, setValue] = React.useState(0);
@@ -55,6 +55,21 @@ const NavBar = () => {
     my: 2,
     color: "white",
     display: "block",
+  };
+
+  const mobileTabcontainerStyles = {
+    width: "20rem",
+    height: "100%",
+    display: "block",
+    float: "left",
+    bgcolor: "primary.light",
+    color: "white",
+  };
+
+  const mobileTabStyle = {
+    display: "block",
+    width: "100%",
+    padding: "18px 20px",
   };
   const loginButtonStyles = {
     color: "primary.main",
@@ -137,13 +152,19 @@ const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {tabsItems.map((tab) => (
-                <MenuItem key={tab.id} onClick={handleCloseNavMenu}>
-                  <Link href={tab.link}>
-                    <Typography textAlign="center">{tab.label}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
+              <Container sx={mobileTabcontainerStyles}>
+                {tabsItems.map((tab) => (
+                  <MenuItem
+                    key={tab.id}
+                    onClick={handleCloseNavMenu}
+                    sx={mobileTabStyle}
+                  >
+                    <Link href={tab.link}>
+                      <Typography textAlign="center">{tab.label}</Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
+              </Container>
             </Menu>
           </Box>
 
@@ -183,6 +204,4 @@ const NavBar = () => {
       </Container>
     </AppBar>
   );
-};
-
-export default NavBar;
+}
