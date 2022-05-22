@@ -44,13 +44,33 @@ const NavBar = () => {
   };
 
   // styles variables
+
   const tabsContainerStyles = {
     flexGrow: 1,
     justifyContent: "flex-start",
     display: { xs: "none", md: "flex" },
   };
+
+  const tabsStyles = {
+    my: 2,
+    color: "white",
+    display: "block",
+  };
+  const loginButtonStyles = {
+    color: "primary.main",
+    padding: 0.3,
+    bgcolor: "secondary.main",
+    "&:hover": {
+      color: "white",
+    },
+  };
+
+  const iconStyles = {
+    cursor: "pointer",
+  };
   return (
     <AppBar position="static">
+      {/* Top Banner Container*/}
       <Container
         maxWidth="xl"
         sx={{
@@ -61,9 +81,11 @@ const NavBar = () => {
       >
         {" "}
         <Box sx={{ flexGrow: 2 }}>
-          <Typography variant="h6" noWrap component="div">
-            BP DESIGN STUDIO
-          </Typography>
+          <Link href="/">
+            <Typography sx={iconStyles} variant="h6" noWrap component="div">
+              BP DESIGN STUDIO
+            </Typography>
+          </Link>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
           <TextField
@@ -75,12 +97,15 @@ const NavBar = () => {
             }}
           />
           <Search
+            sx={iconStyles}
             onClick={() => {
               console.log("hello");
             }}
           />
         </Box>
       </Container>
+
+      {/* Navigation Bar Container */}
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -133,11 +158,7 @@ const NavBar = () => {
               {tabsItems.map((tab) => (
                 <div key={tab.id}>
                   <Link href={tab.link}>
-                    <Tab
-                      value={tab.id}
-                      label={tab.label}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    />
+                    <Tab value={tab.id} label={tab.label} sx={tabsStyles} />
                   </Link>
                 </div>
               ))}
@@ -148,13 +169,13 @@ const NavBar = () => {
             sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
           >
             <Link href="/myfavorites">
-              <FavoriteBorderIcon sx={{ cursor: "pointer" }} />
+              <FavoriteBorderIcon sx={iconStyles} />
             </Link>
             <Link href="/mycart">
-              <ShoppingCartOutlinedIcon sx={{ cursor: "pointer" }} />
+              <ShoppingCartOutlinedIcon sx={iconStyles} />
             </Link>
 
-            <Button variant="contained" sx={{ color: "white", padding: 0.2 }}>
+            <Button variant="contained" sx={loginButtonStyles}>
               <Link href="/login">Login</Link>
             </Button>
           </Box>
