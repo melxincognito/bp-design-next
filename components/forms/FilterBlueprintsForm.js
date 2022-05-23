@@ -36,12 +36,26 @@ export default function FilterBlueprintsForm() {
     console.log(sqfInput);
   };
 
+  const generalButtonsContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    gap: 1,
+  };
+  const bathroomButtonsContainerStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    width: "70%",
+    justifyContent: "center",
+    gap: 1,
+  };
+
   return (
     <>
       <Card
         sx={{
           display: "grid",
           justifyContent: "center",
+
           textAlign: "center",
           padding: "2rem",
           borderRadius: 2,
@@ -50,38 +64,68 @@ export default function FilterBlueprintsForm() {
         <form onSubmit={handleSubmit}>
           <div className="bedroomSelection">
             <Typography variant="h6"> # of Bedrooms</Typography>
-            {bedroomBtns.map((bedroomBtn) => (
-              <>
-                <Button variant="contained"> {bedroomBtn.label}</Button>
-              </>
-            ))}
+            <div
+              className="bedroomBtnsContentContainer"
+              style={generalButtonsContainerStyles}
+            >
+              {bedroomBtns.map((bedroomBtn) => (
+                <>
+                  <Button variant="contained" color="secondary">
+                    {" "}
+                    {bedroomBtn.label}
+                  </Button>
+                </>
+              ))}
+            </div>
           </div>
 
           <div className="bathroomSelection">
             <Typography variant="h6"> # of Bathrooms</Typography>
-            {bathroomBtns.map((bedroomBtn) => (
-              <>
-                <Button variant="contained"> {bedroomBtn.label}</Button>
-              </>
-            ))}
+            {/* this container is centering the overall content */}
+            <div
+              className="bathroomBtnsContentContainer"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              {/* this container is working on containing and centering the buttons */}
+              <div style={bathroomButtonsContainerStyles}>
+                {bathroomBtns.map((bedroomBtn) => (
+                  <>
+                    <Button variant="contained"> {bedroomBtn.label}</Button>
+                  </>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="storiesSelection">
             <Typography variant="h6"> # of Stories</Typography>
-            {storiesAndGaragesBtns.map((bedroomBtn) => (
-              <>
-                <Button variant="contained"> {bedroomBtn.label}</Button>
-              </>
-            ))}
+            <div
+              className="storiesBtnsContentContainer"
+              style={generalButtonsContainerStyles}
+            >
+              {storiesAndGaragesBtns.map((bedroomBtn) => (
+                <>
+                  <Button variant="contained" color="secondary">
+                    {" "}
+                    {bedroomBtn.label}
+                  </Button>
+                </>
+              ))}
+            </div>
           </div>
 
           <div className="garageSelection">
             <Typography variant="h6"> # of Garages</Typography>
-            {storiesAndGaragesBtns.map((bedroomBtn) => (
-              <>
-                <Button variant="contained"> {bedroomBtn.label}</Button>
-              </>
-            ))}
+            <div
+              className="garageBtnsContentContainer"
+              style={generalButtonsContainerStyles}
+            >
+              {storiesAndGaragesBtns.map((bedroomBtn) => (
+                <>
+                  <Button variant="contained"> {bedroomBtn.label}</Button>
+                </>
+              ))}
+            </div>
           </div>
 
           <div className="sqFtSelection">
