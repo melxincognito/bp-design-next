@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   AppBar,
@@ -27,9 +27,9 @@ const tabsItems = [
 ];
 
 export default function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -83,6 +83,7 @@ export default function NavBar() {
   const iconStyles = {
     cursor: "pointer",
   };
+
   return (
     <AppBar position="static">
       {/* Top Banner Container*/}
@@ -177,11 +178,15 @@ export default function NavBar() {
               indicatorColor="secondary"
             >
               {tabsItems.map((tab) => (
-                <div key={tab.id}>
-                  <Link href={tab.link}>
-                    <Tab value={tab.id} label={tab.label} sx={tabsStyles} />
-                  </Link>
-                </div>
+                <Tab
+                  key={tab.id}
+                  value={tab.id}
+                  label={tab.label}
+                  sx={tabsStyles}
+                >
+                  {" "}
+                  <Link href={tab.link} />
+                </Tab>
               ))}
             </Tabs>
           </Box>
