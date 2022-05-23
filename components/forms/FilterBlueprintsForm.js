@@ -1,8 +1,31 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Card, Button, Typography } from "@mui/material";
 
+const bedroomBtns = [
+  { label: "1", index: 0 },
+  { label: "2", index: 1 },
+  { label: "3", index: 2 },
+  { label: "4", index: 3 },
+  { label: "5", index: 4 },
+];
+const bathroomBtns = [
+  { label: "1", index: 0 },
+  { label: "2", index: 1 },
+  { label: "3", index: 2 },
+  { label: "4", index: 3 },
+  { label: "1.5", index: 4 },
+  { label: "2.5", index: 5 },
+  { label: "3.5", index: 6 },
+];
+
+const storiesAndGaragesBtns = [
+  { label: "1", index: 0 },
+  { label: "2", index: 1 },
+  { label: "3", index: 2 },
+];
+
 export default function FilterBlueprintsForm() {
-  const [sqfInput, setSqfInput] = React.useState("");
+  const [sqfInput, setSqfInput] = useState("");
 
   const handleSqfInputChange = (e) => {
     setSqfInput(e.target.value);
@@ -27,39 +50,38 @@ export default function FilterBlueprintsForm() {
         <form onSubmit={handleSubmit}>
           <div className="bedroomSelection">
             <Typography variant="h6"> # of Bedrooms</Typography>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
+            {bedroomBtns.map((bedroomBtn) => (
+              <>
+                <Button variant="contained"> {bedroomBtn.label}</Button>
+              </>
+            ))}
           </div>
 
           <div className="bathroomSelection">
             <Typography variant="h6"> # of Bathrooms</Typography>
-            <Button>1 </Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <div>
-              {" "}
-              <Button>1.5</Button>
-              <Button>2.5</Button>
-              <Button>3.5</Button>
-            </div>
+            {bathroomBtns.map((bedroomBtn) => (
+              <>
+                <Button variant="contained"> {bedroomBtn.label}</Button>
+              </>
+            ))}
           </div>
 
           <div className="storiesSelection">
             <Typography variant="h6"> # of Stories</Typography>
-            <Button>1 </Button>
-            <Button>2</Button>
-            <Button>3</Button>
+            {storiesAndGaragesBtns.map((bedroomBtn) => (
+              <>
+                <Button variant="contained"> {bedroomBtn.label}</Button>
+              </>
+            ))}
           </div>
 
           <div className="garageSelection">
             <Typography variant="h6"> # of Garages</Typography>
-            <Button>1 </Button>
-            <Button>2</Button>
-            <Button>3</Button>
+            {storiesAndGaragesBtns.map((bedroomBtn) => (
+              <>
+                <Button variant="contained"> {bedroomBtn.label}</Button>
+              </>
+            ))}
           </div>
 
           <div className="sqFtSelection">
