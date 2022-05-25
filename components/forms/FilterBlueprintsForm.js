@@ -36,6 +36,13 @@ export default function FilterBlueprintsForm() {
     console.log(sqfInput);
   };
 
+  const cardStyles = {
+    display: "grid",
+    textAlign: "center",
+    padding: "2rem 0 2rem 0",
+    borderRadius: 2,
+    backgroundColor: "rgba(255, 255, 255, 0.59)",
+  };
   const generalButtonsContainerStyles = {
     display: "flex",
     justifyContent: "center",
@@ -51,16 +58,7 @@ export default function FilterBlueprintsForm() {
 
   return (
     <>
-      <Card
-        sx={{
-          display: "grid",
-          justifyContent: "center",
-
-          textAlign: "center",
-          padding: "2rem",
-          borderRadius: 2,
-        }}
-      >
+      <Card sx={cardStyles}>
         <form onSubmit={handleSubmit}>
           <div className="bedroomSelection">
             <Typography variant="h6"> # of Bedrooms</Typography>
