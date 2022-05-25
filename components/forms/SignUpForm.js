@@ -5,7 +5,6 @@ import {
   CardContent,
   TextField,
   Button,
-  Box,
 } from "@mui/material";
 
 export default function SignUpForm() {
