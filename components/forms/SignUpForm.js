@@ -5,6 +5,7 @@ import {
   CardContent,
   TextField,
   Button,
+  Box,
 } from "@mui/material";
 
 export default function SignUpForm() {
@@ -78,9 +79,16 @@ export default function SignUpForm() {
     justifyContent: "center",
     marginTop: "1rem",
   };
-  const contentStyle = {
+  const contentContainerStyle = {
     display: "flex",
-    justifyContent: "center",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    gap: 10,
+  };
+
+  const boxStyles = {
+    display: "grid",
+    gap: 10,
   };
 
   return (
@@ -92,8 +100,8 @@ export default function SignUpForm() {
         </CardContent>
         <hr size="1" width="100%" color="gray" />
         <CardContent>
-          <form style={contentStyle} onSubmit={logit}>
-            <div>
+          <form style={contentContainerStyle} onSubmit={logit}>
+            <div style={boxStyles}>
               {userSignUpInformation.map((item) => (
                 <TextField
                   key={item.index}
@@ -106,7 +114,7 @@ export default function SignUpForm() {
                 />
               ))}
             </div>
-            <div>
+            <div style={boxStyles}>
               {userSignupLoginInformation.map((item) => (
                 <TextField
                   key={item.index}
