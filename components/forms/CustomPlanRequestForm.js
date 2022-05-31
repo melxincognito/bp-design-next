@@ -5,21 +5,27 @@ import {
   CardContent,
   TextField,
   Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
 } from "@mui/material";
 
 const houseStyleOptions = [
   {
-    value: "Spanish",
-    label: "Spanish",
-  },
-  {
     value: "Luxury",
     label: "Luxury",
   },
+
   {
     value: "Modern",
     label: "Modern",
   },
+  {
+    value: "Spanish",
+    label: "Spanish",
+  },
+
   {
     value: "Ranch",
     label: "Ranch",
@@ -36,7 +42,7 @@ export default function CustomPlanRequestForm() {
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
   const [lotSize, setLotSize] = useState("");
-  const [style, setStyle] = useState("");
+  const [style, setStyle] = useState("Luxury");
 
   const planRequestInputs = [
     {
@@ -85,6 +91,25 @@ export default function CustomPlanRequestForm() {
                 />
               </>
             ))}
+
+            <TextField
+              id="serviceInquirySelection"
+              fullWidth
+              select
+              label="House Style"
+              value={style}
+              onChange={(e) => {
+                setStyle(e.target.value);
+              }}
+              name="service"
+              required
+            >
+              {houseStyleOptions.map((option, index) => (
+                <MenuItem key={index} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
             <Button type="submit">Submit</Button>
           </form>

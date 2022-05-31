@@ -178,15 +178,11 @@ export default function NavBar() {
               indicatorColor="secondary"
             >
               {tabsItems.map((tab) => (
-                <Tab
-                  key={tab.id}
-                  value={tab.id}
-                  label={tab.label}
-                  sx={tabsStyles}
-                >
-                  {" "}
-                  <Link href={tab.link} />
-                </Tab>
+                <>
+                  <Link href={tab.link} passHref value={tab.id}>
+                    <Tab key={tab.id} label={tab.label} sx={tabsStyles}></Tab>
+                  </Link>
+                </>
               ))}
             </Tabs>
           </Box>
