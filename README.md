@@ -36,3 +36,15 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # Dependencies
 
 Styling Library: MUIv5
+
+# FORMS
+
+<h3> CustomPlanRequest: </h3>
+<ul>
+<li>
+Users who are signed up for an account can request custom blueprints be made for their home project. Users will have to input their name, phone number, the size of their lot, a square footage estimate, select the type of home style(Ranch, Modern, Spanish, Mediterranean, Cottage, etc.), the type of project(New Home Build, Complete Home Renovation, Partial Remodel, etc.), and a message giving quick details about the type of project they're looking to build.
+</li>
+<li>
+This information gets passed into emailjs where it'll be forwarded to the companies email and they can contact the individual to go more in depth about their desired project.
+</li>
+</ul>
