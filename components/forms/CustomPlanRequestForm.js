@@ -5,10 +5,8 @@ import {
   CardContent,
   TextField,
   Typography,
-  InputLabel,
   MenuItem,
-  FormControl,
-  Select,
+  Box,
 } from "@mui/material";
 
 const houseStyleOptions = [
@@ -95,23 +93,35 @@ export default function CustomPlanRequestForm() {
 
   return (
     <>
-      <Card>
+      <Card sx={{ padding: 3 }}>
         <CardContent>
           <Typography>Custom plan request form</Typography>
         </CardContent>
         <CardContent>
           <form onSubmit={submit} style={{ display: "grid", gap: "1rem" }}>
-            {planRequestInputs.map((input, index) => (
-              <>
-                <TextField
-                  key={index}
-                  label={input.label}
-                  onChange={(e) => {
-                    input.onChangeValue(e.target.value);
-                  }}
-                />
-              </>
-            ))}
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                overflowX: "auto",
+
+                justifyContent: "center",
+                gap: 1,
+              }}
+            >
+              {planRequestInputs.map((input, index) => (
+                <>
+                  <TextField
+                    key={index}
+                    label={input.label}
+                    onChange={(e) => {
+                      input.onChangeValue(e.target.value);
+                    }}
+                  />
+                </>
+              ))}
+            </Box>
+
             <div className="houseStyleInput">
               <TextField
                 fullWidth
