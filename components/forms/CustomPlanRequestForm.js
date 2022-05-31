@@ -7,13 +7,55 @@ import {
   Typography,
 } from "@mui/material";
 
+const houseStyleOptions = [
+  {
+    value: "Spanish",
+    label: "Spanish",
+  },
+  {
+    value: "Luxury",
+    label: "Luxury",
+  },
+  {
+    value: "Modern",
+    label: "Modern",
+  },
+  {
+    value: "Ranch",
+    label: "Ranch",
+  },
+  {
+    value: "Cottage",
+    label: "Cottage",
+  },
+  { value: "Other", label: "Other" },
+];
+
 export default function CustomPlanRequestForm() {
   const [requestorName, setRequestorName] = useState("");
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
   const [lotSize, setLotSize] = useState("");
   const [style, setStyle] = useState("");
-  const [message, setMessage] = useState("");
+
+  const planRequestInputs = [
+    {
+      label: "Name",
+      onChangeValue: setRequestorName,
+    },
+    {
+      label: "Phone",
+      onChangeValue: setRequestorPhone,
+    },
+    {
+      label: "Project Sq. Footage",
+      onChangeValue: setSqFootage,
+    },
+    {
+      label: "Lot Size (Acres or Sq.Ft)",
+      onChangeValue: setLotSize,
+    },
+  ];
 
   const submit = (e) => {
     e.preventDefault();
@@ -22,8 +64,6 @@ export default function CustomPlanRequestForm() {
     console.log(sqFootage + " sqft");
     console.log(lotSize);
     console.log(style);
-    console.log(message);
-    console.log("puta");
   };
 
   return (
@@ -34,44 +74,18 @@ export default function CustomPlanRequestForm() {
         </CardContent>
         <CardContent>
           <form onSubmit={submit} style={{ display: "grid", gap: "1rem" }}>
-            <TextField
-              label="name"
-              onChange={(e) => {
-                setRequestorName(e.target.value);
-              }}
-            />
-            <TextField
-              label="Phone"
-              onChange={(e) => {
-                setRequestorPhone(e.target.value);
-              }}
-            />
-            <TextField
-              label="Lot Size (SqFt or Acres)"
-              onChange={(e) => {
-                setLotSize(e.target.value);
-              }}
-            />
-            <TextField
-              label="Sq Footage Estimate"
-              onChange={(e) => {
-                setSqFootage(e.target.value);
-              }}
-            />
-            <TextField
-              label="Style"
-              onChange={(e) => {
-                setStyle(e.target.value);
-              }}
-            />
-            <TextField
-              label="Message"
-              multiline
-              rows={4}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-            />
+            {planRequestInputs.map((input, index) => (
+              <>
+                <TextField
+                  key={index}
+                  label={input.label}
+                  onChange={(e) => {
+                    input.onChangeValue(e.target.value);
+                  }}
+                />
+              </>
+            ))}
+
             <Button type="submit">Submit</Button>
           </form>
         </CardContent>
