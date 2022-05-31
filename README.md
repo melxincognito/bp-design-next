@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Styling Library: MUIv5
 
-# FORMS
+# Forms
 
 <h3> CustomPlanRequest: </h3>
 <ul>
