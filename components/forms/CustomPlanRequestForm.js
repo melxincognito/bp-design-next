@@ -37,12 +37,32 @@ const houseStyleOptions = [
   { value: "Other", label: "Other" },
 ];
 
+const projectTypeOptions = [
+  {
+    value: "New Construction",
+    label: "New Construction",
+  },
+  {
+    value: "Full Renovation",
+    label: "Full Renovation",
+  },
+  {
+    value: "Remodel",
+    label: "Remodel",
+  },
+  {
+    value: "Home Addition",
+    label: "Home Addition",
+  },
+];
+
 export default function CustomPlanRequestForm() {
   const [requestorName, setRequestorName] = useState("");
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
   const [lotSize, setLotSize] = useState("");
   const [style, setStyle] = useState("Luxury");
+  const [projectType, setProjectType] = useState("New Construction");
 
   const planRequestInputs = [
     {
@@ -70,6 +90,7 @@ export default function CustomPlanRequestForm() {
     console.log(sqFootage + " sqft");
     console.log(lotSize);
     console.log(style);
+    console.log(projectType);
   };
 
   return (
@@ -91,25 +112,43 @@ export default function CustomPlanRequestForm() {
                 />
               </>
             ))}
+            <div className="houseStyleInput">
+              <TextField
+                fullWidth
+                select
+                label="House Style"
+                value={style}
+                onChange={(e) => {
+                  setStyle(e.target.value);
+                }}
+                required
+              >
+                {houseStyleOptions.map((option, index) => (
+                  <MenuItem key={index} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
 
-            <TextField
-              id="serviceInquirySelection"
-              fullWidth
-              select
-              label="House Style"
-              value={style}
-              onChange={(e) => {
-                setStyle(e.target.value);
-              }}
-              name="service"
-              required
-            >
-              {houseStyleOptions.map((option, index) => (
-                <MenuItem key={index} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+            <div className="projectTypeInput">
+              <TextField
+                fullWidth
+                select
+                label="Project Type"
+                value={projectType}
+                onChange={(e) => {
+                  setProjectType(e.target.value);
+                }}
+                required
+              >
+                {projectTypeOptions.map((option, index) => (
+                  <MenuItem key={index} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
 
             <Button type="submit">Submit</Button>
           </form>
