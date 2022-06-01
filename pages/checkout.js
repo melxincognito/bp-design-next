@@ -1,5 +1,5 @@
 function mycart() {
-  return <div>mycart</div>;
+  return <div>checkout</div>;
 }
 
 export default mycart;
