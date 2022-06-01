@@ -9,51 +9,6 @@ import {
   Box,
 } from "@mui/material";
 
-const houseStyleOptions = [
-  {
-    value: "Luxury",
-    label: "Luxury",
-  },
-
-  {
-    value: "Modern",
-    label: "Modern",
-  },
-  {
-    value: "Spanish",
-    label: "Spanish",
-  },
-
-  {
-    value: "Ranch",
-    label: "Ranch",
-  },
-  {
-    value: "Cottage",
-    label: "Cottage",
-  },
-  { value: "Other", label: "Other" },
-];
-
-const projectTypeOptions = [
-  {
-    value: "New Construction",
-    label: "New Construction",
-  },
-  {
-    value: "Full Renovation",
-    label: "Full Renovation",
-  },
-  {
-    value: "Remodel",
-    label: "Remodel",
-  },
-  {
-    value: "Home Addition",
-    label: "Home Addition",
-  },
-];
-
 export default function CustomPlanRequestForm() {
   const [requestorName, setRequestorName] = useState("");
   const [requestorPhone, setRequestorPhone] = useState("");
@@ -104,7 +59,6 @@ export default function CustomPlanRequestForm() {
                 display: "flex",
                 flexWrap: "wrap",
                 overflowX: "auto",
-
                 justifyContent: "center",
                 gap: 1,
               }}
@@ -167,3 +121,48 @@ export default function CustomPlanRequestForm() {
     </>
   );
 }
+
+const houseStyleOptions = [
+  {
+    value: "Luxury Style",
+    label: "Luxury",
+  },
+
+  {
+    value: "Modern Style",
+    label: "Modern",
+  },
+  {
+    value: "Spanish Style",
+    label: "Spanish",
+  },
+
+  {
+    value: "Ranch Style",
+    label: "Ranch",
+  },
+  {
+    value: "Cottage Style",
+    label: "Cottage",
+  },
+  { value: "Other", label: "Other" },
+];
+
+const projectTypeOptions = [
+  {
+    value: "New Construction Project",
+    label: "New Construction",
+  },
+  {
+    value: "Full Renovation Project",
+    label: "Full Renovation",
+  },
+  {
+    value: "Remodel Project",
+    label: "Remodel",
+  },
+  {
+    value: "Home Addition Project",
+    label: "Home Addition",
+  },
+];
