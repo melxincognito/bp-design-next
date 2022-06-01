@@ -14,20 +14,20 @@ export default function CustomPlanRequestForm() {
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
   const [lotSize, setLotSize] = useState("");
-  const [style, setStyle] = useState("Luxury");
-  const [projectType, setProjectType] = useState("New Construction");
+  const [style, setStyle] = useState("Luxury Style");
+  const [projectType, setProjectType] = useState("New Construction Project");
 
   const planRequestInputs = [
     {
-      label: "Name",
+      label: "Contact Name",
       onChangeValue: setRequestorName,
     },
     {
-      label: "Phone",
+      label: "Contact Phone",
       onChangeValue: setRequestorPhone,
     },
     {
-      label: "Project Sq. Footage",
+      label: "Est. Project Sq. Footage",
       onChangeValue: setSqFootage,
     },
     {
@@ -48,9 +48,9 @@ export default function CustomPlanRequestForm() {
 
   return (
     <>
-      <Card sx={{ padding: 3 }}>
-        <CardContent>
-          <Typography>Custom plan request form</Typography>
+      <Card sx={{ padding: 3, display: "grid", justifyContent: "center" }}>
+        <CardContent sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography variant="h4">Custom Blueprint Request Form</Typography>
         </CardContent>
         <CardContent>
           <form onSubmit={submit} style={{ display: "grid", gap: "1rem" }}>
@@ -58,7 +58,6 @@ export default function CustomPlanRequestForm() {
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                overflowX: "auto",
                 justifyContent: "center",
                 gap: 1,
               }}
@@ -114,7 +113,9 @@ export default function CustomPlanRequestForm() {
               </TextField>
             </div>
 
-            <Button type="submit">Submit</Button>
+            <Button variant="contained" type="submit">
+              Submit
+            </Button>
           </form>
         </CardContent>
       </Card>
