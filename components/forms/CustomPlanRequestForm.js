@@ -46,10 +46,23 @@ export default function CustomPlanRequestForm() {
     console.log(projectType);
   };
 
+  const cardStyles = {
+    padding: 3,
+    display: "grid",
+    justifyContent: "center",
+    borderRadius: 3,
+    boxShadow: "0 0.25rem 0.75rem rgba(0, 0, 0, 0.5)",
+  };
+  const cardHeaderStyles = {
+    display: "flex",
+    justifyContent: "center",
+    textAlign: "center",
+  };
+
   return (
     <>
-      <Card sx={{ padding: 3, display: "grid", justifyContent: "center" }}>
-        <CardContent sx={{ display: "flex", justifyContent: "center" }}>
+      <Card sx={cardStyles}>
+        <CardContent sx={cardHeaderStyles}>
           <Typography variant="h4">Custom Blueprint Request Form</Typography>
         </CardContent>
         <CardContent>
@@ -65,6 +78,7 @@ export default function CustomPlanRequestForm() {
               {planRequestInputs.map((input, index) => (
                 <>
                   <TextField
+                    sx={{ width: { xs: "100%", md: "24.3%" } }}
                     key={index}
                     label={input.label}
                     onChange={(e) => {
