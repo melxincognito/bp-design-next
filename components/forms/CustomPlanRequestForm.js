@@ -7,9 +7,23 @@ import {
   Typography,
   MenuItem,
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
 } from "@mui/material";
 
+// TODO - add email js to send the message to the bp design email
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 export default function CustomPlanRequestForm() {
+  const [open, setOpen] = React.useState(false);
+
   const [requestorName, setRequestorName] = useState("");
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
@@ -46,11 +60,19 @@ export default function CustomPlanRequestForm() {
     console.log(projectType);
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const cardStyles = {
-    padding: 3,
+    padding: 2,
     display: "grid",
     justifyContent: "center",
-    borderRadius: 3,
+    borderRadius: 2,
     boxShadow: "0 0.25rem 0.75rem rgba(0, 0, 0, 0.5)",
   };
   const cardHeaderStyles = {
@@ -65,8 +87,10 @@ export default function CustomPlanRequestForm() {
         <CardContent sx={cardHeaderStyles}>
           <Typography variant="h4">Custom Blueprint Request Form</Typography>
         </CardContent>
+        <hr size="1" width="90%" color="gray" />
+
         <CardContent>
-          <form onSubmit={submit} style={{ display: "grid", gap: "1rem" }}>
+          <form style={{ display: "grid", gap: "1rem" }}>
             <Box
               sx={{
                 display: "flex",
@@ -127,12 +151,30 @@ export default function CustomPlanRequestForm() {
               </TextField>
             </div>
 
-            <Button variant="contained" type="submit">
+            <Button variant="contained" onClick={handleClickOpen}>
               Submit
             </Button>
           </form>
         </CardContent>
       </Card>
+
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        sx={{ textAlign: "center" }}
+      >
+        <DialogTitle>{"Request Sent!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ display: "flex", flexWrap: "wrap" }}>
+            We'll contact you shortly to discuss your custom blueprint design
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
