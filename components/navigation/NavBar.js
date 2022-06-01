@@ -252,7 +252,7 @@ export default function NavBar() {
               sx={{ backgroundColor: "primary.light", color: "white" }}
               onClick={handleClose}
             >
-              Checkout
+              <Link href="/checkout">Checkout</Link>
             </Button>
           </Toolbar>
         </AppBar>
