@@ -1,10 +1,19 @@
 import { Box, Typography } from "@mui/material";
 import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <>
+    <motion.div
+      initial={{ x: -1700 }}
+      animate={{ x: 0 }}
+      transition={{
+        type: "tween",
+        duration: "1.5",
+        delay: "0.3",
+      }}
+    >
       {/*Desktop page view */}
       <Box
         className="desktop-container"
@@ -43,6 +52,7 @@ export default function Home() {
         <Box sx={{ backgroundColor: "blue" }}>
           <Typography> box 2</Typography>
         </Box>
+
         <Box sx={{ backgroundColor: "orange" }}>
           {" "}
           <Typography> Box 3</Typography>
@@ -55,6 +65,6 @@ export default function Home() {
       >
         <Typography> Hello world</Typography>
       </Box>
-    </>
+    </motion.div>
   );
 }
