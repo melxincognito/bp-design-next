@@ -1,10 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
+      {/*Desktop page view */}
       <Box
         sx={{ display: { xs: "none", md: "flex" }, justifyContent: "center" }}
       >
@@ -23,6 +24,10 @@ export default function Home() {
         >
           <FilterBlueprintsForm />
         </Box>{" "}
+      </Box>
+      {/*Mobile page view */}
+      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+        <Typography> Hello world</Typography>
       </Box>
     </>
   );
