@@ -7,26 +7,32 @@ export default function Home() {
     <>
       {/*Desktop page view */}
       <Box
+        className="desktop-container"
         sx={{ display: { xs: "none", md: "flex" }, justifyContent: "center" }}
       >
-        <img
-          src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
-          width="80%"
-          height="60%"
-        />
-        <Box
-          id="container"
-          sx={{
-            position: "absolute",
-            right: "15%",
-            top: "26%",
-          }}
-        >
-          <FilterBlueprintsForm />
-        </Box>{" "}
+        <Box>
+          <img
+            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
+            width="80%"
+            height="60%"
+          />
+          <Box
+            id="container"
+            sx={{
+              position: "absolute",
+              right: "15%",
+              top: "26%",
+            }}
+          >
+            <FilterBlueprintsForm />
+          </Box>{" "}
+        </Box>
       </Box>
       {/*Mobile page view */}
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+      <Box
+        className="mobile-container"
+        sx={{ display: { xs: "flex", md: "none" } }}
+      >
         <Typography> Hello world</Typography>
       </Box>
     </>
