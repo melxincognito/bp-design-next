@@ -8,16 +8,28 @@ export default function Home() {
       {/*Desktop page view */}
       <Box
         className="desktop-container"
-        sx={{ display: { xs: "none", md: "flex" }, justifyContent: "center" }}
+        sx={{
+          display: { xs: "none", md: "grid" },
+          gridTemplateRows: "auto 4rem 8rem",
+          justifyItems: "center",
+        }}
       >
-        <Box>
+        <Box
+          className="header-image-container"
+          sx={{
+            backgroundColor: "red",
+            display: "flex",
+            justifyContent: "center",
+            padding: "1rem",
+          }}
+        >
           <img
             src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
-            width="80%"
-            height="60%"
+            width="90%"
+            height="100%"
           />
           <Box
-            id="container"
+            id="blueprints-form-container"
             sx={{
               position: "absolute",
               right: "15%",
@@ -26,6 +38,14 @@ export default function Home() {
           >
             <FilterBlueprintsForm />
           </Box>{" "}
+        </Box>
+
+        <Box sx={{ backgroundColor: "blue" }}>
+          <Typography> box 2</Typography>
+        </Box>
+        <Box sx={{ backgroundColor: "orange" }}>
+          {" "}
+          <Typography> Box 3</Typography>
         </Box>
       </Box>
       {/*Mobile page view */}
