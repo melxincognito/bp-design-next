@@ -4,29 +4,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const desktopContainerStyles = {
+    display: { xs: "none", md: "grid" },
+    gridTemplateRows: "auto 4rem 8rem",
+    justifyItems: "center",
+  };
+
+  const mobileContainerStyles = {
+    display: { xs: "flex", md: "none" },
+  };
   return (
     <motion.div
-      initial={{ x: -1700 }}
-      animate={{ x: 0 }}
-      transition={{
-        type: "tween",
-        duration: "1.5",
-        delay: "0.3",
-      }}
+      transition={{ delay: 0.17 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       {/*Desktop page view */}
-      <Box
-        className="desktop-container"
-        sx={{
-          display: { xs: "none", md: "grid" },
-          gridTemplateRows: "auto 4rem 8rem",
-          justifyItems: "center",
-        }}
-      >
+      <Box className="desktop-container" sx={desktopContainerStyles}>
         <Box
           className="header-image-container"
           sx={{
-            backgroundColor: "red",
             display: "flex",
             justifyContent: "center",
             padding: "1rem",
@@ -59,10 +57,7 @@ export default function Home() {
         </Box>
       </Box>
       {/*Mobile page view */}
-      <Box
-        className="mobile-container"
-        sx={{ display: { xs: "flex", md: "none" } }}
-      >
+      <Box className="mobile-container" sx={{ mobileContainerStyles }}>
         <Typography> Hello world</Typography>
       </Box>
     </motion.div>

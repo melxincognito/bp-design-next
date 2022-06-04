@@ -1,6 +1,7 @@
 import LoginForm from "../components/forms/LoginForm";
 import { Card, CardContent, Typography } from "@mui/material";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 function login() {
   const cardStyles = {
@@ -10,7 +11,12 @@ function login() {
   };
 
   return (
-    <div>
+    <motion.div
+      transition={{ delay: 0.17 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <LoginForm />
       <div style={{ marginTop: "1rem" }}>
         <Card sx={cardStyles}>
@@ -25,7 +31,7 @@ function login() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
