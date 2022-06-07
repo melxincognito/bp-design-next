@@ -37,9 +37,9 @@ export default function Home() {
               height="100%"
             />
             <motion.div
-              initial={{ x: "-150vh" }}
+              initial={{ x: "-130vh" }}
               animate={{ x: 0 }}
-              transition={{ delay: 2, type: "spring", stiffness: 100 }}
+              transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
               id="blueprints-form-container"
               style={{
                 position: "absolute",
