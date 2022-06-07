@@ -52,18 +52,32 @@ export default function Home() {
           </Box>
         </motion.div>
 
-        <Box sx={{ backgroundColor: "blue" }}>
+        <motion.div
+          className="container2"
+          transition={{ delay: 2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{ backgroundColor: "blue" }}
+        >
           <Typography> box 2</Typography>
-        </Box>
+        </motion.div>
 
-        <Box sx={{ backgroundColor: "orange" }}>
+        <motion.div
+          className="container3"
+          transition={{ delay: 2.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{ backgroundColor: "orange" }}
+        >
           {" "}
           <Typography> Box 3</Typography>
-        </Box>
+        </motion.div>
       </Box>
       {/*Mobile page view */}
       <Box className="mobile-container" sx={{ mobileContainerStyles }}>
-        <Typography> Hello world</Typography>
+        <Typography> Hello world II</Typography>
       </Box>
     </motion.div>
   );
