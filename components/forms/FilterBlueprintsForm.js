@@ -42,6 +42,7 @@ export default function FilterBlueprintsForm() {
     padding: "2rem 0 2rem 0",
     borderRadius: 2,
     backgroundColor: "rgba(255, 255, 255, 0.59)",
+    boxShadow: "4px 3px 15px 5px rgba(0,0,0,0.32)",
   };
   const generalButtonsContainerStyles = {
     display: "flex",
