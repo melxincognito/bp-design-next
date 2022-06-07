@@ -15,10 +15,9 @@ export default function Home() {
   };
   return (
     <motion.div
-      transition={{ delay: 0.17 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ x: -650 }}
+      animate={{ x: 0 }}
+      transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
     >
       {/*Desktop page view */}
       <Box className="desktop-container" sx={desktopContainerStyles}>
