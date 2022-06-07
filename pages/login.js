@@ -24,8 +24,8 @@ function login() {
             <Typography>
               {" "}
               Dont have an account?{" "}
-              <Link href="/signup" color="purple">
-                Click here to sign up!
+              <Link href="/signup">
+                <a style={{ color: "purple" }}>Click here to sign up! </a>
               </Link>{" "}
             </Typography>{" "}
           </CardContent>
