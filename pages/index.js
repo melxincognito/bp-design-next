@@ -14,7 +14,7 @@ export default function Home() {
     display: { xs: "flex", md: "none" },
   };
   return (
-    <motion.div>
+    <>
       {/*Desktop page view */}
       <Box className="desktop-container" sx={desktopContainerStyles}>
         <motion.div
@@ -54,7 +54,7 @@ export default function Home() {
 
         <motion.div
           className="container2"
-          transition={{ delay: 2 }}
+          transition={{ delay: 1.7 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -65,7 +65,7 @@ export default function Home() {
 
         <motion.div
           className="container3"
-          transition={{ delay: 2.2 }}
+          transition={{ delay: 1.9 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -75,10 +75,11 @@ export default function Home() {
           <Typography> Box 3</Typography>
         </motion.div>
       </Box>
+
       {/*Mobile page view */}
-      <Box className="mobile-container" sx={{ mobileContainerStyles }}>
+      <Box className="mobile-container" sx={mobileContainerStyles}>
         <Typography> Hello world II</Typography>
       </Box>
-    </motion.div>
+    </>
   );
 }
