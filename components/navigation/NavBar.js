@@ -202,8 +202,8 @@ export default function NavBar() {
               >
                 {tabsItems.map((tab) => (
                   <>
-                    <Link href={tab.link} passHref value={tab.id}>
-                      <Tab key={tab.id} label={tab.label} sx={tabsStyles}></Tab>
+                    <Link href={tab.link} value={tab.id} passHref>
+                      <Tab key={tab.id} label={tab.label} sx={tabsStyles} />
                     </Link>
                   </>
                 ))}

@@ -202,7 +202,12 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <div style={{ display: "grid", textAlign: "center", gap: "1rem" }}>
+        <motion.div
+          style={{ display: "grid", textAlign: "center", gap: "1rem" }}
+          transition={{ delay: 3.7 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <Typography variant="h4"> How to plan a new home build: </Typography>
           <hr width="90%" />
           <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -218,11 +223,11 @@ export default function Home() {
               </>
             ))}
           </Box>
-        </div>
+        </motion.div>
 
         <motion.div
           className="container4"
-          transition={{ delay: 3.7 }}
+          transition={{ delay: 4.2 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
