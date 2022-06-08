@@ -14,26 +14,34 @@ import Link from "next/link";
 
 function FeaturedBlueprintCard(props) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={`${props.image}`}
-        alt={`${props.planNumber}`}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Plan # {props.planNumber}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.planStyle} style home floor plan
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">View Floor Plan</Button>
-        <Button size="small">Share Floor Plan</Button>
-      </CardActions>
-    </Card>
+    <motion.div
+      transition={{ delay: props.Delay }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <Card
+        sx={{ maxWidth: 345, boxShadow: "0px 3px 15px 5px rgba(0,0,0,0.3)" }}
+      >
+        <CardMedia
+          component="img"
+          height="200"
+          image={`${props.image}`}
+          alt={`${props.planNumber}`}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Plan # {props.planNumber}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {props.planStyle} style home floor plan
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">View Floor Plan</Button>
+          <Button size="small">Share Floor Plan</Button>
+        </CardActions>
+      </Card>
+    </motion.div>
   );
 }
 
@@ -125,31 +133,47 @@ export default function Home() {
           transition={{ delay: 1.9 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "1rem",
+            display: "grid",
             justifyContent: "center",
+            textAlign: "center",
+            alignItems: "center",
             alignContent: "center",
+            gap: "1rem",
           }}
         >
-          {featuredPlans.map((plan) => (
-            <>
-              {" "}
-              <FeaturedBlueprintCard
-                key={plan.index}
-                planNumber={plan.planNumber}
-                image={plan.planImage}
-                planStyle={plan.planStyle}
-              />{" "}
-            </>
-          ))}
+          <div>
+            <Typography variant="h4"> Featured Floor Plans</Typography>
+            <hr width="90%" />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1rem",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            {featuredPlans.map((plan) => (
+              <>
+                {" "}
+                <FeaturedBlueprintCard
+                  key={plan.index}
+                  planNumber={plan.planNumber}
+                  image={plan.planImage}
+                  planStyle={plan.planStyle}
+                  Delay={plan.delay}
+                />{" "}
+              </>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
           className="container4"
-          transition={{ delay: 1.9 }}
+          transition={{ delay: 3.7 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -157,12 +181,11 @@ export default function Home() {
         >
           {" "}
           <Typography variant="h6">
-            {" "}
             Found a plan you like but want to fix a few details? We can help
-            with that! We offer our customers the ability to submit{" "}
+            with that! We offer our customers the ability to submit
             <Link href="/customplanrequest" passHref>
               <a style={{ color: "purple" }}>custom plan requests </a>
-            </Link>{" "}
+            </Link>
             to our team. We'll review your request and get back to you to go
             over the details so we can help create the perfect home.
           </Typography>
@@ -184,6 +207,7 @@ const featuredPlans = [
     planStyle: "Spanish Colonial",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    delay: 2.4,
   },
   {
     index: 1,
@@ -191,6 +215,7 @@ const featuredPlans = [
     planStyle: "Luxury",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    delay: 2.7,
   },
   {
     index: 2,
@@ -198,6 +223,7 @@ const featuredPlans = [
     planStyle: "Modern",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    delay: 3.0,
   },
   {
     index: 3,
@@ -205,5 +231,6 @@ const featuredPlans = [
     planStyle: "Ranch",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    delay: 3.3,
   },
 ];
