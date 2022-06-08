@@ -11,7 +11,6 @@ import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Build } from "@mui/icons-material";
 
 function FeaturedBlueprintCard(props) {
   return (
@@ -38,8 +37,8 @@ function FeaturedBlueprintCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">View Floor Plan</Button>
           <Button size="small">Share Floor Plan</Button>
+          <Button size="small">View Floor Plan</Button>
         </CardActions>
       </Card>
     </motion.div>
@@ -48,7 +47,7 @@ function FeaturedBlueprintCard(props) {
 
 function BuildHouseTile(props) {
   return (
-    <div>
+    <motion.div whileHover={{ scale: 1.1 }}>
       <Card
         sx={{
           display: "flex",
@@ -73,18 +72,14 @@ function BuildHouseTile(props) {
           </Typography>
         </CardContent>
       </Card>
-    </div>
+    </motion.div>
   );
 }
-
-BuildHouseTile.defaultProps = {
-  backgroundColor: "#f5f5f5",
-};
 
 export default function Home() {
   const desktopContainerStyles = {
     display: { xs: "none", md: "grid" },
-    gridTemplateRows: "auto 10rem 30rem 16rem 10rem",
+    gridTemplateRows: "auto 10rem 30rem 18rem 10rem",
     justifyItems: "center",
     gap: "4rem",
   };
@@ -207,7 +202,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <div style={{ display: "grid", textAlign: "center" }}>
+        <div style={{ display: "grid", textAlign: "center", gap: "1rem" }}>
           <Typography variant="h4"> How to plan a new home build: </Typography>
           <hr width="90%" />
           <Box sx={{ display: "flex", flexWrap: "wrap" }}>
