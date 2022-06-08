@@ -11,6 +11,7 @@ import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Build } from "@mui/icons-material";
 
 function FeaturedBlueprintCard(props) {
   return (
@@ -45,12 +46,47 @@ function FeaturedBlueprintCard(props) {
   );
 }
 
+function BuildHouseTile(props) {
+  return (
+    <div>
+      <Card
+        sx={{
+          display: "flex",
+          height: "13rem",
+          width: "300px",
+          padding: 1,
+          boxShadow: "0px 1px 15px 5px rgba(0,0,0,0.12)",
+          backgroundColor: props.backgroundColor,
+        }}
+      >
+        <CardContent>
+          <Typography variant="h4" color="#0b03b0">
+            {" "}
+            {props.stepNumber}{" "}
+          </Typography>
+        </CardContent>
+        <CardContent sx={{ display: "grid" }}>
+          <Typography variant="h6"> {props.title} </Typography>
+          <Typography variant="body1" color="primary.light">
+            {" "}
+            {props.description}{" "}
+          </Typography>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+BuildHouseTile.defaultProps = {
+  backgroundColor: "#f5f5f5",
+};
+
 export default function Home() {
   const desktopContainerStyles = {
     display: { xs: "none", md: "grid" },
-    gridTemplateRows: "auto 10rem 30rem 10rem",
+    gridTemplateRows: "auto 10rem 30rem 16rem 10rem",
     justifyItems: "center",
-    gap: "1rem",
+    gap: "4rem",
   };
 
   const mobileContainerStyles = {
@@ -171,6 +207,24 @@ export default function Home() {
           </div>
         </motion.div>
 
+        <div style={{ display: "grid", textAlign: "center" }}>
+          <Typography variant="h4"> How to plan a new home build: </Typography>
+          <hr width="90%" />
+          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+            {buildHouseSteps.map((step) => (
+              <>
+                <BuildHouseTile
+                  key={step.index}
+                  stepNumber={step.step}
+                  title={step.title}
+                  description={step.description}
+                  backgroundColor={step.color}
+                />
+              </>
+            ))}
+          </Box>
+        </div>
+
         <motion.div
           className="container4"
           transition={{ delay: 3.7 }}
@@ -182,9 +236,9 @@ export default function Home() {
           {" "}
           <Typography variant="h6">
             Found a plan you like but want to fix a few details? We can help
-            with that! We offer our customers the ability to submit
+            with that! We offer our customers the ability to submit a
             <Link href="/customplanrequest" passHref>
-              <a style={{ color: "purple" }}>custom plan requests </a>
+              <a style={{ color: "purple" }}> custom plan requests </a>
             </Link>
             to our team. We'll review your request and get back to you to go
             over the details so we can help create the perfect home.
@@ -214,7 +268,7 @@ const featuredPlans = [
     planNumber: 10002,
     planStyle: "Luxury",
     planImage:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80",
     delay: 2.7,
   },
   {
@@ -222,7 +276,7 @@ const featuredPlans = [
     planNumber: 10003,
     planStyle: "Modern",
     planImage:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
     delay: 3.0,
   },
   {
@@ -230,7 +284,43 @@ const featuredPlans = [
     planNumber: 10004,
     planStyle: "Ranch",
     planImage:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+      "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80",
     delay: 3.3,
+  },
+];
+
+const buildHouseSteps = [
+  {
+    index: 0,
+    step: 1,
+    title: "Assess",
+    color: "#f5f5f5",
+    description:
+      "Asses your current needs, financial situation, location and future plans.",
+  },
+
+  {
+    index: 1,
+    step: 2,
+    title: "Plan",
+    color: "#e8e8e8",
+    description:
+      "Decide on factors like number of beds/baths, style preferences, budget and lot location options.",
+  },
+
+  {
+    index: 2,
+    step: 3,
+    title: "Select",
+    color: "#d6d6d6",
+    description:
+      "Select the floor plans that best fit your needs, budget and location.",
+  },
+  {
+    index: 3,
+    step: 4,
+    title: "Build",
+    color: "#bfbfbf",
+    description: "Build the perfect home suited to fit your needs.",
   },
 ];
