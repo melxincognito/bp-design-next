@@ -1,13 +1,46 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  Typography,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+} from "@mui/material";
 import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+function FeaturedBlueprintCard(props) {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="200"
+        image={`${props.image}`}
+        alt={`${props.planNumber}`}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Plan # {props.planNumber}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.planStyle} style home floor plan
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">View Floor Plan</Button>
+        <Button size="small">Share Floor Plan</Button>
+      </CardActions>
+    </Card>
+  );
+}
+
 export default function Home() {
   const desktopContainerStyles = {
     display: { xs: "none", md: "grid" },
-    gridTemplateRows: "auto 10rem 10rem",
+    gridTemplateRows: "auto 10rem 30rem 10rem",
     justifyItems: "center",
     gap: "1rem",
   };
@@ -82,13 +115,40 @@ export default function Home() {
           <Typography variant="h6">
             {" "}
             Browse through our blueprint designs to find the perfect home for
-            you and your family. From Spanish Colonial to Modern, we have a wide
-            variety of options to choose from.
+            you and your family. From Spanish Colonial to Modern Style, we have
+            a wide variety of options to choose from.
           </Typography>
         </motion.div>
 
         <motion.div
-          className="container3"
+          className="container3-featured-blueprints"
+          transition={{ delay: 1.9 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          {featuredPlans.map((plan) => (
+            <>
+              {" "}
+              <FeaturedBlueprintCard
+                key={plan.index}
+                planNumber={plan.planNumber}
+                image={plan.planImage}
+                planStyle={plan.planStyle}
+              />{" "}
+            </>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="container4"
           transition={{ delay: 1.9 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -116,3 +176,34 @@ export default function Home() {
     </>
   );
 }
+
+const featuredPlans = [
+  {
+    index: 0,
+    planNumber: 10001,
+    planStyle: "Spanish Colonial",
+    planImage:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+  },
+  {
+    index: 1,
+    planNumber: 10002,
+    planStyle: "Luxury",
+    planImage:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+  },
+  {
+    index: 2,
+    planNumber: 10003,
+    planStyle: "Modern",
+    planImage:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+  },
+  {
+    index: 3,
+    planNumber: 10004,
+    planStyle: "Ranch",
+    planImage:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+  },
+];
