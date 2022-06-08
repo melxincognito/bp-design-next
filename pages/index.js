@@ -57,7 +57,7 @@ export default function Home() {
             />
             <motion.div
               id="blueprints-form-container"
-              initial={{ x: "-130vh" }}
+              initial={{ x: "-230vh" }}
               animate={{ x: 0 }}
               transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
               style={{
