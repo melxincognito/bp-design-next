@@ -35,6 +35,8 @@ export default function FilterBlueprintsAppBar() {
   const [stories, setStories] = useState("");
   const [squareFeet, setSquareFeet] = useState("");
 
+  // filter options to create their dropdown menus
+
   const filterOptions = [
     {
       label: "Beds",
@@ -62,8 +64,16 @@ export default function FilterBlueprintsAppBar() {
     },
   ];
 
+  // styles variables
+
+  const appBarStyles = {
+    padding: 2,
+    border: "solid black 7px",
+    borderStyle: "outset",
+  };
+
   return (
-    <AppBar position="static" maxWidth="xl" sx={{ padding: 2 }}>
+    <AppBar position="static" maxWidth="xl" sx={appBarStyles}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -116,7 +126,7 @@ export default function FilterBlueprintsAppBar() {
                   <Select
                     value={option.value}
                     placeholder={option.label}
-                    sx={{ backgroundColor: "white" }}
+                    sx={{ backgroundColor: "white", borderColor: "white" }}
                     onChange={(e) => {
                       option.onChangeFunc(e.target.value);
                     }}
@@ -133,7 +143,7 @@ export default function FilterBlueprintsAppBar() {
 
             <Button
               variant="contained"
-              sx={{ backgroundColor: "primary.light" }}
+              sx={{ backgroundColor: "secondary.main", color: "black" }}
             >
               <Typography> Filter Blueprints</Typography>
             </Button>
