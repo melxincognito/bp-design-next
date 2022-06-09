@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Typography, Box, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FilterBlueprintsAppBar from "./FilterBlueprintsAppBar";
 
 export default function BrowseStylesLayout(props) {
   const styleSelectionContainerStyles = {
@@ -48,6 +49,7 @@ export default function BrowseStylesLayout(props) {
           <Typography variant="h3"> {props.StyleName} Style Homes</Typography>
           <hr width="100%" />
         </div>
+        <FilterBlueprintsAppBar />
         <Box
           className="stylesSelectionContainer"
           sx={styleSelectionContainerStyles}
