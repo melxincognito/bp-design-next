@@ -1,9 +1,66 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Typography, Box } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  CardActionArea,
+  CardActions,
+} from "@mui/material";
+
+function StyleSelectionCard(props) {
+  return (
+    <>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="200"
+            image={`${props.Image}`}
+            alt="kiwi"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {props.StyleName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            <Link href={`/browsebpbystyle/${props.StyleName}`} passHref>
+              <a> See {props.StyleName} blueprints</a>
+            </Link>
+          </Button>
+        </CardActions>
+      </Card>
+    </>
+  );
+}
 
 export default function browsebpbystyle() {
+  const styleSelectionContainerStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.13)",
+    height: "100%",
+    width: "100%",
+    border: "solid black 15px",
+    borderStyle: "inset",
+    borderRadius: 1,
+    justifyContent: "center",
+    alignContent: "center",
+    padding: "3rem",
+  };
+
   return (
     <motion.div
       className="mainContainer"
@@ -11,7 +68,7 @@ export default function browsebpbystyle() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ display: "grid" }}
+      style={{ display: "grid", width: "100%", gap: "1rem" }}
     >
       <div
         style={{
@@ -26,26 +83,16 @@ export default function browsebpbystyle() {
         <hr width="100%" />
       </div>
       <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 10,
-          backgroundColor: "pink",
-          height: "20rem",
-          width: "100%",
-          border: "solid black 20px",
-          borderRadius: 2,
-          justifyContent: "center",
-          alignContent: "center",
-        }}
+        className="stylesSelectionContainer"
+        sx={styleSelectionContainerStyles}
       >
         {stylesOptions.map((option) => (
           <>
-            <button key={option.index}>
-              <Link href={`/browsebpbystyle/${option.style}`} passHref>
-                <a> {option.style}</a>
-              </Link>
-            </button>
+            <StyleSelectionCard
+              key={option.index}
+              StyleName={option.style}
+              Image={option.image}
+            />
           </>
         ))}
       </Box>
@@ -56,18 +103,26 @@ export default function browsebpbystyle() {
 const stylesOptions = [
   {
     style: "luxury",
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80",
     index: 0,
   },
   {
     style: "modern",
+    image:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZXJuJTIwaG9tZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60",
     index: 1,
   },
   {
     style: "ranch",
+    image:
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
     index: 2,
   },
   {
     style: "spanish",
+    image:
+      "https://images.unsplash.com/photo-1603811410430-c7fd2df742a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     index: 3,
   },
 ];
