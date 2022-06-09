@@ -20,7 +20,7 @@ export default function BrowseStylesLayout(props) {
     padding: "3rem",
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       <div>
         <Link href="/browsebpbystyle" passHref>
           <Button>
