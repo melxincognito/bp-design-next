@@ -47,10 +47,10 @@ function BlueprintCard(props) {
   );
 }
 
-export default function spanishcolonial() {
+export default function luxury() {
   return (
-    <BrowseStylesLayout StyleName="Spanish">
-      {spanishStyles.map((option, index) => (
+    <BrowseStylesLayout StyleName="Luxury">
+      {luxuryStyles.map((option, index) => (
         <>
           <BlueprintCard
             key={index}
@@ -67,9 +67,9 @@ export default function spanishcolonial() {
   );
 }
 
-const spanishStyles = [
+const luxuryStyles = [
   {
-    planNumber: 1001,
+    planNumber: 1005,
     beds: 2,
     baths: 1,
     sqFt: 1000,
@@ -78,7 +78,7 @@ const spanishStyles = [
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80",
   },
   {
-    planNumber: 1002,
+    planNumber: 1007,
     beds: 5,
     baths: 2.5,
     sqFt: 5000,
@@ -87,7 +87,7 @@ const spanishStyles = [
       "https://images.unsplash.com/photo-1600607688960-e095ff83135c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
   },
   {
-    planNumber: 1003,
+    planNumber: 1012,
     beds: 4,
     baths: 2,
     sqFt: 2000,
@@ -96,7 +96,7 @@ const spanishStyles = [
       "https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
   },
   {
-    planNumber: 1004,
+    planNumber: 1044,
     beds: 8,
     baths: 2.4,
     sqFt: 1700,
