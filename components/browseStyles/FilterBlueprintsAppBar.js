@@ -99,7 +99,9 @@ export default function FilterBlueprintsAppBar() {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, gap: 3 }}
+          >
             {filterOptions.map((option, index) => (
               <Box
                 key={index}
@@ -128,6 +130,13 @@ export default function FilterBlueprintsAppBar() {
                 </FormControl>
               </Box>
             ))}
+
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "primary.light" }}
+            >
+              <Typography> Filter Blueprints</Typography>
+            </Button>
           </Box>
         </Toolbar>
       </Container>
