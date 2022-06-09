@@ -143,7 +143,11 @@ export default function FilterBlueprintsAppBar() {
 
             <Button
               variant="contained"
-              sx={{ backgroundColor: "secondary.main", color: "black" }}
+              sx={{
+                backgroundColor: "secondary.main",
+                color: "black",
+                "&:hover": { backgroundColor: "highlight.main" },
+              }}
             >
               <Typography> Filter Blueprints</Typography>
             </Button>
