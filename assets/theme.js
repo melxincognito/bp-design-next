@@ -8,6 +8,9 @@ const theme = createTheme({
     secondary: {
       main: "#ffb300",
     },
+    highlight: {
+      main: "#0288d1",
+    },
   },
   typography: {
     fontFamily: "Libre Bodoni",
