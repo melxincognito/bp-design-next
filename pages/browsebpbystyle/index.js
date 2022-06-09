@@ -14,8 +14,14 @@ import {
 
 function StyleSelectionCard(props) {
   return (
-    <>
-      <Card sx={{ maxWidth: 345 }}>
+    <motion.div
+      transition={{ delay: props.Delay }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <Card
+        sx={{ maxWidth: 345, boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.36)" }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
@@ -41,7 +47,7 @@ function StyleSelectionCard(props) {
           </Button>
         </CardActions>
       </Card>
-    </>
+    </motion.div>
   );
 }
 
@@ -92,6 +98,7 @@ export default function browsebpbystyle() {
               key={option.index}
               StyleName={option.style}
               Image={option.image}
+              Delay={option.delay}
             />
           </>
         ))}
@@ -105,24 +112,28 @@ const stylesOptions = [
     style: "luxury",
     image:
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80",
+    delay: 1.15,
     index: 0,
   },
   {
     style: "modern",
     image:
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZXJuJTIwaG9tZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60",
+    delay: 1.45,
     index: 1,
   },
   {
     style: "ranch",
     image:
       "https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
+    delay: 1.75,
     index: 2,
   },
   {
     style: "spanish",
     image:
       "https://images.unsplash.com/photo-1603811410430-c7fd2df742a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
+    delay: 2.05,
     index: 3,
   },
 ];
