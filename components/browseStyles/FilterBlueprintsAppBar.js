@@ -72,6 +72,19 @@ export default function FilterBlueprintsAppBar() {
     borderStyle: "outset",
   };
 
+  const filterBlueprintsButtonStyles = {
+    backgroundColor: "secondary.main",
+    color: "black",
+    "&:hover": { backgroundColor: "highlight.main" },
+  };
+
+  const submitFilterBlueprints = (e) => {
+    e.preventDefault();
+    console.log("Beds " + beds);
+    console.log("Baths " + baths);
+    console.log("Stories " + stories);
+    console.log("Sq Feet " + squareFeet);
+  };
   return (
     <AppBar position="static" maxWidth="xl" sx={appBarStyles}>
       <Container maxWidth="xl">
@@ -142,12 +155,9 @@ export default function FilterBlueprintsAppBar() {
             ))}
 
             <Button
+              onClick={submitFilterBlueprints}
               variant="contained"
-              sx={{
-                backgroundColor: "secondary.main",
-                color: "black",
-                "&:hover": { backgroundColor: "highlight.main" },
-              }}
+              sx={filterBlueprintsButtonStyles}
             >
               <Typography> Filter Blueprints</Typography>
             </Button>
