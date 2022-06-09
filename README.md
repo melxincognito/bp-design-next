@@ -1,9 +1,3 @@
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 # Dependencies
 
 Install the dependencies by running <b> npm i</b> in the terminal
@@ -19,7 +13,7 @@ Dependencies List:
 <li>mui/icons-material </li>
 </ul>
 
-# Forms
+# Forms Components
 
 <h3> CustomPlanRequest: </h3>
 <ul>
@@ -30,3 +24,23 @@ Users who are signed up for an account can request custom blueprints be made for
 This information gets passed into emailjs where it'll be forwarded to the companies email and they can contact the individual to go more in depth about their desired project.
 </li>
 </ul>
+
+# Cards Components
+
+# Browse Styles Components
+
+<h3>FilterBlueprintsAppBar </h3>
+<ul>
+<li> FilterBlueprintsAppBar is an app bar component that is imported into the BrowseByStyles layout. It is used to filter blueprints by different categories such as number of beds, baths, stories, sqft, etc. </li>
+</ul>
+<h3>BrowseStylesLayout: </h3>
+<ul>
+<li> BrowseStylesLayout is a UI layout used to display blueprint options for a specific style(Spanish, Modern, Etc). To use it you import it into the appropriate file, pass the appropriate StyleName prop and have it wrap around the content you'd like displayed inside the plan selection area. 
+</li>
+</ul>
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
