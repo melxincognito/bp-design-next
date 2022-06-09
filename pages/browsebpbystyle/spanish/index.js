@@ -37,7 +37,11 @@ function BlueprintCard(props) {
         <Button size="small">
           <FavoriteBorderOutlinedIcon />
         </Button>
-        <Button size="small">View Floor Plan</Button>
+        <Button size="small">
+          <Link href={`/browsebpbystyle/spanish/${props.planNumber}`} passHref>
+            View Floor Plan
+          </Link>
+        </Button>
       </CardActions>
     </Card>
   );
