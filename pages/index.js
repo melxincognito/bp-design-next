@@ -95,12 +95,14 @@ export default function Home() {
   };
 
   const textContentContainerStyles = {
-    backgroundColor: "rgba(0, 0, 0, 0.16)",
+    backgroundColor: "primary.main",
+    color: "white",
     width: "100%",
     height: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    alignContent: "center",
     textAlign: "center",
     padding: "4rem",
     borderRadius: 3,
@@ -149,14 +151,15 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={textContentContainerStyles}
         >
-          <Typography variant="h6">
-            {" "}
-            Browse through our blueprint designs to find the perfect home for
-            you and your family. From Spanish Colonial to Modern Style, we have
-            a wide variety of options to choose from.
-          </Typography>
+          <Box sx={textContentContainerStyles}>
+            <Typography variant="h6">
+              {" "}
+              From Spanish Colonial to Modern Style, we have a wide variety of
+              options to choose from. Browse through our blueprint designs to
+              find the perfect home for you and your family.
+            </Typography>
+          </Box>
         </motion.div>
 
         <motion.div
@@ -231,18 +234,18 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={textContentContainerStyles}
         >
-          {" "}
-          <Typography variant="h6">
-            Found a plan you like but want to fix a few details? We can help
-            with that! We offer our customers the ability to submit a
-            <Link href="/customplanrequest" passHref>
-              <a style={{ color: "purple" }}> custom plan requests </a>
-            </Link>
-            to our team. We'll review your request and get back to you to go
-            over the details so we can help create the perfect home.
-          </Typography>
+          <Box sx={textContentContainerStyles}>
+            <Typography variant="h6">
+              Found a plan you like but want to fix a few details? We can help
+              with that! We offer our customers the ability to submit a
+              <Link href="/customplanrequest" passHref>
+                <a style={{ color: "purple" }}> custom plan requests </a>
+              </Link>
+              to our team. We'll review your request and get back to you to go
+              over the details so we can help create the perfect home.
+            </Typography>
+          </Box>{" "}
         </motion.div>
       </Box>
 
