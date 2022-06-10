@@ -8,9 +8,7 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 
-/* TODO fix positioning of shopping cart items. 
-    I want the heart, the trash can and the view 
-    button to be positioned on the right at the end */
+/* TODO fix positioning for mobile view */
 
 export default function ShoppingCartItemCard(props) {
   const detailsIconDivStyles = {
@@ -23,7 +21,7 @@ export default function ShoppingCartItemCard(props) {
         <Box
           sx={{
             display: "flex",
-            flexWrap: "wrap",
+            width: "100%",
             gap: "2rem",
             padding: 1,
           }}
@@ -71,10 +69,35 @@ export default function ShoppingCartItemCard(props) {
               <Typography> {props.garages} Garages </Typography>
             </div>
           </Box>
-          <Box className="container3-favoriteRemoveOrView">
-            <FavoriteBorderIcon />
-            <DeleteOutlineOutlinedIcon />
-            <Button> View Blueprint</Button>
+          <Box
+            className="container3-favoriteRemoveOrView"
+            sx={{
+              width: "100%",
+
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <FavoriteBorderIcon fontSize="large" />
+              <DeleteOutlineOutlinedIcon fontSize="large" />
+            </div>
+            <div
+              style={{
+                display: "flex",
+
+                height: "100%",
+                alignItems: "flex-end",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button variant="contained"> View Blueprint</Button>
+            </div>
           </Box>
         </Box>
       </ListItem>
