@@ -132,14 +132,14 @@ const stylesOptions = [
     index: 3,
   },
   {
-    style: "tiny homes",
+    style: "tiny home",
     image:
       "https://images.unsplash.com/photo-1525113990976-399835c43838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     delay: 2.35,
     index: 4,
   },
   {
-    style: "cabins",
+    style: "cabin",
     image:
       "https://images.unsplash.com/photo-1589129140837-67287c22521b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
     delay: 2.65,
