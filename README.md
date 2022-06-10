@@ -43,7 +43,7 @@ This information gets passed into emailjs where it'll be forwarded to the compan
          <li> planNumber </li>
     </ul>
 
-<li>It's important you pass the correct <i>slug, style and plan number </i> to the component in order for the component to link to the correct plan. In this applications example of a slug could be '/browsebpbystyle', a style '/luxury', and planNumber '1007' </li>
+<li>It's important you pass the correct <i>slug, style and plan number </i> to the component in order for the component to link to the correct plan. In this applications example of a slug could be 'browsebpbystyle', a style 'luxury', and planNumber '1007' </li>
 </ul>
 
 # Browse Styles Components
