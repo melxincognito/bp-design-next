@@ -5,7 +5,7 @@ import BlueprintCard from "../../../components/cards/BlueprintCard";
 export default function cabin() {
   return (
     <BrowseStylesLayout StyleName="Cabin">
-      {modernStyles.map((option, index) => (
+      {cabinStyles.map((option, index) => (
         <>
           <BlueprintCard
             key={index}
@@ -24,7 +24,7 @@ export default function cabin() {
   );
 }
 
-const modernStyles = [
+const cabinStyles = [
   {
     planNumber: 1029,
     beds: 2,
