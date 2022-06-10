@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, ListItem } from "@mui/material";
+import { Box, Typography, ListItem, Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
@@ -7,6 +7,10 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
+
+/* TODO fix positioning of shopping cart items. 
+    I want the heart, the trash can and the view 
+    button to be positioned on the right at the end */
 
 export default function ShoppingCartItemCard(props) {
   const detailsIconDivStyles = {
@@ -16,7 +20,13 @@ export default function ShoppingCartItemCard(props) {
   return (
     <>
       <ListItem button>
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "3rem" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "3rem",
+            padding: 1,
+          }}
+        >
           <Box
             className="container1-imagePreview"
             sx={{
@@ -32,6 +42,7 @@ export default function ShoppingCartItemCard(props) {
               <KingBedOutlinedIcon />{" "}
               <Typography> {props.beds} Beds </Typography>
             </div>
+
             <div className="baths" style={detailsIconDivStyles}>
               <BathroomOutlinedIcon />{" "}
               <Typography> {props.baths} Baths </Typography>
@@ -52,6 +63,7 @@ export default function ShoppingCartItemCard(props) {
           <Box className="container3-favoriteRemoveOrView">
             <FavoriteBorderIcon />
             <DeleteOutlineOutlinedIcon />
+            <Button> View Blueprint</Button>
           </Box>
         </Box>
       </ListItem>
