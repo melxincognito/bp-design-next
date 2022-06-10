@@ -135,11 +135,15 @@ export default function FilterBlueprintsAppBar() {
                 }}
               >
                 <FormControl fullWidth>
-                  <InputLabel>{option.label}</InputLabel>
+                  <InputLabel sx={{ color: "white" }}>
+                    {option.label}
+                  </InputLabel>
                   <Select
+                    id={option.label}
                     value={option.value}
-                    placeholder={option.label}
-                    sx={{ backgroundColor: "white", borderColor: "white" }}
+                    sx={{
+                      backgroundColor: "gray",
+                    }}
                     onChange={(e) => {
                       option.onChangeFunc(e.target.value);
                     }}
