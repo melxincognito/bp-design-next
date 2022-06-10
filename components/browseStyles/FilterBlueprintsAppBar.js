@@ -118,8 +118,62 @@ export default function FilterBlueprintsAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {/* TODO insert mobile filter options
-                          in this location */}
+              <Box
+                sx={{
+                  width: "20rem",
+                  display: "grid",
+                  justifyContent: "center",
+                  backgroundColor: "primary.light",
+                  gap: 2,
+                  padding: 2,
+                }}
+              >
+                {filterOptions.map((option, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      minWidth: 200,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FormControl fullWidth>
+                      <InputLabel
+                        sx={{
+                          color: "white",
+                        }}
+                      >
+                        {option.label}
+                      </InputLabel>
+                      <Select
+                        id={option.label}
+                        value={option.value}
+                        sx={{
+                          backgroundColor: "primary.main",
+                          boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
+                          color: "white",
+                        }}
+                        onChange={(e) => {
+                          option.onChangeFunc(e.target.value);
+                        }}
+                      >
+                        {option.values.map((value, index) => (
+                          <MenuItem key={index} value={value}>
+                            {value}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Box>
+                ))}
+                <Button
+                  onClick={submitFilterBlueprints}
+                  variant="contained"
+                  sx={filterBlueprintsButtonStyles}
+                >
+                  <Typography> Filter Blueprints</Typography>
+                </Button>
+              </Box>
             </Menu>
           </Box>
 
