@@ -29,6 +29,26 @@ export default function CabinPlanDetails() {
     },
   };
 
+  const contentContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    justifyItems: "center",
+    gap: 3,
+  };
+
+  const imagesContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    width: "70%",
+    alignItems: "center",
+  };
+
+  const imagePreviewContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    justifyItems: "center",
+  };
   const keyFeaturesContainerStyles = {
     display: "grid",
     border: "5px inset black",
@@ -58,32 +78,9 @@ export default function CabinPlanDetails() {
   };
 
   return (
-    <Box
-      className="contentContainer"
-      sx={{
-        display: "grid",
-        justifyContent: "center",
-        justifyItems: "center",
-        gap: 3,
-      }}
-    >
-      <Box
-        className="container1-images"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          width: "70%",
-          alignItems: "center",
-        }}
-      >
-        <Box
-          sx={{
-            display: "grid",
-            justifyContent: "center",
-            alignItems: "center",
-            justifyItems: "center",
-          }}
-        >
+    <Box className="contentContainer" sx={contentContainerStyles}>
+      <Box className="container1-images" sx={imagesContainerStyles}>
+        <Box className="imagePreviewContainer" sx={imagePreviewContainerStyles}>
           <img
             src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"
             alt="house"
