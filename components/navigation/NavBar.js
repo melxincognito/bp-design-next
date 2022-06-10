@@ -14,8 +14,6 @@ import {
   TextField,
   Button,
   Dialog,
-  ListItemText,
-  ListItem,
   List,
   Divider,
   Slide,
@@ -283,23 +281,6 @@ export default function NavBar() {
               <Divider />
             </>
           ))}
-
-          <ListItem button>
-            <img
-              src="https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60"
-              width="200px"
-              height="200px"
-              alt="img"
-            />
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
         </List>
       </Dialog>
     </>
