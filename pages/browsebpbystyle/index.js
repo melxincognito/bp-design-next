@@ -19,7 +19,7 @@ function StyleSelectionCard(props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <Link href={`/browsebpbystyle/${props.StyleName}`}>
+      <Link href={`/browsebpbystyle/${props.Route}`}>
         <Card
           sx={{ maxWidth: 345, boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.36)" }}
         >
@@ -94,6 +94,7 @@ export default function browsebpbystyle() {
               StyleName={option.style}
               Image={option.image}
               Delay={option.delay}
+              Route={option.route}
             />
           </>
         ))}
@@ -104,42 +105,48 @@ export default function browsebpbystyle() {
 
 const stylesOptions = [
   {
-    style: "luxury",
+    style: "Luxury",
+    route: "luxury",
     image:
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80",
     delay: 1.15,
     index: 0,
   },
   {
-    style: "modern",
+    style: "Modern",
+    route: "modern",
     image:
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZXJuJTIwaG9tZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60",
     delay: 1.45,
     index: 1,
   },
   {
-    style: "ranch",
+    style: "Ranch",
+    route: "ranch",
     image:
       "https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
     delay: 1.75,
     index: 2,
   },
   {
-    style: "spanish",
+    style: "Spanish",
+    route: "spanish",
     image:
       "https://images.unsplash.com/photo-1603811410430-c7fd2df742a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     delay: 2.05,
     index: 3,
   },
   {
-    style: "tiny home",
+    style: "Tiny Home",
+    route: "tinyhome",
     image:
       "https://images.unsplash.com/photo-1525113990976-399835c43838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     delay: 2.35,
     index: 4,
   },
   {
-    style: "cabin",
+    style: "Cabin",
+    route: "cabin",
     image:
       "https://images.unsplash.com/photo-1589129140837-67287c22521b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
     delay: 2.65,
