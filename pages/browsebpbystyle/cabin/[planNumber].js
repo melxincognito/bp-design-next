@@ -183,11 +183,11 @@ export default function CabinPlanDetails() {
           <Link href="/customplanrequest" passHref>
             <a style={{ color: "black", textDecoration: "underline" }}>
               {" "}
-              custom plan request{" "}
+              custom plan request
             </a>
-          </Link>
-          and we'll send you a quote to design your home with the proper
-          modifications.{" "}
+          </Link>{" "}
+          and we'll send you a quote to design your home with your requested
+          modifications.
         </Typography>
       </Box>
 
