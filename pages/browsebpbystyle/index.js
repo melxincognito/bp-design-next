@@ -19,34 +19,29 @@ function StyleSelectionCard(props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <Card
-        sx={{ maxWidth: 345, boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.36)" }}
-      >
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="200"
-            image={`${props.Image}`}
-            alt="kiwi"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {props.StyleName}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            <Link href={`/browsebpbystyle/${props.StyleName}`} passHref>
-              <a> See {props.StyleName} blueprints</a>
-            </Link>
-          </Button>
-        </CardActions>
-      </Card>
+      <Link href={`/browsebpbystyle/${props.StyleName}`}>
+        <Card
+          sx={{ maxWidth: 345, boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.36)" }}
+        >
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="200"
+              image={`${props.Image}`}
+              alt={`${props.StyleName}`}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {props.StyleName}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     </motion.div>
   );
 }
@@ -135,5 +130,19 @@ const stylesOptions = [
       "https://images.unsplash.com/photo-1603811410430-c7fd2df742a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
     delay: 2.05,
     index: 3,
+  },
+  {
+    style: "tiny homes",
+    image:
+      "https://images.unsplash.com/photo-1525113990976-399835c43838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80",
+    delay: 2.35,
+    index: 4,
+  },
+  {
+    style: "cabins",
+    image:
+      "https://images.unsplash.com/photo-1589129140837-67287c22521b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
+    delay: 2.65,
+    index: 5,
   },
 ];
