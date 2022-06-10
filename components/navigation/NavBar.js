@@ -108,12 +108,12 @@ export default function NavBar() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" maxWidth="xl">
         {/* Top Banner Container*/}
         <Container
           maxWidth="xl"
           sx={{
-            p: 1,
+            p: 2,
             bgcolor: "black",
             display: "flex",
           }}
@@ -126,7 +126,13 @@ export default function NavBar() {
               </Typography>
             </Link>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.5,
+            }}
+          >
             <TextField
               variant="standard"
               placeholder="Search by plan #"
