@@ -71,6 +71,14 @@ export default function FilterBlueprintsAppBar() {
     border: "solid black 7px",
     borderStyle: "outset",
   };
+  const mobileMenuContainerStyles = {
+    width: "20rem",
+    display: "grid",
+    justifyContent: "center",
+    backgroundColor: "primary.light",
+    gap: 2,
+    padding: 2,
+  };
 
   const filterBlueprintsButtonStyles = {
     backgroundColor: "secondary.main",
@@ -118,16 +126,8 @@ export default function FilterBlueprintsAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <Box
-                sx={{
-                  width: "20rem",
-                  display: "grid",
-                  justifyContent: "center",
-                  backgroundColor: "primary.light",
-                  gap: 2,
-                  padding: 2,
-                }}
-              >
+              {/*Mobile Menu items */}
+              <Box sx={mobileMenuContainerStyles}>
                 {filterOptions.map((option, index) => (
                   <Box
                     key={index}
