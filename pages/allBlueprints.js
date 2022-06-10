@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Typography, Box } from "@mui/material";
-
+import FilterBlueprintsAppBar from "../components/browseStyles/FilterBlueprintsAppBar";
 const allBlueprints = () => {
   const styleSelectionContainerStyles = {
     display: "flex",
@@ -39,6 +39,7 @@ const allBlueprints = () => {
           <Typography variant="h3"> Browse All Blueprints</Typography>
           <hr width="100%" />
         </div>
+        <FilterBlueprintsAppBar />
         <Box
           className="stylesSelectionContainer"
           sx={styleSelectionContainerStyles}
