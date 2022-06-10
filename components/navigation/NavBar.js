@@ -13,24 +13,103 @@ import {
   Tab,
   TextField,
   Button,
+  Dialog,
+  ListItemText,
+  ListItem,
+  List,
+  Divider,
+  Slide,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-
-import Dialog from "@mui/material/Dialog";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-
+import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
+import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import CloseIcon from "@mui/icons-material/Close";
-import Slide from "@mui/material/Slide";
 
+// shopping cart dialog items
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
+const shoppingCartItems = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+    planNumber: 1003,
+    beds: 2,
+    baths: 1.5,
+    squareFeet: 1000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+    planNumber: 1005,
+    beds: 5,
+    baths: 3,
+    squareFeet: 2000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+    planNumber: 1009,
+    beds: 9,
+    baths: 4,
+    squareFeet: 3000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+    planNumber: 1001,
+    beds: 2,
+    baths: 2.5,
+    squareFeet: 1000,
+  },
+];
+
+function ShoppingCartItem(props) {
+  return (
+    <>
+      <ListItem button>
+        <Box
+          sx={{ display: "flex", justifyContent: "space-evenly", gap: "3rem" }}
+        >
+          <Box
+            className="container1"
+            sx={{
+              display: "grid",
+              justifyContent: "center",
+            }}
+          >
+            <img src={props.image} width="200px" height="200px" alt="img" />
+            <Typography> Plan #{props.planNumber}</Typography>
+          </Box>
+          <Box className="container2" sx={{ display: "grid" }}>
+            <div style={{ display: "flex" }}>
+              <KingBedOutlinedIcon />{" "}
+              <Typography> {props.beds} Beds </Typography>
+            </div>
+            <div style={{ display: "flex" }}>
+              <BathroomOutlinedIcon />{" "}
+              <Typography> {props.baths} Baths </Typography>
+            </div>
+            <div style={{ display: "flex" }}>
+              <SquareFootIcon />{" "}
+              <Typography> {props.squareFeet} sqft </Typography>
+            </div>
+          </Box>
+          <Box className="container3">
+            <FavoriteBorderIcon />
+            <DeleteOutlineOutlinedIcon />
+          </Box>
+        </Box>
+      </ListItem>
+    </>
+  );
+}
 
 const tabsItems = [
   { label: "Home", link: "/", id: 0 },
@@ -41,8 +120,10 @@ const tabsItems = [
 
 export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [open, setOpen] = useState(false);
 
+  // open dialog for shopping cart
+  const [open, setOpen] = useState(false);
+  // value for tab indicator color
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -265,7 +346,27 @@ export default function NavBar() {
 
         {/* Keeping the list items as visual props for now until I configure adding a plan to your cart.  */}
         <List>
+          {shoppingCartItems.map((item, index) => (
+            <>
+              <ShoppingCartItem
+                key={index}
+                image={item.image}
+                planNumber={item.planNumber}
+                beds={item.beds}
+                squareFeet={item.squareFeet}
+                baths={item.baths}
+              />
+              <Divider />
+            </>
+          ))}
+
           <ListItem button>
+            <img
+              src="https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60"
+              width="200px"
+              height="200px"
+              alt="img"
+            />
             <ListItemText primary="Phone ringtone" secondary="Titania" />
           </ListItem>
           <Divider />
