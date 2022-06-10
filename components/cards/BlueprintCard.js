@@ -38,6 +38,7 @@ export default function BlueprintCard(props) {
           <AddShoppingCartOutlinedIcon />
         </Button>
         <Button size="small">
+          {/* example for link href would be browsebpbystyle/luxury/1007 */}
           <Link
             href={`/${props.slug}/${props.style}/${props.planNumber}`}
             passHref
