@@ -24,92 +24,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
-import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import SquareFootIcon from "@mui/icons-material/SquareFoot";
+
 import CloseIcon from "@mui/icons-material/Close";
+import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";
 
 // shopping cart dialog items
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-const shoppingCartItems = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-    planNumber: 1003,
-    beds: 2,
-    baths: 1.5,
-    squareFeet: 1000,
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-    planNumber: 1005,
-    beds: 5,
-    baths: 3,
-    squareFeet: 2000,
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-    planNumber: 1009,
-    beds: 9,
-    baths: 4,
-    squareFeet: 3000,
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-    planNumber: 1001,
-    beds: 2,
-    baths: 2.5,
-    squareFeet: 1000,
-  },
-];
-
-function ShoppingCartItem(props) {
-  return (
-    <>
-      <ListItem button>
-        <Box
-          sx={{ display: "flex", justifyContent: "space-evenly", gap: "3rem" }}
-        >
-          <Box
-            className="container1"
-            sx={{
-              display: "grid",
-              justifyContent: "center",
-            }}
-          >
-            <img src={props.image} width="200px" height="200px" alt="img" />
-            <Typography> Plan #{props.planNumber}</Typography>
-          </Box>
-          <Box className="container2" sx={{ display: "grid" }}>
-            <div style={{ display: "flex" }}>
-              <KingBedOutlinedIcon />{" "}
-              <Typography> {props.beds} Beds </Typography>
-            </div>
-            <div style={{ display: "flex" }}>
-              <BathroomOutlinedIcon />{" "}
-              <Typography> {props.baths} Baths </Typography>
-            </div>
-            <div style={{ display: "flex" }}>
-              <SquareFootIcon />{" "}
-              <Typography> {props.squareFeet} sqft </Typography>
-            </div>
-          </Box>
-          <Box className="container3">
-            <FavoriteBorderIcon />
-            <DeleteOutlineOutlinedIcon />
-          </Box>
-        </Box>
-      </ListItem>
-    </>
-  );
-}
 
 const tabsItems = [
   { label: "Home", link: "/", id: 0 },
@@ -348,13 +270,15 @@ export default function NavBar() {
         <List>
           {shoppingCartItems.map((item, index) => (
             <>
-              <ShoppingCartItem
+              <ShoppingCartItemCard
                 key={index}
                 image={item.image}
                 planNumber={item.planNumber}
                 beds={item.beds}
                 squareFeet={item.squareFeet}
                 baths={item.baths}
+                garages={item.garages}
+                stories={item.stories}
               />
               <Divider />
             </>
@@ -381,3 +305,47 @@ export default function NavBar() {
     </>
   );
 }
+
+// shopping cart item dummy data
+const shoppingCartItems = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+    planNumber: 1003,
+    beds: 2,
+    baths: 1.5,
+    stories: 2,
+    garages: 2,
+    squareFeet: 1000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1589129140837-67287c22521b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
+    planNumber: 1005,
+    beds: 5,
+    baths: 3,
+    stories: 3,
+    garages: 1,
+    squareFeet: 2000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1542643299-be5d00d22db3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
+    planNumber: 1009,
+    beds: 9,
+    baths: 4,
+    stories: 1,
+    garages: 4,
+    squareFeet: 3000,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1611821261180-8e6867e77288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNhYmluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60",
+    planNumber: 1001,
+    beds: 2,
+    baths: 2.5,
+    stories: 2,
+    garages: 3,
+    squareFeet: 1000,
+  },
+];
