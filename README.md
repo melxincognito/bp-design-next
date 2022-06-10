@@ -27,6 +27,25 @@ This information gets passed into emailjs where it'll be forwarded to the compan
 
 # Cards Components
 
+<h3> BlueprintCard </h3>
+<ul>
+    <li> Reusable component to be used for displaying the different blueprint options on the browsing pages. It is used in both the pages for browsing through all the plans and for browsing through specific styles.  </li>
+    <li> The card needs the following props to be passed:  </li>
+    <ul>
+        <li>image </li>
+        <li>planNumber </li>
+        <li>beds</li>
+        <li>baths</li>
+        <li>stories</li>
+        <li>sqFt</li>
+        <li>slug </li>
+        <li>style </li>
+         <li> planNumber </li>
+    </ul>
+
+<li>It's important you pass the correct<i>slug, style and plan number </i> to the component in order for the component to link to the correct plan. In this applications example of a slug could be '/browsebpbystyle', a style '/luxury', and planNumber '1007' </li>
+</ul>
+
 # Browse Styles Components
 
 <h3>FilterBlueprintsAppBar </h3>
