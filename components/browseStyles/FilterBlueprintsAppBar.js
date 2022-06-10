@@ -75,6 +75,7 @@ export default function FilterBlueprintsAppBar() {
   const filterBlueprintsButtonStyles = {
     backgroundColor: "secondary.main",
     color: "black",
+    boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
     "&:hover": { backgroundColor: "highlight.main" },
   };
 
@@ -135,7 +136,11 @@ export default function FilterBlueprintsAppBar() {
                 }}
               >
                 <FormControl fullWidth>
-                  <InputLabel sx={{ color: "white" }}>
+                  <InputLabel
+                    sx={{
+                      color: "white",
+                    }}
+                  >
                     {option.label}
                   </InputLabel>
                   <Select
@@ -143,6 +148,7 @@ export default function FilterBlueprintsAppBar() {
                     value={option.value}
                     sx={{
                       backgroundColor: "gray",
+                      boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
                     }}
                     onChange={(e) => {
                       option.onChangeFunc(e.target.value);
