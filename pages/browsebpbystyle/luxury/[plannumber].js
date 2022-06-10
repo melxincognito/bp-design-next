@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 export default function PlanDeets() {
   const router = useRouter();
 
-  const planNumber = router.query.plannumber;
+  const planNumber = router.query.planNumber;
 
   return (
     <div>
       <h1> {planNumber} </h1>
+      <h2> for luxury</h2>
     </div>
   );
 }
