@@ -28,6 +28,35 @@ export default function CabinPlanDetails() {
       boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.24)",
     },
   };
+
+  const keyFeaturesContainerStyles = {
+    display: "grid",
+    border: "5px inset black",
+    backgroundColor: "primary.main",
+    padding: 2,
+    width: "70%",
+    color: "white",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+  };
+
+  const keyFeaturesIconsContainerStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "2rem",
+    justifyContent: "space-evenly",
+  };
+
+  const customizePlanContainerStyles = {
+    display: "grid",
+    border: "5px inset black",
+    backgroundColor: "highlight.dark",
+    padding: 3,
+    width: "70%",
+    color: "white",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+    textAlign: "center",
+  };
+
   return (
     <Box
       className="contentContainer"
@@ -118,47 +147,32 @@ export default function CabinPlanDetails() {
           </Box>
         </Box>
       </Box>
-      <Box
-        className="container2-keyfeatures"
-        sx={{
-          display: "grid",
-          border: "5px inset black",
-          backgroundColor: "primary.main",
-          padding: 2,
-          width: "70%",
-          color: "white",
-          boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
-        }}
-      >
+      <Box className="container2-keyfeatures" sx={keyFeaturesContainerStyles}>
         <Box>
-          <Typography variant="h4"> Key Specs</Typography>
+          <Typography variant="h4"> Key Features</Typography>
         </Box>
         <hr width="100%" color="white" />
         <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "2rem",
-            justifyContent: "space-evenly",
-          }}
+          className="keyFeaturesIconsContainer"
+          sx={keyFeaturesIconsContainerStyles}
         >
-          <div>
+          <div className="beds">
             <KingBedOutlinedIcon fontSize="large" />
             <Typography variant="body1"> 3 beds</Typography>
           </div>
-          <div>
+          <div className="baths">
             <BathroomOutlinedIcon fontSize="large" />
             <Typography variant="body1"> 3.5 Baths</Typography>
           </div>
-          <div>
+          <div className="garages">
             <GarageOutlinedIcon fontSize="large" />
             <Typography variant="body1"> 3 Garages</Typography>
           </div>
-          <div>
+          <div className="stories">
             <StairsOutlinedIcon fontSize="large" />
             <Typography variant="body1"> 2 Stories</Typography>
           </div>{" "}
-          <div sx={{ display: "flex" }}>
+          <div className="squareFeet">
             <SquareFootIcon fontSize="large" />
             <Typography variant="body1"> 1000 SqFt</Typography>
           </div>
@@ -166,16 +180,7 @@ export default function CabinPlanDetails() {
       </Box>
       <Box
         className="container3-customizePlan"
-        sx={{
-          display: "grid",
-          border: "5px inset black",
-          backgroundColor: "highlight.dark",
-          padding: 3,
-          width: "70%",
-          color: "white",
-          boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
-          textAlign: "center",
-        }}
+        sx={customizePlanContainerStyles}
       >
         <Typography variant="h6">
           {" "}
@@ -190,8 +195,6 @@ export default function CabinPlanDetails() {
           modifications.
         </Typography>
       </Box>
-
-      <h2> For Cabin</h2>
     </Box>
   );
 }
