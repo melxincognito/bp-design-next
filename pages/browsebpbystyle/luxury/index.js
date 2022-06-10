@@ -38,7 +38,7 @@ function BlueprintCard(props) {
           <AddShoppingCartOutlinedIcon />
         </Button>
         <Button size="small">
-          <Link href={`/browsebpbystyle/spanish/${props.planNumber}`} passHref>
+          <Link href={`/browsebpbystyle/luxury/${props.planNumber}`} passHref>
             View Floor Plan
           </Link>
         </Button>
