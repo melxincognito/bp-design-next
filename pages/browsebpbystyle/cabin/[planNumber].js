@@ -8,6 +8,7 @@ import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
+import Link from "next/link";
 
 export default function CabinPlanDetails() {
   const router = useRouter();
@@ -67,7 +68,7 @@ export default function CabinPlanDetails() {
           <Box>
             <Typography variant="h4">
               {" "}
-              Plan # <a style={{ color: "purple" }}>{planNumber} </a>{" "}
+              Plan # <a style={{ color: "#026aa2" }}>{planNumber} </a>{" "}
             </Typography>
           </Box>
         </Box>
@@ -133,7 +134,14 @@ export default function CabinPlanDetails() {
           <Typography variant="h4"> Key Specs</Typography>
         </Box>
         <hr width="100%" color="white" />
-        <Box sx={{ display: "flex", gap: "2rem" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "2rem",
+            justifyContent: "space-evenly",
+          }}
+        >
           <div>
             <KingBedOutlinedIcon fontSize="large" />
             <Typography variant="body1"> 3 beds</Typography>
@@ -155,6 +163,32 @@ export default function CabinPlanDetails() {
             <Typography variant="body1"> 1000 SqFt</Typography>
           </div>
         </Box>
+      </Box>
+      <Box
+        className="container3-customizePlan"
+        sx={{
+          display: "grid",
+          border: "5px inset black",
+          backgroundColor: "highlight.dark",
+          padding: 3,
+          width: "70%",
+          color: "white",
+          boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h6">
+          {" "}
+          Like this plan but want to modify a few details? You can submit a{" "}
+          <Link href="/customplanrequest" passHref>
+            <a style={{ color: "black", textDecoration: "underline" }}>
+              {" "}
+              custom plan request{" "}
+            </a>
+          </Link>
+          and we'll send you a quote to design your home with the proper
+          modifications.{" "}
+        </Typography>
       </Box>
 
       <h2> For Cabin</h2>
