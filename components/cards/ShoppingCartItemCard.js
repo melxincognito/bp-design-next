@@ -23,7 +23,8 @@ export default function ShoppingCartItemCard(props) {
         <Box
           sx={{
             display: "flex",
-            gap: "3rem",
+            flexWrap: "wrap",
+            gap: "2rem",
             padding: 1,
           }}
         >
@@ -32,9 +33,19 @@ export default function ShoppingCartItemCard(props) {
             sx={{
               display: "grid",
               textAlign: "center",
+              gap: "1rem",
             }}
           >
-            <img src={props.image} width="200px" height="200px" alt="img" />
+            <img
+              src={props.image}
+              width="200px"
+              height="200px"
+              alt="img"
+              style={{
+                boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.3)",
+                borderRadius: 2,
+              }}
+            />
             <Typography> Plan #{props.planNumber}</Typography>
           </Box>
           <Box className="container2-planDetails" sx={{ display: "grid" }}>
