@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -24,19 +24,30 @@ export default function CabinPlanDetails() {
   return (
     <Box
       className="contentContainer"
-      sx={{ display: "grid", justifyContent: "center", justifyItems: "center" }}
+      sx={{
+        display: "grid",
+        justifyContent: "center",
+        justifyItems: "center",
+        gap: 3,
+      }}
     >
       <Box
         className="container1-images"
         sx={{
           display: "flex",
           justifyContent: "center",
-
           width: "70%",
           alignItems: "center",
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            display: "grid",
+            justifyContent: "center",
+            alignItems: "center",
+            justifyItems: "center",
+          }}
+        >
           <img
             src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"
             alt="house"
@@ -47,6 +58,24 @@ export default function CabinPlanDetails() {
               borderRadius: 2,
             }}
           />
+          <Box
+            sx={{
+              display: "flex",
+              gap: "4rem",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h4">
+              {" "}
+              Plan # <a style={{ color: "purple" }}>{planNumber} </a>{" "}
+            </Typography>
+            -
+            <Typography variant="h6">
+              {" "}
+              Style: <a style={{ color: "purple" }}>Cabin </a>
+            </Typography>
+          </Box>
         </Box>
         <Box sx={{ display: "grid", gap: "1rem" }}>
           <Box
@@ -94,7 +123,21 @@ export default function CabinPlanDetails() {
           </Box>
         </Box>
       </Box>
-      <h1> {planNumber} </h1>
+      <Box
+        className="container2-keyfeatures"
+        sx={{
+          display: "grid",
+          backgroundColor: "pink",
+          width: "70%",
+        }}
+      >
+        <Box>
+          <Typography variant="h4"> Key Specs</Typography>
+        </Box>
+        <hr width="100%" />
+        <Box></Box>
+      </Box>
+
       <h2> For Cabin</h2>
     </Box>
   );
