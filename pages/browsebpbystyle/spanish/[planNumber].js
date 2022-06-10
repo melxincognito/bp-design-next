@@ -9,6 +9,7 @@ export default function PlanDetails() {
   return (
     <div>
       <h1> {planNumber} </h1>
+      <h2> For spanish</h2>
     </div>
   );
 }
