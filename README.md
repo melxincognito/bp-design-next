@@ -13,18 +13,6 @@ Dependencies List:
 <li>mui/icons-material </li>
 </ul>
 
-# Forms Components
-
-<h3> CustomPlanRequest: </h3>
-<ul>
-<li>
-Users who are signed up for an account can request custom blueprints be made for their home project. Users will have to input their name, phone number, the size of their lot, a square footage estimate, select the type of home style(Ranch, Modern, Spanish, Mediterranean, Cottage, etc.), the type of project(New Home Build, Complete Home Renovation, Partial Remodel, etc.), and a message giving quick details about the type of project they're looking to build.
-</li>
-<li>
-This information gets passed into emailjs where it'll be forwarded to the companies email and they can contact the individual to go more in depth about their desired project.
-</li>
-</ul>
-
 # Cards Components
 
 <h3> BlueprintCard </h3>
@@ -97,6 +85,54 @@ This information gets passed into emailjs where it'll be forwarded to the compan
         <li> <b> squareFeet </b> - <i> Square footage of blueprint </i> </li>
         <li> <b> 3DFloorPlan </b> - <i> Image of the 3D floorplan that is displayed for the client </i> </li>
     </ul>
+</ul>
+
+# Forms Components
+
+<h3> CustomPlanRequest: </h3>
+<ul>
+<li>
+Users who are signed up for an account can request custom blueprints be made for their home project. Users will have to input their name, phone number, the size of their lot, a square footage estimate, select the type of home style(Ranch, Modern, Spanish, Mediterranean, Cottage, etc.), the type of project(New Home Build, Complete Home Renovation, Partial Remodel, etc.), and a message giving quick details about the type of project they're looking to build.
+</li>
+<li>
+This information gets passed into emailjs where it'll be forwarded to the companies email and they can contact the individual to go more in depth about their desired project.
+</li>
+</ul>
+
+<h3> FilterBlueprintsForm</h3>
+
+<ul>
+<li>
+This form is to be placed on the landing page. There are inputs for a user to select their preferred number of bedrooms, bathrooms, stories, garages and square footage for a home floor plan. Once the user puts their selections and clicks on 'browse blueprints', it should take the user to the allBlueprints page and filter the selections shown based off the users indicated preferences. 
+</li>
+
+</ul>
+
+<h3> ForgotPasswordForm</h3>
+
+<ul>
+<li>
+This form is to be imported into the forgotpassword page. It is for users who forgot their password and need to get back into their account by having a reset password link sent to their registered email.
+</li>
+
+</ul>
+
+<h3> LoginForm </h3>
+
+<ul>
+<li>
+This form is to be imported into the login page. It is for registered users to log into their account by using their email and password.
+</li>
+
+</ul>
+
+<h3> SignUpForm </h3>
+
+<ul>
+<li>
+This form is to be imported into the  signup page. It is for unregistered users to sign up for an account. In order for users to perform actions like make purchases or submit custom plan requests, they will need to register for an account. To make an account, users are required to by submit their first name, last name, email, password and confirm password. There is an optional field for a company name if the user is registering on behalf of a company. 
+</li>
+
 </ul>
 
 ## Deploy on Vercel
