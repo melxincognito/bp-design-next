@@ -56,7 +56,7 @@ Dependencies List:
 </ul>
 <h3>BrowseStylesLayout: </h3>
 <ul>
-<li> BrowseStylesLayout is a UI layout used to display blueprint options for a specific style(Spanish, Modern, Etc). To use it you import it into the appropriate file, pass the appropriate <b> StyleName </b> prop and have it wrap around the content you'd like displayed inside the plan selection area. 
+<li> BrowseStylesLayout is a  UI layout used to display blueprint options for a specific style(Spanish, Modern, Etc). To use it you import it into the appropriate file, pass the appropriate <b> StyleName </b> prop and have it wrap around the content you'd like displayed inside the plan selection area. 
 </li>
 </ul>
 
