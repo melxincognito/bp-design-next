@@ -1,15 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
+import BlueprintItemPageLayout from "../../../components/blueprintPages/BlueprintItemPageLayout";
 
-export default function PlanDeets() {
+export default function LuxuryPlanDeets() {
   const router = useRouter();
 
   const planNumber = router.query.planNumber;
 
-  return (
-    <div>
-      <h1> {planNumber} </h1>
-      <h2> for luxury</h2>
-    </div>
-  );
+  return <BlueprintItemPageLayout planNumber={planNumber} style="Luxury" />;
 }
