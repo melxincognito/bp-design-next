@@ -79,7 +79,7 @@ function BuildHouseTile(props) {
 export default function Home() {
   const desktopContainerStyles = {
     display: { xs: "none", md: "grid" },
-    gridTemplateRows: "auto 10rem 30rem 18rem 10rem",
+    gridTemplateRows: "auto auto auto auto auto",
     justifyItems: "center",
     gap: "4rem",
   };
