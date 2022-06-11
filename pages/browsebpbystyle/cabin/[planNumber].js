@@ -1,5 +1,13 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Button,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -15,6 +23,31 @@ export default function CabinPlanDetails() {
 
   const planNumber = router.query.planNumber;
 
+  const [planSetOptions, setPlanSetOptions] = useState("");
+  const [foundationOptions, setFoundationOptions] = useState("");
+  const [framingOptions, setFramingOptions] = useState("");
+
+  const purchaseOptions = [
+    {
+      label: "Set",
+      value: planSetOptions,
+      onChangeFunc: setPlanSetOptions,
+      values: ["PDF", "5 Copy & PDF", "PDF Unlimited", "CAD Unlimited"],
+    },
+    {
+      label: "Foundation",
+      value: foundationOptions,
+      onChangeFunc: setFoundationOptions,
+      values: ["Crawlspace", "Slab", "Basement"],
+    },
+    {
+      label: "Framing",
+      value: framingOptions,
+      onChangeFunc: setFramingOptions,
+      values: ["Wood 2x4", "Wood 2x6"],
+    },
+  ];
+
   const toggleImageGalleryContainerStyles = {
     display: "flex",
     justifyContent: "center",
@@ -23,7 +56,7 @@ export default function CabinPlanDetails() {
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.14)",
     borderRadius: 2,
     "&:hover": {
-      backgroundColor: "secondary.main",
+      backgroundColor: "highlight.main",
       cursor: "pointer",
       boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.24)",
     },
@@ -34,6 +67,14 @@ export default function CabinPlanDetails() {
     justifyContent: "center",
     justifyItems: "center",
     gap: 3,
+  };
+
+  const descriptionsContainerStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "1rem",
+    width: "75%",
+    justifyContent: "center",
   };
 
   const imagesContainerStyles = {
@@ -77,6 +118,22 @@ export default function CabinPlanDetails() {
     textAlign: "center",
   };
 
+  const floorPlanPreviewContainerStyles = {
+    display: "grid",
+    border: "5px inset black",
+    backgroundColor: "primary.main",
+    padding: 2,
+    width: "70%",
+    color: "white",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+  };
+
+  const floorPlanPreviewImageContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    padding: 2,
+  };
+
   return (
     <Box className="contentContainer" sx={contentContainerStyles}>
       <Box className="container1-images" sx={imagesContainerStyles}>
@@ -92,11 +149,8 @@ export default function CabinPlanDetails() {
             }}
           />
           <Box>
-            <Typography variant="h4">
-              {" "}
-              Plan # <a style={{ color: "#026aa2" }}>{planNumber} </a>{" "}
-            </Typography>
-          </Box>
+            <Typography variant="h4"> Plan # {planNumber} </Typography>
+          </Box>{" "}
         </Box>
         <Box sx={{ display: "grid", gap: "1rem" }}>
           <Box
@@ -144,7 +198,103 @@ export default function CabinPlanDetails() {
           </Box>
         </Box>
       </Box>
-      <Box className="container2-keyfeatures" sx={keyFeaturesContainerStyles}>
+      <Box
+        className="container2-descriptionAndAddToCart"
+        sx={descriptionsContainerStyles}
+      >
+        <Box
+          className="descriptionContainer"
+          sx={{
+            display: "grid",
+            border: "5px inset black",
+            backgroundColor: "primary.light",
+            padding: 2,
+            width: "45%",
+            color: "white",
+            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+          }}
+        >
+          <Box>
+            <Typography variant="h5"> Description: </Typography>
+            <hr style={{ height: "2px", color: "white", width: "100%" }} />
+          </Box>
+
+          <Typography variant="body1" sx={{ textAlign: "center" }}>
+            {" "}
+            This Ranch style 4 bedroom 3.5 bath home has everything a family
+            could ask for, including an office and a guest room that could
+            double as a mother-in-law suite. If you're looking for a spectacular
+            primary suite, this could be the plan for you. It boasts a spa like
+            bathroom with double vanities, a separate stand alone tub and custom
+            shower with dressing area and a make-up nook that leads you into an
+            oversized closet
+          </Typography>
+        </Box>
+        <Box
+          className="addToCartContainer"
+          sx={{
+            display: "grid",
+            border: "5px inset black",
+            backgroundColor: "secondary.light",
+            padding: 2,
+            width: "45%",
+            color: "black",
+            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+
+            gap: "1rem",
+          }}
+        >
+          <Box>
+            <Typography variant="h5"> Select Plan Options:</Typography>
+            <hr style={{ height: "2px", color: "black", width: "100%" }} />
+          </Box>
+
+          {purchaseOptions.map((option, index) => (
+            <Box
+              key={index}
+              sx={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <FormControl fullWidth>
+                <InputLabel>{option.label}</InputLabel>
+                <Select
+                  id={option.label}
+                  value={option.value}
+                  sx={{
+                    backgroundColor: "white",
+                    boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
+                  }}
+                  onChange={(e) => {
+                    option.onChangeFunc(e.target.value);
+                  }}
+                >
+                  {option.values.map((value, index) => (
+                    <MenuItem key={index} value={value}>
+                      {value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          ))}
+          <Button
+            sx={{
+              backgroundColor: "primary.main",
+              color: "white",
+              boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.25)",
+              "&:hover": { backgroundColor: "highlight.dark" },
+            }}
+          >
+            {" "}
+            Add To Cart
+          </Button>
+        </Box>
+      </Box>
+
+      <Box className="container3-keyfeatures" sx={keyFeaturesContainerStyles}>
         <Box>
           <Typography variant="h4"> Key Features</Typography>
         </Box>
@@ -176,7 +326,7 @@ export default function CabinPlanDetails() {
         </Box>
       </Box>
       <Box
-        className="container3-customizePlan"
+        className="container4-customizePlan"
         sx={customizePlanContainerStyles}
       >
         <Typography variant="h6">
@@ -191,6 +341,26 @@ export default function CabinPlanDetails() {
           and we'll send you a quote to design your home with your requested
           modifications.
         </Typography>
+      </Box>
+      <Box
+        className="container4-floorPlanPreview"
+        sx={floorPlanPreviewContainerStyles}
+      >
+        <Box>
+          <Typography variant="h4"> Floor Plan</Typography>
+        </Box>
+        <hr width="100%" color="white" />
+        <Box sx={floorPlanPreviewImageContainerStyles}>
+          <img
+            src="https://foyr.com/learn/wp-content/uploads/2022/03/how-to-read-floor-plans.jpg"
+            alt="floor plan"
+            width="90%"
+            style={{
+              boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.5)",
+              borderRadius: 2,
+            }}
+          />
+        </Box>
       </Box>
     </Box>
   );
