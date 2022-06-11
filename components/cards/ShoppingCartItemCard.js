@@ -8,32 +8,55 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 
-/* TODO fix positioning for mobile view */
+/* TODO fix positioning for mobile view on container 3 so its positioned below the plan 
+preview photo and the details */
 
 export default function ShoppingCartItemCard(props) {
+  const cartItemContainerStyles = {
+    display: "flex",
+    width: "100%",
+    gap: "2rem",
+    padding: 1,
+  };
+
+  const containerOneStyles = {
+    display: "grid",
+    textAlign: "center",
+    gap: "1rem",
+  };
+
+  const containerTwoStyles = {
+    display: "grid",
+    width: "100%",
+  };
+
+  const containerThreeStyles = {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  };
+
+  const detailsIconContainerStyles = {
+    display: "flex",
+    justifyContent: "flex-end",
+  };
+
   const detailsIconDivStyles = {
     display: "flex",
     gap: 5,
   };
+
+  const viewBlueprintButtonContainerStyles = {
+    display: "flex",
+    height: "100%",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+  };
   return (
     <>
       <ListItem button>
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            gap: "2rem",
-            padding: 1,
-          }}
-        >
-          <Box
-            className="container1-imagePreview"
-            sx={{
-              display: "grid",
-              textAlign: "center",
-              gap: "1rem",
-            }}
-          >
+        <Box sx={cartItemContainerStyles}>
+          <Box className="container1-imagePreview" sx={containerOneStyles}>
             <img
               src={props.image}
               width="200px"
@@ -46,10 +69,7 @@ export default function ShoppingCartItemCard(props) {
             />
             <Typography> Plan #{props.planNumber}</Typography>
           </Box>
-          <Box
-            className="container2-planDetails"
-            sx={{ display: "grid", width: "100%" }}
-          >
+          <Box className="container2-planDetails" sx={containerTwoStyles}>
             <div classsName="beds" style={detailsIconDivStyles}>
               <KingBedOutlinedIcon />{" "}
               <Typography> {props.beds} Beds </Typography>
@@ -74,31 +94,13 @@ export default function ShoppingCartItemCard(props) {
           </Box>
           <Box
             className="container3-favoriteRemoveOrView"
-            sx={{
-              width: "100%",
-
-              display: "flex",
-              flexDirection: "column",
-            }}
+            sx={containerThreeStyles}
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
+            <div style={detailsIconContainerStyles}>
               <FavoriteBorderIcon fontSize="large" />
               <DeleteOutlineOutlinedIcon fontSize="large" />
             </div>
-            <div
-              style={{
-                display: "flex",
-
-                height: "100%",
-                alignItems: "flex-end",
-                justifyContent: "flex-end",
-              }}
-            >
+            <div style={viewBlueprintButtonContainerStyles}>
               <Button variant="contained"> View Blueprint</Button>
             </div>
           </Box>
