@@ -168,10 +168,7 @@ export default function BlueprintItemPageLayout(props) {
 
   return (
     <Box className="contentContainer" sx={contentContainerStyles}>
-      <Box
-        className="navigateBackContainer"
-        sx={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
-      >
+      <Box className="navigateBackContainer" sx={{ width: "100%" }}>
         <Button onClick={() => router.back()}>
           <ArrowBackIcon />
         </Button>
