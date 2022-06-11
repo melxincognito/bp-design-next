@@ -67,7 +67,7 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
 <h3>BlueprintItemPageLayout </h3>
 
 <ul>
-    <li> BlueprintItemPageLayout is a reusable component to be used as a landing page to display the details of each individual blueprint item for purchase. It will display the details of the blueprint such as the plan number, a photo gallery of images, a description, key features, and a 3D floor plan. It will also allow the user to add the plan to their cart with their preferred purchase options and display the price in USD for that blueprint plan. If the user likes the plan but would like to make customization requests there is a direct link on the page to the custom plan request contact form. </li>
+    <li> BlueprintItemPageLayout is a reusable component to be used as a landing page to display the details of each individual blueprint item for purchase. It will display the details of the blueprint such as the plan number, a photo gallery of images, a description, key features, and a 3D floor plan. It will also allow the user to add the plan to their cart with their preferred purchase options and  have the price displayed in USD for that blueprint plan. If the user likes the plan but would like to make customization requests there is a direct link on the page to the custom plan request contact form. </li>
     <li> The card currently needs the following props to be passed:  </li>
     <ul>
         <li> planNumber</li>
