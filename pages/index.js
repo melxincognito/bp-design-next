@@ -206,14 +206,21 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          style={{ display: "grid", textAlign: "center", gap: "1rem" }}
+          style={{
+            display: "grid",
+            textAlign: "center",
+            gap: "1rem",
+          }}
           transition={{ delay: 3.7 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
           <Typography variant="h4"> How to plan a new home build: </Typography>
           <hr width="90%" />
-          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+          <Box
+            className="buildHouseSteps"
+            sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+          >
             {buildHouseSteps.map((step) => (
               <>
                 <BuildHouseTile
