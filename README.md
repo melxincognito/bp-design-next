@@ -72,6 +72,33 @@ This information gets passed into emailjs where it'll be forwarded to the compan
 </li>
 </ul>
 
+# Blueprint Pages Components
+
+<h3>BlueprintItemPageLayout </h3>
+
+<ul>
+    <li> BlueprintItemPageLayout is a reusable component to be used as a landing page to display each individual blueprint item. It will display the details of the blueprint such as the plan number, a photo gallery of images, a description, key features, and a 3D floor plan. It will also allow the user to add the plan to their cart with their preferred purchase options and display the price in USD for that blueprint plan. If the user likes the plan but would like to make customization requests there is a direct link on the page to the custom plan request contact form. </li>
+    <li> The card currently needs the following props to be passed:  </li>
+    <ul>
+        <li> planNumber</li>
+        <li> style</li>
+    </ul>
+    <li> The card still needs to be set up so the following props can be passed:  </li>
+
+ <ul>
+        <li> <b> images </b> - <i> Pass the images that correspond to that blueprint for the image gallery </i> </li>
+         <li> <b> description </b> - <i> Description should be different for every item. After the description is set up, the <b>style</b> prop should then be removed  </i> </li>
+        <li> style</li>
+        <li> <b> price </b> - <i> Add price of blueprint </i> </li>
+        <li> <b> beds </b> - <i> Number of bedrooms for blueprint </i> </li>
+        <li> <b> baths </b> - <i> Number of bathrooms for blueprint </i> </li>
+        <li> <b> garages </b> - <i> Number of garages for blueprint </i> </li>
+        <li> <b> stories </b> - <i> Number of stories(floors) for blueprint </i> </li>
+        <li> <b> squareFeet </b> - <i> Square footage of blueprint </i> </li>
+        <li> <b> 3DFloorPlan </b> - <i> Image of the 3D floorplan that is displayed for the client </i> </li>
+    </ul>
+</ul>
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
