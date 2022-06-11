@@ -46,7 +46,10 @@ export default function ShoppingCartItemCard(props) {
             />
             <Typography> Plan #{props.planNumber}</Typography>
           </Box>
-          <Box className="container2-planDetails" sx={{ display: "grid" }}>
+          <Box
+            className="container2-planDetails"
+            sx={{ display: "grid", width: "100%" }}
+          >
             <div classsName="beds" style={detailsIconDivStyles}>
               <KingBedOutlinedIcon />{" "}
               <Typography> {props.beds} Beds </Typography>
