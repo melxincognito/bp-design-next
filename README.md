@@ -13,6 +13,8 @@ Dependencies List:
 <li>mui/icons-material </li>
 </ul>
 
+Run the app locally by running <b> npm run dev </b> in the terminal and opening the browser to <b> localhost:3000 </b>
+
 # Cards Components
 
 <h3> BlueprintCard </h3>
