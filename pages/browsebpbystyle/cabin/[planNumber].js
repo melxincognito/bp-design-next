@@ -16,7 +16,9 @@ import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function CabinPlanDetails() {
   const router = useRouter();
@@ -69,12 +71,33 @@ export default function CabinPlanDetails() {
     gap: 3,
   };
 
-  const descriptionsContainerStyles = {
+  const descriptionsAddToCartContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
     gap: "1rem",
-    width: "75%",
+    width: "76.5%",
     justifyContent: "center",
+  };
+
+  const descriptionContainerStyles = {
+    display: "grid",
+    border: "5px inset black",
+    backgroundColor: "primary.light",
+    padding: 2,
+    width: "45%",
+    color: "white",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+  };
+
+  const addToCartContainerStyles = {
+    display: "grid",
+    border: "5px inset black",
+    backgroundColor: "secondary.light",
+    padding: 2,
+    width: "45%",
+    color: "black",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
+    gap: "1rem",
   };
 
   const imagesContainerStyles = {
@@ -134,9 +157,24 @@ export default function CabinPlanDetails() {
     padding: 2,
   };
 
+  // motion div containers are for divs wrapped around
+  // the mui components using the mui theme styling. It can't
+  // use a regular div without losing the mui color pallette styling
+  const motionDivContainerStyles = {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  };
+
   return (
     <Box className="contentContainer" sx={contentContainerStyles}>
-      <Box className="container1-images" sx={imagesContainerStyles}>
+      <motion.div
+        className="container1-images"
+        style={imagesContainerStyles}
+        transition={{ delay: 0.7 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <Box className="imagePreviewContainer" sx={imagePreviewContainerStyles}>
           <img
             src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80"
@@ -197,23 +235,16 @@ export default function CabinPlanDetails() {
             <KeyboardArrowDownIcon />
           </Box>
         </Box>
-      </Box>
-      <Box
+      </motion.div>
+
+      <motion.div
         className="container2-descriptionAndAddToCart"
-        sx={descriptionsContainerStyles}
+        style={descriptionsAddToCartContainerStyles}
+        transition={{ delay: 1.3 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
       >
-        <Box
-          className="descriptionContainer"
-          sx={{
-            display: "grid",
-            border: "5px inset black",
-            backgroundColor: "primary.light",
-            padding: 2,
-            width: "45%",
-            color: "white",
-            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
-          }}
-        >
+        <Box className="descriptionContainer" sx={descriptionContainerStyles}>
           <Box>
             <Typography variant="h5"> Description: </Typography>
             <hr style={{ height: "2px", color: "white", width: "100%" }} />
@@ -230,20 +261,8 @@ export default function CabinPlanDetails() {
             oversized closet
           </Typography>
         </Box>
-        <Box
-          className="addToCartContainer"
-          sx={{
-            display: "grid",
-            border: "5px inset black",
-            backgroundColor: "secondary.light",
-            padding: 2,
-            width: "45%",
-            color: "black",
-            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
 
-            gap: "1rem",
-          }}
-        >
+        <Box className="addToCartContainer" sx={addToCartContainerStyles}>
           <Box>
             <Typography variant="h5"> Select Plan Options:</Typography>
             <hr style={{ height: "2px", color: "black", width: "100%" }} />
@@ -286,82 +305,111 @@ export default function CabinPlanDetails() {
               color: "white",
               boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.25)",
               "&:hover": { backgroundColor: "highlight.dark" },
+              display: "flex",
+              gap: 1,
             }}
           >
             {" "}
+            <AddShoppingCartIcon />
             Add To Cart
           </Button>
         </Box>
-      </Box>
+      </motion.div>
 
-      <Box className="container3-keyfeatures" sx={keyFeaturesContainerStyles}>
-        <Box>
-          <Typography variant="h4"> Key Features</Typography>
+      <motion.div
+        className="container3-keyfeatures-motion"
+        transition={{ delay: 1.6 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={motionDivContainerStyles}
+      >
+        <Box className="container3-keyfeatures" sx={keyFeaturesContainerStyles}>
+          <Box>
+            <Typography variant="h4"> Key Features</Typography>
+          </Box>
+          <hr width="100%" color="white" />
+          <Box
+            className="keyFeaturesIconsContainer"
+            sx={keyFeaturesIconsContainerStyles}
+          >
+            <div className="beds">
+              <KingBedOutlinedIcon fontSize="large" />
+              <Typography variant="body1"> 3 beds</Typography>
+            </div>
+            <div className="baths">
+              <BathroomOutlinedIcon fontSize="large" />
+              <Typography variant="body1"> 3.5 Baths</Typography>
+            </div>
+            <div className="garages">
+              <GarageOutlinedIcon fontSize="large" />
+              <Typography variant="body1"> 3 Garages</Typography>
+            </div>
+            <div className="stories">
+              <StairsOutlinedIcon fontSize="large" />
+              <Typography variant="body1"> 2 Stories</Typography>
+            </div>{" "}
+            <div className="squareFeet">
+              <SquareFootIcon fontSize="large" />
+              <Typography variant="body1"> 1000 SqFt</Typography>
+            </div>
+          </Box>
         </Box>
-        <hr width="100%" color="white" />
-        <Box
-          className="keyFeaturesIconsContainer"
-          sx={keyFeaturesIconsContainerStyles}
-        >
-          <div className="beds">
-            <KingBedOutlinedIcon fontSize="large" />
-            <Typography variant="body1"> 3 beds</Typography>
-          </div>
-          <div className="baths">
-            <BathroomOutlinedIcon fontSize="large" />
-            <Typography variant="body1"> 3.5 Baths</Typography>
-          </div>
-          <div className="garages">
-            <GarageOutlinedIcon fontSize="large" />
-            <Typography variant="body1"> 3 Garages</Typography>
-          </div>
-          <div className="stories">
-            <StairsOutlinedIcon fontSize="large" />
-            <Typography variant="body1"> 2 Stories</Typography>
-          </div>{" "}
-          <div className="squareFeet">
-            <SquareFootIcon fontSize="large" />
-            <Typography variant="body1"> 1000 SqFt</Typography>
-          </div>
-        </Box>
-      </Box>
-      <Box
+      </motion.div>
+
+      <motion.div
         className="container4-customizePlan"
-        sx={customizePlanContainerStyles}
+        transition={{ delay: 2.0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={motionDivContainerStyles}
       >
-        <Typography variant="h6">
-          {" "}
-          Like this plan but want to modify a few details? You can submit a{" "}
-          <Link href="/customplanrequest" passHref>
-            <a style={{ color: "black", textDecoration: "underline" }}>
-              {" "}
-              custom plan request
-            </a>
-          </Link>{" "}
-          and we'll send you a quote to design your home with your requested
-          modifications.
-        </Typography>
-      </Box>
-      <Box
+        <Box
+          className="container4-customizePlan"
+          sx={customizePlanContainerStyles}
+        >
+          <Typography variant="h6">
+            {" "}
+            Like this plan but want to modify a few details? You can submit a{" "}
+            <Link href="/customplanrequest" passHref>
+              <a style={{ color: "black", textDecoration: "underline" }}>
+                {" "}
+                custom plan request
+              </a>
+            </Link>{" "}
+            and we'll send you a quote to design your home with your requested
+            modifications.
+          </Typography>
+        </Box>
+      </motion.div>
+
+      <motion.div
         className="container4-floorPlanPreview"
-        sx={floorPlanPreviewContainerStyles}
+        transition={{ delay: 2.4 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={motionDivContainerStyles}
       >
-        <Box>
-          <Typography variant="h4"> Floor Plan</Typography>
+        <Box
+          className="container4-floorPlanPreview"
+          sx={floorPlanPreviewContainerStyles}
+        >
+          <Box>
+            <Typography variant="h4"> Floor Plan</Typography>
+          </Box>
+          <hr width="100%" color="white" />
+          <Box sx={floorPlanPreviewImageContainerStyles}>
+            <img
+              src="https://foyr.com/learn/wp-content/uploads/2022/03/how-to-read-floor-plans.jpg"
+              alt="floor plan"
+              width="90%"
+              style={{
+                boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.5)",
+                borderRadius: 2,
+              }}
+            />
+          </Box>
         </Box>
-        <hr width="100%" color="white" />
-        <Box sx={floorPlanPreviewImageContainerStyles}>
-          <img
-            src="https://foyr.com/learn/wp-content/uploads/2022/03/how-to-read-floor-plans.jpg"
-            alt="floor plan"
-            width="90%"
-            style={{
-              boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.5)",
-              borderRadius: 2,
-            }}
-          />
-        </Box>
-      </Box>
+      </motion.div>
     </Box>
   );
 }
