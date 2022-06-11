@@ -8,6 +8,9 @@ import {
   InputLabel,
   Button,
 } from "@mui/material";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
@@ -16,8 +19,7 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function BlueprintItemPageLayout(props) {
   const [planSetOptions, setPlanSetOptions] = useState("");
@@ -44,6 +46,9 @@ export default function BlueprintItemPageLayout(props) {
       values: ["Wood 2x4", "Wood 2x6"],
     },
   ];
+
+  const router = useRouter();
+  // styles variables
 
   const toggleImageGalleryContainerStyles = {
     display: "flex",
@@ -163,6 +168,14 @@ export default function BlueprintItemPageLayout(props) {
 
   return (
     <Box className="contentContainer" sx={contentContainerStyles}>
+      <Box
+        className="navigateBackContainer"
+        sx={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
+      >
+        <Button onClick={() => router.back()}>
+          <ArrowBackIcon />
+        </Button>
+      </Box>
       <motion.div
         className="container1-images"
         style={imagesContainerStyles}
