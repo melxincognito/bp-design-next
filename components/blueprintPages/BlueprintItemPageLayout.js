@@ -50,6 +50,27 @@ export default function BlueprintItemPageLayout(props) {
   const router = useRouter();
   // styles variables
 
+  const contentContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    justifyItems: "center",
+    gap: 3,
+  };
+
+  const imagesContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    width: "70%",
+    alignItems: "center",
+  };
+
+  const imagePreviewContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    justifyItems: "center",
+  };
+
   const toggleImageGalleryContainerStyles = {
     display: "flex",
     justifyContent: "center",
@@ -62,13 +83,6 @@ export default function BlueprintItemPageLayout(props) {
       cursor: "pointer",
       boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.24)",
     },
-  };
-
-  const contentContainerStyles = {
-    display: "grid",
-    justifyContent: "center",
-    justifyItems: "center",
-    gap: 3,
   };
 
   const descriptionsAddToCartContainerStyles = {
@@ -100,19 +114,6 @@ export default function BlueprintItemPageLayout(props) {
     gap: "1rem",
   };
 
-  const imagesContainerStyles = {
-    display: "flex",
-    justifyContent: "center",
-    width: "70%",
-    alignItems: "center",
-  };
-
-  const imagePreviewContainerStyles = {
-    display: "grid",
-    justifyContent: "center",
-    alignItems: "center",
-    justifyItems: "center",
-  };
   const keyFeaturesContainerStyles = {
     display: "grid",
     border: "5px inset black",
