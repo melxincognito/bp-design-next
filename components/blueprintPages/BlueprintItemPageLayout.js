@@ -120,7 +120,7 @@ export default function BlueprintItemPageLayout(props) {
     border: "5px inset black",
     backgroundColor: "primary.main",
     padding: 2,
-    width: "70%",
+    width: { xs: "76%", md: "70%" },
     color: "white",
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
   };
@@ -137,7 +137,7 @@ export default function BlueprintItemPageLayout(props) {
     border: "5px inset black",
     backgroundColor: "highlight.dark",
     padding: 3,
-    width: "70%",
+    width: { xs: "76%", md: "70%" },
     color: "white",
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
     textAlign: "center",
@@ -148,7 +148,7 @@ export default function BlueprintItemPageLayout(props) {
     border: "5px inset black",
     backgroundColor: "primary.main",
     padding: 2,
-    width: "70%",
+    width: { xs: "76%", md: "70%" },
     color: "white",
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
   };
