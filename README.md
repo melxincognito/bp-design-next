@@ -11,6 +11,9 @@ Dependencies List:
 <li>emotion/styled </li>
 <li>mui/system </li>
 <li>mui/icons-material </li>
+<li>next 12.1.6 </li>
+<li>react 18.1.0 </li>
+<li>react-dom 18.1.0 </li>
 </ul>
 
 Run the app locally by running <b> npm run dev </b> in the terminal and opening the browser to <b> localhost:3000 </b>
