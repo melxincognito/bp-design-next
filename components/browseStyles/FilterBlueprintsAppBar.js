@@ -60,7 +60,7 @@ export default function FilterBlueprintsAppBar() {
       label: "Sq Feet",
       value: squareFeet,
       onChangeFunc: setSquareFeet,
-      values: ["1500<", "3000<", "5000<", "6000+"],
+      values: ["Less than 1500", "1600-3000", "3100-5000", "6000+"],
     },
   ];
 
