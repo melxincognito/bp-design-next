@@ -88,6 +88,7 @@ export default function BlueprintItemPageLayout(props) {
   const descriptionsAddToCartContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
+    overflow: "auto",
     gap: "1rem",
     width: "76.5%",
     justifyContent: "center",
@@ -98,7 +99,7 @@ export default function BlueprintItemPageLayout(props) {
     border: "5px inset black",
     backgroundColor: "primary.light",
     padding: 2,
-    width: "45%",
+    width: { xs: "100%", md: "45%" },
     color: "white",
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
   };
@@ -108,7 +109,7 @@ export default function BlueprintItemPageLayout(props) {
     border: "5px inset black",
     backgroundColor: "secondary.light",
     padding: 2,
-    width: "45%",
+    width: { xs: "100%", md: "45%" },
     color: "black",
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.28)",
     gap: "1rem",
