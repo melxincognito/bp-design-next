@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FilterBlueprintsAppBar from "../../components/browseStyles/FilterBlueprintsAppBar";
 import BlueprintCard from "../../components/cards/BlueprintCard";
 import { Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
+
+import Axios from "axios";
 
 {
   /* TODO fix slug for dynamic routing to content */
@@ -50,6 +52,14 @@ function BrowseBlueprintsContainer(props) {
 }
 
 export default function allBlueprints() {
+  const [blueprints, setBlueprints] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3002/api/get").then((response) => {
+      setBlueprints(response.data);
+    });
+  }, []);
+
   return (
     <motion.div
       className="mainContainer"
@@ -59,18 +69,18 @@ export default function allBlueprints() {
       style={{ display: "grid", width: "100%", gap: "1rem" }}
     >
       <BrowseBlueprintsContainer>
-        {allBlueprintsData.map((option, index) => (
+        {blueprints.map((blueprint, index) => (
           <>
             <BlueprintCard
               key={index}
-              image={option.image}
-              planNumber={option.planNumber}
-              beds={option.beds}
-              baths={option.baths}
-              sqFt={option.sqFt}
-              stories={option.stories}
+              image={blueprint.image}
+              planNumber={blueprint.plan_number}
+              beds={blueprint.beds}
+              baths={blueprint.baths}
+              sqFt={blueprint.sq_ft}
+              stories={blueprint.stories}
               slug="browsebpbystyle"
-              style={option.style}
+              style={blueprint.style}
             />
           </>
         ))}
@@ -78,86 +88,3 @@ export default function allBlueprints() {
     </motion.div>
   );
 }
-
-const allBlueprintsData = [
-  {
-    planNumber: 1005,
-    style: "luxury",
-    beds: 2,
-    baths: 1,
-    sqFt: 1000,
-    stories: 1,
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80",
-  },
-  {
-    planNumber: 1007,
-    style: "spanish",
-    beds: 5,
-    baths: 2.5,
-    sqFt: 5000,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1600607688960-e095ff83135c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-  },
-  {
-    planNumber: 1012,
-    style: "modern",
-    beds: 4,
-    baths: 2,
-    sqFt: 2000,
-    stories: 3,
-    image:
-      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-  {
-    planNumber: 1044,
-    style: "luxury",
-    beds: 8,
-    baths: 2.4,
-    sqFt: 1700,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-  {
-    planNumber: 1001,
-    style: "ranch",
-    beds: 2,
-    baths: 1,
-    sqFt: 1000,
-    stories: 1,
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80",
-  },
-  {
-    planNumber: 1002,
-    style: "spanish",
-    beds: 5,
-    baths: 2.5,
-    sqFt: 5000,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1600607688960-e095ff83135c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-  },
-  {
-    planNumber: 1003,
-    style: "modern",
-    beds: 4,
-    baths: 2,
-    sqFt: 2000,
-    stories: 3,
-    image:
-      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-  {
-    planNumber: 1004,
-    style: "ranch",
-    beds: 8,
-    baths: 2.4,
-    sqFt: 1700,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-];
