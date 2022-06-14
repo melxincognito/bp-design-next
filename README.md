@@ -1,8 +1,13 @@
 # CLIENT SIDE DOCUMENTATION
+<<<<<<< HEAD
+
+## Dependencies
+=======
+>>>>>>> development
 
 ## Dependencies
 
-Install the dependencies by running <b> npm i</b> in the terminal
+Install the dependencies by moving into the <i> client </i> folder running <b> npm i</b> in the terminal
 
 Dependencies List:
 
@@ -150,3 +155,37 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 # SERVER SIDE DOCUMENTATION
+<<<<<<< HEAD
+=======
+
+## Dependencies
+
+Install the dependencies by moving into the <i> server </i> folder running <b> npm i</b> in the terminal
+
+Dependencies List:
+
+<ul>
+<li>body-parser </li>
+<li>cors </li>
+<li>dotenv </li>
+<li>express </li>
+<li>mysql</li>
+<li>nodemon </li>
+
+</ul>
+
+Run the database locally by running <b> npm run devStart</b> in the terminal and opening the browser to <b> localhost:3002 </b>
+
+## KEYS
+
+Private keys are to be configured by creating a .env file in the <i> SERVER </i> folder with the appropriate key names.
+
+<h3> Private Keys: </h3>
+
+<ul>
+<li>MY_SQL_HOST</li>
+<li>MY_SQL_USER </li>
+<li>MY_SQL_PASSWORD</li>
+<li>MY_SQL_DATABASE </li>
+</ul>
+>>>>>>> development
