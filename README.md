@@ -1,9 +1,4 @@
 # CLIENT SIDE DOCUMENTATION
-<<<<<<< HEAD
-
-## Dependencies
-=======
->>>>>>> development
 
 ## Dependencies
 
@@ -155,8 +150,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 # SERVER SIDE DOCUMENTATION
-<<<<<<< HEAD
-=======
+
+# <<<<<<< HEAD
 
 ## Dependencies
 
@@ -188,4 +183,3 @@ Private keys are to be configured by creating a .env file in the <i> SERVER </i>
 <li>MY_SQL_PASSWORD</li>
 <li>MY_SQL_DATABASE </li>
 </ul>
->>>>>>> development
