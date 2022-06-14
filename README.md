@@ -1,6 +1,8 @@
-# Dependencies
+# CLIENT SIDE DOCUMENTATION
 
-Install the dependencies by running <b> npm i</b> in the terminal
+## Dependencies
+
+Install the dependencies by moving into the <i> client </i> folder running <b> npm i</b> in the terminal
 
 Dependencies List:
 
@@ -11,6 +13,7 @@ Dependencies List:
 <li>emotion/styled </li>
 <li>mui/system </li>
 <li>mui/icons-material </li>
+<li>axios </li>
 <li>next 12.1.6 </li>
 <li>react 18.1.0 </li>
 <li>react-dom 18.1.0 </li>
@@ -18,7 +21,7 @@ Dependencies List:
 
 Run the app locally by running <b> npm run dev </b> in the terminal and opening the browser to <b> localhost:3000 </b>
 
-# Cards Components
+## Cards Components
 
 <h3> BlueprintCard </h3>
 <ul>
@@ -53,7 +56,7 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
     </ul>
 </ul>
 
-# Browse Styles Components
+## Browse Styles Components
 
 <h3>FilterBlueprintsAppBar </h3>
 <ul>
@@ -65,7 +68,7 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
 </li>
 </ul>
 
-# Blueprint Pages Components
+## Blueprint Pages Components
 
 <h3>BlueprintItemPageLayout </h3>
 
@@ -92,7 +95,7 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
     </ul>
 </ul>
 
-# Forms Components
+## Forms Components
 
 <h3> CustomPlanRequest: </h3>
 <ul>
@@ -145,3 +148,38 @@ This form is to be imported into the  signup page. It is for unregistered users 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# SERVER SIDE DOCUMENTATION
+
+## Dependencies
+
+Install the dependencies by moving into the <i> server </i> folder running <b> npm i</b> in the terminal
+
+Dependencies List:
+
+<ul>
+<li>body-parser </li>
+<li>cors </li>
+<li>dotenv </li>
+<li>express </li>
+<li>mysql</li>
+<li>nodemon </li>
+
+</ul>
+
+Run the database locally by running <b> npm run devStart</b> in the terminal and opening the browser to <b> localhost:3002 </b>
+
+## KEYS
+
+<ul>
+<li> Private keys are to be configured by creating a .env file in the <i> SERVER </i> folder with the appropriate key names.</li>
+
+<h3> Private Keys: </h3>
+
+<ul>
+<li>MY_SQL_HOST</li>
+<li>MY_SQL_USER </li>
+<li>MY_SQL_PASSWORD</li>
+<li>MY_SQL_DATABASE </li>
+</ul>
+</ul>
