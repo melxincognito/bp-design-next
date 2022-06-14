@@ -171,8 +171,7 @@ Run the database locally by running <b> npm run devStart</b> in the terminal and
 
 ## KEYS
 
-<ul>
-<li> Private keys are to be configured by creating a .env file in the <i> SERVER </i> folder with the appropriate key names.</li>
+Private keys are to be configured by creating a .env file in the <i> SERVER </i> folder with the appropriate key names.
 
 <h3> Private Keys: </h3>
 
@@ -181,5 +180,4 @@ Run the database locally by running <b> npm run devStart</b> in the terminal and
 <li>MY_SQL_USER </li>
 <li>MY_SQL_PASSWORD</li>
 <li>MY_SQL_DATABASE </li>
-</ul>
 </ul>
