@@ -85,6 +85,15 @@ app.get("/api/get_modern", (req, res) => {
   });
 });
 
+// get blueprint data for cabin items page
+app.get("/api/get_cabin", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'cabin';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
