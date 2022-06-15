@@ -4,7 +4,7 @@ import BlueprintCard from "../../../components/cards/BlueprintCard";
 import Axios from "axios";
 import { withRouter } from "next/router";
 
-// TODO fix solution so it works on REFRESH and capitalize styleName
+// TODO fix solution so it works on REFRESH
 
 export default withRouter(
   class style extends Component {
@@ -24,8 +24,14 @@ export default withRouter(
     }
 
     render() {
+      // StyleName prop is having the first letter capitalized for the title of the page
       return (
-        <BrowseStylesLayout StyleName={this.state.styleName}>
+        <BrowseStylesLayout
+          StyleName={
+            this.state.styleName.charAt(0).toUpperCase() +
+            this.state.styleName.slice(1)
+          }
+        >
           {this.state.blueprints.map((blueprint, index) => (
             <>
               <BlueprintCard
