@@ -49,6 +49,15 @@ app.get("/api/get_luxury", (req, res) => {
   });
 });
 
+// get blueprint data for spanish items page
+app.get("/api/get_spanish", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'spanish';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
