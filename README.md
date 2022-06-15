@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-Install the dependencies by moving into the <i> client </i> folder running <b> npm i</b> in the terminal
+Install the dependencies by moving into the <i> client </i> folder and running <b> npm i</b> in the terminal
 
 Dependencies List:
 
@@ -20,6 +20,8 @@ Dependencies List:
 </ul>
 
 Run the app locally by running <b> npm run dev </b> in the terminal and opening the browser to <b> localhost:3000 </b>
+
+<ins><i> App wont load data correctly if you don't have the database running at the same time. Scroll down and read Server Side documentation for instructions on how to run it locally. </i></ins>
 
 ## Cards Components
 
@@ -150,8 +152,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 # SERVER SIDE DOCUMENTATION
-
-# <<<<<<< HEAD
 
 ## Dependencies
 
