@@ -39,6 +39,16 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+// get blueprint data for the luxury items page
+
+app.get("/api/get_luxury", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'luxury';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
