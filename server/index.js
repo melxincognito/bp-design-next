@@ -66,6 +66,16 @@ app.get("/api/get_ranch", (req, res) => {
     res.send(result);
   });
 });
+
+// get blueprint data for tiny home items page
+app.get("/api/get_tinyhome", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'tinyhome';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
