@@ -14,6 +14,14 @@ export default function cabin() {
 
   return (
     <BrowseStylesLayout StyleName="Cabin">
+      <button
+        onClick={() => {
+          console.log(cabinBlueprints);
+        }}
+      >
+        {" "}
+        log me{" "}
+      </button>
       {cabinBlueprints.map((blueprint, index) => (
         <>
           <BlueprintCard

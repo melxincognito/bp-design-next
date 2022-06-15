@@ -4,8 +4,14 @@ import BlueprintItemPageLayout from "../../../components/blueprintPages/Blueprin
 
 export default function CabinPlanDetails() {
   const router = useRouter();
-
   const planNumber = router.query.planNumber;
+  const description = router.query.description;
 
-  return <BlueprintItemPageLayout planNumber={planNumber} style="Cabin" />;
+  return (
+    <BlueprintItemPageLayout
+      planNumber={planNumber}
+      description={description}
+      style="Cabin"
+    />
+  );
 }
