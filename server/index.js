@@ -58,6 +58,14 @@ app.get("/api/get_spanish", (req, res) => {
   });
 });
 
+// get blueprint data for ranch items page
+app.get("/api/get_ranch", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'ranch';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
