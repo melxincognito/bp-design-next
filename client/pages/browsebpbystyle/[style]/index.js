@@ -1,35 +1,53 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { Component, useEffect } from "react";
 import BrowseStylesLayout from "../../../components/browseStyles/BrowseStylesLayout";
+import BlueprintCard from "../../../components/cards/BlueprintCard";
+import Axios from "axios";
+import { withRouter } from "next/router";
 
-export default function index() {
-  const router = useRouter();
-  const style = router.query.style;
-  const [blueprints, setBlueprints] = useState([]);
+export default withRouter(
+  class index extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        blueprints: [],
+        styleName: props.router.query.style,
+        route: `http://localhost:3002/api/get_${props.router.query.style}`,
+      };
+    }
 
-  useEffect(() => {
-    Axios.get(`http://localhost:3002/api/get_${style}`).then((response) => {
-      setBlueprints(response.data);
-    });
-  }, []);
+    componentDidMount() {
+      Axios.get(this.state.route).then((response) => {
+        this.setState({ blueprints: response.data });
+      });
+    }
 
-  return (
-    <BrowseStylesLayout StyleName={style}>
-      {blueprints.map((blueprint, index) => (
-        <>
-          <BlueprintCard
-            key={index}
-            image={blueprint.image}
-            planNumber={blueprint.plan_number}
-            beds={blueprint.beds}
-            baths={blueprint.baths}
-            sqFt={blueprint.sq_ft}
-            stories={blueprint.stories}
-            slug="browsebpbystyle"
-            style={blueprint.style}
-          />
-        </>
-      ))}
-    </BrowseStylesLayout>
-  );
-}
+    render() {
+      // function for capitalizing the first letter of the style name for the main title
+      function capitalizeStyleName(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+      return (
+        <BrowseStylesLayout
+          StyleName={capitalizeStyleName(this.state.styleName)}
+        >
+          {this.state.blueprints.map((blueprint, index) => (
+            <>
+              <BlueprintCard
+                key={index}
+                image={blueprint.image}
+                planNumber={blueprint.plan_number}
+                beds={blueprint.beds}
+                baths={blueprint.baths}
+                sqFt={blueprint.sq_ft}
+                stories={blueprint.stories}
+                slug="browsebpbystyle"
+                style={blueprint.style}
+              />
+            </>
+          ))}
+        </BrowseStylesLayout>
+      );
+    }
+  }
+);
