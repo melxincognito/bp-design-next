@@ -259,13 +259,7 @@ export default function BlueprintItemPageLayout(props) {
 
           <Typography variant="body1" sx={{ textAlign: "center" }}>
             {" "}
-            This {props.style} style 4 bedroom 3.5 bath home has everything a
-            family could ask for, including an office and a guest room that
-            could double as a mother-in-law suite. If you're looking for a
-            spectacular primary suite, this could be the plan for you. It boasts
-            a spa like bathroom with double vanities, a separate stand alone tub
-            and custom shower with dressing area and a make-up nook that leads
-            you into an oversized closet
+            {props.description}
           </Typography>
         </Box>
 
@@ -420,3 +414,8 @@ export default function BlueprintItemPageLayout(props) {
     </Box>
   );
 }
+
+BlueprintItemPageLayout.defaultProps = {
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+};
