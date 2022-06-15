@@ -76,6 +76,15 @@ app.get("/api/get_tinyhome", (req, res) => {
   });
 });
 
+// get blueprint data for modern items page
+app.get("/api/get_modern", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'modern';";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
