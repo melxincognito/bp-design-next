@@ -30,6 +30,7 @@ db.connect((err) => {
   console.log("MySQL Connected...");
 });
 
+// get all blueprint data for all blueprints page
 app.get("/api/get", (req, res) => {
   const sqlSelect = "SELECT * FROM allBlueprintsII ";
   db.query(sqlSelect, (err, result) => {
@@ -38,10 +39,39 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+// insert data from admin dashboard into database
+
+app.post("/api/insert", (req, res) => {
+  const image = req.body.image;
+  const planNumber = req.body.planNumber;
+  const beds = req.body.beds;
+  const baths = req.body.baths;
+  const sqft = req.body.sqft;
+  const style = req.body.style;
+  const garages = req.body.garages;
+  const stories = req.body.stories;
+  const description = req.body.description;
+
+  const sqlInsert = `INSERT INTO allBlueprintsII (plan_number, image, beds, baths, sq_ft, garages, stories, style, description) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)`;
+  db.query(
+    sqlInsert,
+    [
+      planNumber,
+      image,
+      beds,
+      baths,
+      sqft,
+      garages,
+      stories,
+      style,
+      description,
+    ],
+    (err, result) => {
+      console.log(result);
+    }
+  );
+});
+
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
 });
-
-/*
-
-*/
