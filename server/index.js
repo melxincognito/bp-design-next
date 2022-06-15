@@ -39,60 +39,33 @@ app.get("/api/get", (req, res) => {
   });
 });
 
-// get blueprint data for the luxury items page
+// creating dynamic paths for browsing blueprints by styles
+function getBlueprintDataByStyle(style) {
+  app.get(`/api/get_${style}`, (req, res) => {
+    const sqlSelect = `SELECT * FROM allBlueprintsII WHERE style= '${style}';`;
+    db.query(sqlSelect, (err, result) => {
+      console.log(result);
+      res.send(result);
+    });
+  });
+}
 
-app.get("/api/get_luxury", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'luxury';";
+getBlueprintDataByStyle("luxury");
+getBlueprintDataByStyle("spanish");
+getBlueprintDataByStyle("ranch");
+getBlueprintDataByStyle("tinyhome");
+getBlueprintDataByStyle("modern");
+getBlueprintDataByStyle("cabin");
+
+// grabbing the data for an item for the individual blueprint page
+
+function getBlueprintDataByItem(planNumber) {
+  const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = ${planNumber}`;
   db.query(sqlSelect, (err, result) => {
     console.log(result);
-    res.send(result);
+    return result;
   });
-});
-
-// get blueprint data for spanish items page
-app.get("/api/get_spanish", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'spanish';";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
-
-// get blueprint data for ranch items page
-app.get("/api/get_ranch", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'ranch';";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
-
-// get blueprint data for tiny home items page
-app.get("/api/get_tinyhome", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'tinyhome';";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
-
-// get blueprint data for modern items page
-app.get("/api/get_modern", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'modern';";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
-
-// get blueprint data for cabin items page
-app.get("/api/get_cabin", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII WHERE style= 'cabin';";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
+}
 
 // insert data from admin dashboard into database
 
