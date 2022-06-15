@@ -4,6 +4,8 @@ import BlueprintCard from "../../../components/cards/BlueprintCard";
 import Axios from "axios";
 import { withRouter } from "next/router";
 
+// TODO
+
 export default withRouter(
   class index extends Component {
     constructor(props) {
@@ -22,15 +24,8 @@ export default withRouter(
     }
 
     render() {
-      // function for capitalizing the first letter of the style name for the main title
-      function capitalizeStyleName(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      }
-
       return (
-        <BrowseStylesLayout
-          StyleName={capitalizeStyleName(this.state.styleName)}
-        >
+        <BrowseStylesLayout StyleName={this.state.styleName}>
           {this.state.blueprints.map((blueprint, index) => (
             <>
               <BlueprintCard
