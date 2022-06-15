@@ -4,7 +4,7 @@ import BlueprintCard from "../../../components/cards/BlueprintCard";
 import Axios from "axios";
 import { withRouter } from "next/router";
 
-// TODO
+// TODO fix solution so it works on REFRESH and capitalize styleName
 
 export default withRouter(
   class index extends Component {
