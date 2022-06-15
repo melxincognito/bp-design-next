@@ -7,7 +7,7 @@ import { withRouter } from "next/router";
 // TODO fix solution so it works on REFRESH and capitalize styleName
 
 export default withRouter(
-  class index extends Component {
+  class style extends Component {
     constructor(props) {
       super(props);
       this.state = {
