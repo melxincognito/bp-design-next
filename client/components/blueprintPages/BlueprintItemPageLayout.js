@@ -335,23 +335,23 @@ export default function BlueprintItemPageLayout(props) {
           >
             <div className="beds">
               <KingBedOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> 3 beds</Typography>
+              <Typography variant="body1"> {props.beds} beds</Typography>
             </div>
             <div className="baths">
               <BathroomOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> 3.5 Baths</Typography>
+              <Typography variant="body1"> {props.baths} Baths</Typography>
             </div>
             <div className="garages">
               <GarageOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> 3 Garages</Typography>
+              <Typography variant="body1"> {props.garages} Garages</Typography>
             </div>
             <div className="stories">
               <StairsOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> 2 Stories</Typography>
+              <Typography variant="body1"> {props.stories} Stories</Typography>
             </div>{" "}
             <div className="squareFeet">
               <SquareFootIcon fontSize="large" />
-              <Typography variant="body1"> 1000 SqFt</Typography>
+              <Typography variant="body1"> {props.sq_ft} SqFt</Typography>
             </div>
           </Box>
         </Box>
