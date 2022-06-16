@@ -69,6 +69,8 @@ function getBlueprintDataByItem(planNumber) {
 
 getBlueprintDataByItem(1017);
 
+// TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
+
 app.get("/api/get_item_", (req, res) => {
   const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = '1007'; `;
   db.query(sqlSelect, (err, result) => {
