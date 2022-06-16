@@ -67,6 +67,16 @@ function getBlueprintDataByItem(planNumber) {
   });
 }
 
+getBlueprintDataByItem(1017);
+
+app.get("/api/get_item_", (req, res) => {
+  const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = '1007'; `;
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // insert data from admin dashboard into database
 
 app.post("/api/insert", (req, res) => {
