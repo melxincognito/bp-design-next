@@ -79,20 +79,18 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
     <li> The card currently needs the following props to be passed:  </li>
     <ul>
         <li> planNumber</li>
-        <li> style</li>
+        <li> description</li>
+        <li> beds</li>
+        <li> baths</li>
+        <li> stories</li>
+        <li> sq_ft</li>
+        <li> garages</li>
     </ul>
     <li> The card still needs to be set up so the following props can be passed:  </li>
 
  <ul>
         <li> <b> images </b> - <i> Pass the images that correspond to that blueprint for the image gallery </i> </li>
-         <li> <b> description </b> - <i> Description should be different for every item. After the description is set up, the <b>style</b> prop should then be removed  </i> </li>
-        <li> style</li>
         <li> <b> price </b> - <i> Add price of blueprint </i> </li>
-        <li> <b> beds </b> - <i> Number of bedrooms for blueprint </i> </li>
-        <li> <b> baths </b> - <i> Number of bathrooms for blueprint </i> </li>
-        <li> <b> garages </b> - <i> Number of garages for blueprint </i> </li>
-        <li> <b> stories </b> - <i> Number of stories(floors) for blueprint </i> </li>
-        <li> <b> squareFeet </b> - <i> Square footage of blueprint </i> </li>
         <li> <b> 3DFloorPlan </b> - <i> Image of the 3D floorplan that is displayed for the client </i> </li>
     </ul>
 </ul>
