@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import BlueprintCard from "../components/cards/BlueprintCard";
+import Axios from "axios";
 
 // TODO fix slug to be dynamic based on each blueprints style
 
 function FavoriteBlueprintsContainer(props) {
+  const containerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    textAlign: "center",
+  };
+
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -23,15 +32,7 @@ function FavoriteBlueprintsContainer(props) {
   };
   return (
     <>
-      <div
-        style={{
-          display: "grid",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
+      <div style={containerStyles}>
         <Typography variant="h3"> My Favorites</Typography>
         <hr width="100%" />
       </div>
@@ -47,6 +48,15 @@ function FavoriteBlueprintsContainer(props) {
 }
 
 export default function myfavorites() {
+  const [favoriteBlueprints, setFavoriteBlueprints] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3002/api/get_favorites_test").then(
+      (response) => {
+        setFavoriteBlueprints(response.data);
+      }
+    );
+  }, []);
   return (
     <motion.div
       transition={{ delay: 0.17 }}
@@ -55,16 +65,18 @@ export default function myfavorites() {
       exit={{ opacity: 0 }}
     >
       <FavoriteBlueprintsContainer>
-        {favoritesData.map((option, index) => (
+        {favoriteBlueprints.map((option, index) => (
           <>
             <BlueprintCard
               key={index}
               image={option.image}
-              planNumber={option.planNumber}
+              planNumber={option.plan_number}
               beds={option.beds}
               baths={option.baths}
-              sqFt={option.sqFt}
+              sqFt={option.sq_ft}
               stories={option.stories}
+              description={option.description}
+              garages={option.garages}
               slug="browsebpbystyle"
               style="ranch"
             />
@@ -74,42 +86,3 @@ export default function myfavorites() {
     </motion.div>
   );
 }
-
-const favoritesData = [
-  {
-    planNumber: 1005,
-    beds: 2,
-    baths: 1,
-    sqFt: 1000,
-    stories: 1,
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80",
-  },
-  {
-    planNumber: 1007,
-    beds: 5,
-    baths: 2.5,
-    sqFt: 5000,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1600607688960-e095ff83135c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-  },
-  {
-    planNumber: 1012,
-    beds: 4,
-    baths: 2,
-    sqFt: 2000,
-    stories: 3,
-    image:
-      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-  {
-    planNumber: 1044,
-    beds: 8,
-    baths: 2.4,
-    sqFt: 1700,
-    stories: 2,
-    image:
-      "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
-  },
-];
