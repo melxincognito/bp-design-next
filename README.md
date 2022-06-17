@@ -143,6 +143,14 @@ This form is to be imported into the  signup page. It is for unregistered users 
 
 </ul>
 
+## Navigation Components
+
+<h3> ShoppingCartDialog</h3>
+
+<ul>
+<li>This dialog is imported into the NavBar component and displays the items in a users cart. The user can view key details about the plan on the screen, add the item to their favorites, remove the item from their cart and go to the checkout page to purchase their items.</li>
+</ul>
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
