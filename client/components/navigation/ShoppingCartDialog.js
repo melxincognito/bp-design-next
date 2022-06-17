@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Link from "next/link";
+import Axios from "axios";
 import {
   AppBar,
   Toolbar,
@@ -9,11 +10,10 @@ import {
   Dialog,
   List,
   Slide,
+  Divider,
 } from "@mui/material";
-
-import Link from "next/link";
-
 import CloseIcon from "@mui/icons-material/Close";
+import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -31,6 +31,14 @@ export default class ShoppingCartDialog extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  componentDidMount() {
+    Axios.get("http://localhost:3002/api/get_cart_items").then((response) => {
+      this.setState({
+        shoppingCartItems: response.data,
+      });
+    });
+  }
 
   render() {
     return (
@@ -65,7 +73,21 @@ export default class ShoppingCartDialog extends Component {
           </AppBar>
 
           <List>
-            <h1> hello</h1>
+            {this.state.shoppingCartItems.map((item, index) => (
+              <>
+                <ShoppingCartItemCard
+                  key={index}
+                  image={item.image}
+                  planNumber={item.plan_number}
+                  beds={item.beds}
+                  squareFeet={item.sq_ft}
+                  baths={item.baths}
+                  garages={item.garages}
+                  stories={item.stories}
+                />
+                <Divider />
+              </>
+            ))}
           </List>
         </Dialog>
       </div>
