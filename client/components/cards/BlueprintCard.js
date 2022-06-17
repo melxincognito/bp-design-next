@@ -46,6 +46,23 @@ export default class BlueprintCard extends Component {
     });
   };
 
+  addToFavorites = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:3002/api/insert_favorites", {
+      image: this.props.image,
+      planNumber: this.props.planNumber,
+      beds: this.props.beds,
+      baths: this.props.baths,
+      sqft: this.props.sqFt,
+      style: this.props.style,
+      garages: this.props.garages,
+      stories: this.props.stories,
+      description: this.state.description,
+    }).then(() => {
+      alert("inserted into database");
+    });
+  };
+
   render() {
     const blueprintKeyFeatureData = [
       { icon: <KingBedOutlinedIcon />, text: this.props.beds + " Bed" },
@@ -101,7 +118,7 @@ export default class BlueprintCard extends Component {
           </Box>
         </CardContent>
         <CardActions>
-          <Button size="small">
+          <Button size="small" onClick={this.addToFavorites}>
             <FavoriteBorderOutlinedIcon />
           </Button>
           <Button size="small" onClick={this.addToCart}>
