@@ -38,6 +38,7 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
         <li>slug </li>
         <li>style </li>
          <li> planNumber </li>
+         <li> description </li> - <i> The description isn't shown on the card but it's needed to be passed to the other databases if a user wants to add the item to their cart or their favorites.</i>
     </ul>
 
 <li>It's important you pass the correct <i>slug, style and plan number </i> to the component in order for the component to link to the correct plan. In this applications example of a slug could be 'browsebpbystyle', a style 'luxury', and planNumber '1007' </li>
