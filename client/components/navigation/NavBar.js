@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Link from "next/link";
+import Axios from "axios";
 import {
   AppBar,
   Box,
@@ -13,23 +14,13 @@ import {
   Tab,
   TextField,
   Button,
-  Dialog,
-  List,
-  Divider,
-  Slide,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-import CloseIcon from "@mui/icons-material/Close";
-import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";
-
-// shopping cart dialog items
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import ShoppingCartDialog from "./ShoppingCartDialog";
 
 const tabsItems = [
   { label: "Home", link: "/", id: 0 },
@@ -38,256 +29,208 @@ const tabsItems = [
   { label: "Custom Plan Request", link: "/customplanrequest", id: 3 },
 ];
 
-export default function NavBar() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+export default class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorElNav: null,
+      open: true,
+      value: 0,
+    };
+  }
 
-  // open dialog for shopping cart
-  const [open, setOpen] = useState(false);
-  // value for tab indicator color
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  handleChange = (e, newValue) => {
+    this.setState({ value: newValue });
   };
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  handleOpenNavMenu = (e) => {
+    this.setState({ anchorElNav: e.currentTarget });
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  handleCloseNavMenu = () => {
+    this.setState({ anchorElNav: null });
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  handleClickOpen = () => {
+    this.setState({ open: false });
   };
+  render() {
+    const tabsContainerStyles = {
+      flexGrow: 1,
+      justifyContent: "flex-start",
+      display: { xs: "none", md: "flex" },
+    };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  // styles variables
-
-  const tabsContainerStyles = {
-    flexGrow: 1,
-    justifyContent: "flex-start",
-    display: { xs: "none", md: "flex" },
-  };
-
-  const tabsStyles = {
-    my: 2,
-    color: "white",
-    display: "block",
-  };
-
-  const mobileTabcontainerStyles = {
-    width: "20rem",
-    height: "100%",
-    display: "block",
-    float: "left",
-    bgcolor: "primary.light",
-    color: "white",
-  };
-
-  const mobileTabStyle = {
-    display: "block",
-    width: "100%",
-    padding: "18px 20px",
-  };
-  const loginButtonStyles = {
-    color: "primary.main",
-    padding: 0.3,
-    bgcolor: "secondary.main",
-    "&:hover": {
+    const tabsStyles = {
+      my: 2,
       color: "white",
-    },
-  };
+      display: "block",
+    };
 
-  const iconStyles = {
-    cursor: "pointer",
-  };
+    const mobileTabcontainerStyles = {
+      width: "20rem",
+      height: "100%",
+      display: "block",
+      float: "left",
+      bgcolor: "primary.light",
+      color: "white",
+    };
 
-  return (
-    <>
-      <AppBar position="static" maxWidth="xl">
-        {/* Top Banner Container*/}
-        <Container
-          maxWidth="xl"
-          sx={{
-            p: 2,
-            bgcolor: "black",
-            display: "flex",
-          }}
-        >
-          {" "}
-          <Box sx={{ flexGrow: 2 }}>
-            <Link href="/">
-              <Typography sx={iconStyles} variant="h6" noWrap component="div">
-                BP DESIGN STUDIO
-              </Typography>
-            </Link>
-          </Box>
-          <Box
+    const mobileTabStyle = {
+      display: "block",
+      width: "100%",
+      padding: "18px 20px",
+    };
+    const loginButtonStyles = {
+      color: "primary.main",
+      padding: 0.3,
+      bgcolor: "secondary.main",
+      "&:hover": {
+        color: "white",
+      },
+    };
+
+    const iconStyles = {
+      cursor: "pointer",
+    };
+    return (
+      <>
+        <AppBar position="static" maxWidth="xl">
+          {/* Top Banner Container*/}
+          <Container
+            maxWidth="xl"
             sx={{
+              p: 2,
+              bgcolor: "black",
               display: "flex",
-              alignItems: "center",
-              gap: 0.5,
             }}
           >
-            <TextField
-              variant="standard"
-              placeholder="Search by plan #"
-              sx={{
-                backgroundColor: "white",
-                borderRadius: 1.5,
-              }}
-            />
-            <Search
-              sx={iconStyles}
-              onClick={() => {
-                console.log("hello");
-              }}
-            />
-          </Box>
-        </Container>
-
-        {/* Navigation Bar Container */}
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <Container sx={mobileTabcontainerStyles}>
-                  {tabsItems.map((tab) => (
-                    <MenuItem
-                      key={tab.id}
-                      onClick={handleCloseNavMenu}
-                      sx={mobileTabStyle}
-                    >
-                      <Link href={tab.link}>
-                        <Typography textAlign="center">{tab.label}</Typography>
-                      </Link>
-                    </MenuItem>
-                  ))}
-                </Container>
-              </Menu>
-            </Box>
-
-            <Box sx={tabsContainerStyles}>
-              <Tabs
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-              >
-                {tabsItems.map((tab) => (
-                  <>
-                    <Link href={tab.link} value={tab.id} passHref>
-                      <Tab key={tab.id} label={tab.label} sx={tabsStyles} />
-                    </Link>
-                  </>
-                ))}
-              </Tabs>
+            {" "}
+            <Box sx={{ flexGrow: 2 }}>
+              <Link href="/">
+                <Typography sx={iconStyles} variant="h6" noWrap component="div">
+                  BP DESIGN STUDIO
+                </Typography>
+              </Link>
             </Box>
             <Box
-              display="flex"
-              sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.5,
+              }}
             >
-              <Link href="/myfavorites">
-                <FavoriteBorderIcon sx={iconStyles} />
-              </Link>
-              <Box onClick={handleClickOpen}>
-                <ShoppingCartOutlinedIcon sx={iconStyles} />
+              <TextField
+                variant="standard"
+                placeholder="Search by plan #"
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: 1.5,
+                }}
+              />
+              <Search
+                sx={iconStyles}
+                onClick={() => {
+                  console.log("hello");
+                }}
+              />
+            </Box>
+          </Container>
+
+          {/* Navigation Bar Container */}
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={this.handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={this.anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(this.anchorElNav)}
+                  onClose={this.handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  <Container sx={mobileTabcontainerStyles}>
+                    {tabsItems.map((tab) => (
+                      <MenuItem
+                        key={tab.id}
+                        onClick={this.handleCloseNavMenu}
+                        sx={mobileTabStyle}
+                      >
+                        <Link href={tab.link}>
+                          <Typography textAlign="center">
+                            {tab.label}
+                          </Typography>
+                        </Link>
+                      </MenuItem>
+                    ))}
+                  </Container>
+                </Menu>
               </Box>
 
-              <Button variant="contained" sx={loginButtonStyles}>
-                <Link href="/login">Login</Link>
-              </Button>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-      {/* Shopping Cart Dialog */}
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <AppBar sx={{ position: "relative" }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              My Shopping Cart
-            </Typography>
-            <Button
-              autoFocus
-              sx={{ backgroundColor: "primary.light", color: "white" }}
-              onClick={handleClose}
-            >
-              <Link href="/checkout">Checkout</Link>
-            </Button>
-          </Toolbar>
-        </AppBar>
+              <Box sx={tabsContainerStyles}>
+                <Tabs
+                  variant="scrollable"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  textColor="secondary"
+                  indicatorColor="secondary"
+                >
+                  {tabsItems.map((tab) => (
+                    <>
+                      <Link href={tab.link} value={tab.id} passHref>
+                        <Tab key={tab.id} label={tab.label} sx={tabsStyles} />
+                      </Link>
+                    </>
+                  ))}
+                </Tabs>
+              </Box>
+              <Box
+                display="flex"
+                sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
+              >
+                <Link href="/myfavorites">
+                  <FavoriteBorderIcon sx={iconStyles} />
+                </Link>
+                <Box onClick={this.handleClickOpen}>
+                  <ShoppingCartOutlinedIcon sx={iconStyles} />
+                </Box>
 
-        <List>
-          {shoppingCartItems.map((item, index) => (
-            <>
-              <ShoppingCartItemCard
-                key={index}
-                image={item.image}
-                planNumber={item.planNumber}
-                beds={item.beds}
-                squareFeet={item.squareFeet}
-                baths={item.baths}
-                garages={item.garages}
-                stories={item.stories}
-              />
-              <Divider />
-            </>
-          ))}
-        </List>
-      </Dialog>
-    </>
-  );
+                <Button variant="contained" sx={loginButtonStyles}>
+                  <Link href="/login">Login</Link>
+                </Button>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        {/* Shopping Cart Dialog */}
+        <ShoppingCartDialog open={this.state.open} />
+      </>
+    );
+  }
 }
 
 // shopping cart item dummy data
-const shoppingCartItems = [
+const shoppingCartItem = [
   {
     image:
       "https://images.unsplash.com/photo-1558969763-1e911dcd91e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVybiUyMGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
