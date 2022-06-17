@@ -112,10 +112,26 @@ function passBlueprintDataToDatabase(slugName, databaseName) {
 app.get("/api/get", (req, res) => {
   const sqlSelect = "SELECT * FROM allBlueprintsII ";
   db.query(sqlSelect, (err, result) => {
-    console.log(result);
     res.send(result);
   });
 });
+
+app.delete("/api/delete_cart", (req, res) => {
+  const planNumber = req.body.planNumber;
+  const sqlDelete = "DELETE FROM cart_items WHERE plan_number = ?";
+  db.query(sqlDelete, planNumber, (err, result) => {
+    console.log(result);
+  });
+});
+
+function deletePlan(planNumber) {
+  const sqlDelete = `DELETE FROM cart_items WHERE plan_number = ${planNumber};`;
+  db.query(sqlDelete, planNumber, (err, result) => {
+    console.log(result);
+  });
+}
+
+deletePlan(1012);
 
 // pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");

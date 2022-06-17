@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Axios from "axios";
 import { Box, Typography, ListItem, Button } from "@mui/material";
+
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
@@ -12,6 +15,12 @@ import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 preview photo and the details */
 
 export default function ShoppingCartItemCard(props) {
+  const planNumber = useState(props.planNumber);
+
+  const removeItemFromCart = () => {
+    Axios.delete("/api/delete_cart", planNumber);
+  };
+
   const cartItemContainerStyles = {
     display: "flex",
     width: "100%",
@@ -97,8 +106,12 @@ export default function ShoppingCartItemCard(props) {
             sx={containerThreeStyles}
           >
             <div style={detailsIconContainerStyles}>
-              <FavoriteBorderIcon fontSize="large" />
-              <DeleteOutlineOutlinedIcon fontSize="large" />
+              <Button>
+                <FavoriteBorderIcon fontSize="large" />
+              </Button>
+              <Button onClick={removeItemFromCart}>
+                <DeleteOutlineOutlinedIcon fontSize="large" />
+              </Button>
             </div>
             <div style={viewBlueprintButtonContainerStyles}>
               <Button variant="contained"> View Blueprint</Button>
