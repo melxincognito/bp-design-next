@@ -100,16 +100,15 @@ export default function CustomPlanRequestForm() {
               }}
             >
               {planRequestInputs.map((input, index) => (
-                <>
+                <div key={index} style={{ width: { xs: "100%", md: "24.3%" } }}>
                   <TextField
-                    sx={{ width: { xs: "100%", md: "24.3%" } }}
-                    key={index}
+                    fullWidth
                     label={input.label}
                     onChange={(e) => {
                       input.onChangeValue(e.target.value);
                     }}
                   />
-                </>
+                </div>
               ))}
             </Box>
 
