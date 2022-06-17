@@ -52,7 +52,8 @@ export default class NavBar extends Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: false });
+    this.setState({ open: true });
+    console.log(this.state.open);
   };
   render() {
     const tabsContainerStyles = {
@@ -143,8 +144,6 @@ export default class NavBar extends Component {
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={this.handleOpenNavMenu}
                   color="inherit"
