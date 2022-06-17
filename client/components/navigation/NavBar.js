@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import Axios from "axios";
+
 import {
   AppBar,
   Box,
@@ -34,7 +34,7 @@ export default class NavBar extends Component {
     super(props);
     this.state = {
       anchorElNav: null,
-      open: true,
+      open: false,
       value: 0,
     };
   }
@@ -52,7 +52,7 @@ export default class NavBar extends Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: !this.state.open });
     console.log(this.state.open);
   };
   render() {
@@ -191,15 +191,14 @@ export default class NavBar extends Component {
                   variant="scrollable"
                   value={this.state.value}
                   onChange={this.handleChange}
-                  textColor="secondary"
                   indicatorColor="secondary"
                 >
                   {tabsItems.map((tab) => (
-                    <>
+                    <div key={tab.id}>
                       <Link href={tab.link} value={tab.id} passHref>
-                        <Tab key={tab.id} label={tab.label} sx={tabsStyles} />
+                        <Tab label={tab.label} sx={tabsStyles} />
                       </Link>
-                    </>
+                    </div>
                   ))}
                 </Tabs>
               </Box>
@@ -222,7 +221,8 @@ export default class NavBar extends Component {
           </Container>
         </AppBar>
         {/* Shopping Cart Dialog */}
-        <ShoppingCartDialog open={this.state.open} />
+
+        {this.state.open && <ShoppingCartDialog open={this.state.open} />}
       </>
     );
   }
