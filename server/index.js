@@ -39,6 +39,15 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+// get all blueprint data for items in cart
+app.get("/api/get_cart_items", (req, res) => {
+  const sqlSelect = "SELECT * FROM cart_items ";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // creating dynamic paths for browsing blueprints by styles
 function getBlueprintDataByStyle(style) {
   app.get(`/api/get_${style}`, (req, res) => {
@@ -59,7 +68,7 @@ getBlueprintDataByStyle("cabin");
 
 // grabbing the data for an item for the individual blueprint page
 
-function getBlueprintDataByItem(planNumber) {
+/*function getBlueprintDataByItem(planNumber) {
   const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = ${planNumber}`;
   db.query(sqlSelect, (err, result) => {
     console.log(result);
@@ -68,7 +77,7 @@ function getBlueprintDataByItem(planNumber) {
 }
 
 getBlueprintDataByItem(1017);
-
+*/
 // TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
 
 app.get("/api/get_item_", (req, res) => {
@@ -81,36 +90,41 @@ app.get("/api/get_item_", (req, res) => {
 
 // insert data from admin dashboard into database
 
-app.post("/api/insert", (req, res) => {
-  const image = req.body.image;
-  const planNumber = req.body.planNumber;
-  const beds = req.body.beds;
-  const baths = req.body.baths;
-  const sqft = req.body.sqft;
-  const style = req.body.style;
-  const garages = req.body.garages;
-  const stories = req.body.stories;
-  const description = req.body.description;
+function passBlueprintDataToDatabase(slugName, databaseName) {
+  app.post(`/api/insert_${slugName}`, (req, res) => {
+    const image = req.body.image;
+    const planNumber = req.body.planNumber;
+    const beds = req.body.beds;
+    const baths = req.body.baths;
+    const sqft = req.body.sqft;
+    const style = req.body.style;
+    const garages = req.body.garages;
+    const stories = req.body.stories;
+    const description = req.body.description;
 
-  const sqlInsert = `INSERT INTO allBlueprintsII (plan_number, image, beds, baths, sq_ft, garages, stories, style, description) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)`;
-  db.query(
-    sqlInsert,
-    [
-      planNumber,
-      image,
-      beds,
-      baths,
-      sqft,
-      garages,
-      stories,
-      style,
-      description,
-    ],
-    (err, result) => {
-      console.log(result);
-    }
-  );
-});
+    const sqlInsert = `INSERT INTO ${databaseName} (plan_number, style, beds, baths, stories, sq_ft, garages, image, description) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)`;
+    db.query(
+      sqlInsert,
+      [
+        planNumber,
+        style,
+        beds,
+        baths,
+        stories,
+        sqft,
+        garages,
+        image,
+        description,
+      ],
+      (err, result) => {
+        console.log(result);
+      }
+    );
+  });
+}
+
+passBlueprintDataToDatabase("cart_items", "cart_items");
+passBlueprintDataToDatabase("all_blueprints", "allBlueprintsII");
 
 app.listen(3002, () => {
   console.log("Server is running on port 3002");

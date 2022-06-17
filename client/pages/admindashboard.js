@@ -15,7 +15,7 @@ export default function admindashboard() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Axios.post("http://localhost:3002/api/insert", {
+    Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: image,
       planNumber: planNumber,
       beds: beds,
