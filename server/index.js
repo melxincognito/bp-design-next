@@ -125,6 +125,7 @@ function passBlueprintDataToDatabase(slugName, databaseName) {
 
 passBlueprintDataToDatabase("cart_items", "cart_items");
 passBlueprintDataToDatabase("all_blueprints", "allBlueprintsII");
+passBlueprintDataToDatabase("favorites", "favorites_test");
 
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
