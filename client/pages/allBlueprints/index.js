@@ -81,6 +81,8 @@ export default function allBlueprints() {
               stories={blueprint.stories}
               slug="browsebpbystyle"
               style={blueprint.style}
+              garages={blueprint.garages}
+              description={blueprint.description}
             />
           </>
         ))}
