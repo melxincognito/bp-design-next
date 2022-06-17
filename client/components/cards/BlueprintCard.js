@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Link from "next/link";
+import Axios from "axios";
 import {
   Card,
   CardMedia,
@@ -13,35 +15,46 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
-
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
-
-import Link from "next/link";
 
 export default class BlueprintCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      description: this.props.description,
+    };
+  }
+  // state for description is set because it doesn't need to be displayed on the card but it
+  // does need to be passed to the database for add cart and add to favorites.
+
+  addToCart = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.props.image,
       planNumber: this.props.planNumber,
       beds: this.props.beds,
       baths: this.props.baths,
       sqft: this.props.sqFt,
-      stories: this.props.stories,
       style: this.props.style,
       garages: this.props.garages,
-    };
-  }
+      stories: this.props.stories,
+      description: this.state.description,
+    }).then(() => {
+      alert("inserted into database");
+    });
+  };
+
   render() {
     const blueprintKeyFeatureData = [
-      { icon: <KingBedOutlinedIcon />, text: this.state.beds + " Bed" },
-      { icon: <BathroomOutlinedIcon />, text: this.state.baths + " Bath" },
-      { icon: <SquareFootIcon />, text: this.state.sqft + " SqFt" },
-      { icon: <StairsOutlinedIcon />, text: this.state.stories + " Story" },
-      { icon: <GarageOutlinedIcon />, text: this.state.garages + " Garage" },
+      { icon: <KingBedOutlinedIcon />, text: this.props.beds + " Bed" },
+      { icon: <BathroomOutlinedIcon />, text: this.props.baths + " Bath" },
+      { icon: <SquareFootIcon />, text: this.props.sqFt + " SqFt" },
+      { icon: <StairsOutlinedIcon />, text: this.props.stories + " Story" },
+      { icon: <GarageOutlinedIcon />, text: this.props.garages + " Garage" },
     ];
+
     return (
       <Card
         sx={{
@@ -91,7 +104,7 @@ export default class BlueprintCard extends Component {
           <Button size="small">
             <FavoriteBorderOutlinedIcon />
           </Button>
-          <Button size="small">
+          <Button size="small" onClick={this.addToCart}>
             <AddShoppingCartOutlinedIcon />
           </Button>
           <Button size="small">
