@@ -30,23 +30,15 @@ db.connect((err) => {
   console.log("MySQL Connected...");
 });
 
-// get all blueprint data for all blueprints page
-app.get("/api/get", (req, res) => {
-  const sqlSelect = "SELECT * FROM allBlueprintsII ";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
+function getBlueprintsByDatabaseName(databaseName) {
+  app.get(`/api/get_${databaseName}`, (req, res) => {
+    const sqlSelect = `SELECT * FROM ${databaseName}  `;
+    db.query(sqlSelect, (err, result) => {
+      console.log(result);
+      res.send(result);
+    });
   });
-});
-
-// get all blueprint data for items in cart
-app.get("/api/get_cart_items", (req, res) => {
-  const sqlSelect = "SELECT * FROM cart_items ";
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
+}
 
 // creating dynamic paths for browsing blueprints by styles
 function getBlueprintDataByStyle(style) {
@@ -58,13 +50,6 @@ function getBlueprintDataByStyle(style) {
     });
   });
 }
-
-getBlueprintDataByStyle("luxury");
-getBlueprintDataByStyle("spanish");
-getBlueprintDataByStyle("ranch");
-getBlueprintDataByStyle("tinyhome");
-getBlueprintDataByStyle("modern");
-getBlueprintDataByStyle("cabin");
 
 // grabbing the data for an item for the individual blueprint page
 
@@ -123,9 +108,31 @@ function passBlueprintDataToDatabase(slugName, databaseName) {
   });
 }
 
+// get all blueprint data for all blueprints page
+app.get("/api/get", (req, res) => {
+  const sqlSelect = "SELECT * FROM allBlueprintsII ";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
+// pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");
 passBlueprintDataToDatabase("all_blueprints", "allBlueprintsII");
 passBlueprintDataToDatabase("favorites", "favorites_test");
+
+// get blueprint data by database name
+getBlueprintsByDatabaseName("cart_items");
+getBlueprintsByDatabaseName("favorites_test");
+
+// get blueprint data by style
+getBlueprintDataByStyle("luxury");
+getBlueprintDataByStyle("spanish");
+getBlueprintDataByStyle("ranch");
+getBlueprintDataByStyle("tinyhome");
+getBlueprintDataByStyle("modern");
+getBlueprintDataByStyle("cabin");
 
 app.listen(3002, () => {
   console.log("Server is running on port 3002");
