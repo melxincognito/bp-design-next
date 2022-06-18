@@ -124,14 +124,15 @@ app.delete("/api/delete_cart", (req, res) => {
   });
 });
 
-function deletePlan(planNumber) {
-  const sqlDelete = `DELETE FROM cart_items WHERE plan_number = ${planNumber};`;
+function deletePlan(databaseName, planNumber) {
+  const sqlDelete = `DELETE FROM ${databaseName} WHERE plan_number = ${planNumber};`;
   db.query(sqlDelete, planNumber, (err, result) => {
     console.log(result);
   });
 }
 
-deletePlan(1012);
+deletePlan("cart_items", 2829);
+deletePlan("favorites_test", 1012);
 
 // pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");
