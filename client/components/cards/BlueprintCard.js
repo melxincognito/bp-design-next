@@ -25,7 +25,7 @@ export default class BlueprintCard extends Component {
     super(props);
     this.state = {
       description: this.props.description,
-      favorite: true,
+      favorite: props.favorite,
     };
   }
   // state for description is set because it doesn't need to be displayed on the card but it
@@ -153,3 +153,7 @@ export default class BlueprintCard extends Component {
     );
   }
 }
+
+BlueprintCard.defaultProps = {
+  favorite: false,
+};
