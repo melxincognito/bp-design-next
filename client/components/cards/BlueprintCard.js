@@ -20,6 +20,8 @@ import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+// TODO delete favorite item from database when the user clicks the filled heart icon
+
 export default class BlueprintCard extends Component {
   constructor(props) {
     super(props);
