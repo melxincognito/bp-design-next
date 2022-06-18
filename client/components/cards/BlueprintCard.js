@@ -18,12 +18,14 @@ import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default class BlueprintCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       description: this.props.description,
+      favorite: true,
     };
   }
   // state for description is set because it doesn't need to be displayed on the card but it
@@ -48,6 +50,7 @@ export default class BlueprintCard extends Component {
 
   addToFavorites = (e) => {
     e.preventDefault();
+    this.setState({ favorite: true });
     Axios.post("http://localhost:3002/api/insert_favorites", {
       image: this.props.image,
       planNumber: this.props.planNumber,
@@ -61,6 +64,12 @@ export default class BlueprintCard extends Component {
     }).then(() => {
       alert("inserted into database");
     });
+  };
+
+  removeFromFavorites = (e) => {
+    e.preventDefault();
+    this.setState({ favorite: false });
+    console.log(this.state.favorite);
   };
 
   render() {
@@ -118,9 +127,15 @@ export default class BlueprintCard extends Component {
           </Box>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.addToFavorites}>
-            <FavoriteBorderOutlinedIcon />
-          </Button>
+          {this.state.favorite ? (
+            <Button size="small" onClick={this.removeFromFavorites}>
+              <FavoriteIcon />
+            </Button>
+          ) : (
+            <Button size="small" onClick={this.addToFavorites}>
+              <FavoriteBorderOutlinedIcon />
+            </Button>
+          )}
           <Button size="small" onClick={this.addToCart}>
             <AddShoppingCartOutlinedIcon />
           </Button>
