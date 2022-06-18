@@ -79,6 +79,7 @@ export default function myfavorites() {
               garages={option.garages}
               slug="browsebpbystyle"
               style="ranch"
+              favorite={true}
             />
           </>
         ))}
