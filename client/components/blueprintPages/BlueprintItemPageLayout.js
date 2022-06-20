@@ -11,8 +11,6 @@ import {
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
@@ -59,10 +57,17 @@ export default function BlueprintItemPageLayout(props) {
   };
 
   const imagesContainerStyles = {
-    display: "flex",
+    display: "grid",
     justifyContent: "center",
     justifyItems: "center",
     alignItems: "center",
+    gap: "2rem",
+  };
+  const planNumberContainerStyles = {
+    display: "flex-box",
+    justifyContent: "flex-start",
+    width: "70%",
+    marginLeft: 2,
   };
 
   const descriptionsAddToCartContainerStyles = {
@@ -155,6 +160,7 @@ export default function BlueprintItemPageLayout(props) {
           <ArrowBackIcon />
         </Button>
       </Box>
+
       <motion.div
         className="container1-images"
         style={imagesContainerStyles}
@@ -162,6 +168,11 @@ export default function BlueprintItemPageLayout(props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
+        <Box className="planNumberContainer" sx={planNumberContainerStyles}>
+          <Typography variant="h4"> Plan #{props.planNumber} </Typography>
+          <hr width="100%" />
+        </Box>
+
         <ImageGallery />
       </motion.div>
 
