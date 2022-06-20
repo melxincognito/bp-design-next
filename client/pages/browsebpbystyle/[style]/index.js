@@ -42,6 +42,7 @@ export default withRouter(
                 baths={blueprint.baths}
                 sqFt={blueprint.sq_ft}
                 stories={blueprint.stories}
+                garages={blueprint.garages}
                 slug="browsebpbystyle"
                 style={blueprint.style}
               />
