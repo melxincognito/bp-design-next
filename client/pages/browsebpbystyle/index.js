@@ -7,9 +7,7 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Button,
   CardActionArea,
-  CardActions,
 } from "@mui/material";
 
 function StyleSelectionCard(props) {
@@ -82,6 +80,7 @@ export default function browsebpbystyle() {
         }}
       >
         <Typography variant="h3"> Browse Blueprints by Style</Typography>
+
         <hr width="100%" />
       </div>
       <Box
