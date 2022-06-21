@@ -34,6 +34,7 @@ export default withRouter(
     }
 
     render() {
+      console.log(this.state.image);
       return (
         <BlueprintItemPageLayout
           planNumber={this.state.planNumber}
