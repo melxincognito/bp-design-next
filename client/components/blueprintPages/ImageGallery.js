@@ -17,19 +17,6 @@ export default class ImageGallery extends Component {
         </div>
 
         <div className={galleryStyles.slidesContainer}>
-          <button
-            onClick={() =>
-              console.log(
-                "image " +
-                  this.props.PreviewImage +
-                  " alt : " +
-                  this.props.PreviewImageAlt
-              )
-            }
-          >
-            {" "}
-            click me
-          </button>
           <div className={galleryStyles.slides}>
             {images.map((image, index) => (
               <>
