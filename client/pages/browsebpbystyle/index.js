@@ -35,8 +35,8 @@ function StyleSelectionCard(props) {
                 {props.StyleName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
+                Check out our beautiful collection of <b>{props.StyleName} </b>{" "}
+                style homes
               </Typography>
             </CardContent>
           </CardActionArea>
