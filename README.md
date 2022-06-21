@@ -97,6 +97,18 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
     </ul>
 </ul>
 
+<h3> ImageGallery</h3>
+<ul>
+<li> ImageGallery is a reusable component that is to be imported into the BlueprintItemPageLayout to render the images that are uploaded for the specified plan number. This image gallery is to be used for <b>DESKTOP</b> view, it doesn't look good on mobile.</li>
+<li> The CSS file that styles this component is <b>ImageGallery.module.css </b></li>
+</ul>
+
+<h3> ImageGalleryMobile</h3>
+<ul>
+<li> ImageGalleryMobile is a reusable component that is to be imported into the BlueprintItemPageLayout to render the images that are uploaded for the specified plan number. This image gallery is to be used for <b>MOBILE</b> view, it doesn't look good on desktop.</li>
+<li> The CSS file that styles this component is <b>ImageGalleryMobile.module.css </b></li>
+</ul>
+
 ## Forms Components
 
 <h3> CustomPlanRequest: </h3>
