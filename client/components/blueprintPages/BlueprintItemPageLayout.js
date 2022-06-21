@@ -58,11 +58,9 @@ export default function BlueprintItemPageLayout(props) {
   };
 
   const imagesContainerStyles = {
-    display: { xs: "none", md: "grid" },
+    display: { xs: "none", md: "flex" },
     justifyContent: "center",
     justifyItems: "center",
-    alignItems: "center",
-    gap: "2rem",
   };
 
   const mobileImagesContainerStyles = {
@@ -73,7 +71,6 @@ export default function BlueprintItemPageLayout(props) {
     display: "flex-box",
     justifyContent: "flex-start",
     width: "70%",
-    marginLeft: 2,
   };
 
   const descriptionsAddToCartContainerStyles = {
@@ -166,7 +163,6 @@ export default function BlueprintItemPageLayout(props) {
           <ArrowBackIcon />
         </Button>
       </Box>
-
       <motion.div
         className="container1-images"
         transition={{ delay: 0.7 }}
@@ -174,23 +170,28 @@ export default function BlueprintItemPageLayout(props) {
         animate={{ opacity: 1 }}
       >
         <Box className="desktopGallery" sx={imagesContainerStyles}>
-          <Box className="planNumberContainer" sx={planNumberContainerStyles}>
-            <Typography variant="h4"> Plan #{props.planNumber} </Typography>
-            <hr width="100%" />
-          </Box>
-
           <ImageGallery />
         </Box>
 
         <Box className="mobileGallery" sx={mobileImagesContainerStyles}>
           <ImageGalleryMobile />
         </Box>
+      </motion.div>{" "}
+      <motion.div
+        className="planNumberContainerMotionDiv"
+        transition={{ delay: 1.3 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={planNumberContainerStyles}
+      >
+        <hr width="100%" />
+        <Typography variant="h4"> Plan # {props.planNumber} </Typography>
+        <hr width="100%" />
       </motion.div>
-
       <motion.div
         className="container2-descriptionAndAddToCart"
         style={descriptionsAddToCartContainerStyles}
-        transition={{ delay: 1.3 }}
+        transition={{ delay: 1.6 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
@@ -259,10 +260,9 @@ export default function BlueprintItemPageLayout(props) {
           </Button>
         </Box>
       </motion.div>
-
       <motion.div
         className="container3-keyfeatures-motion"
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 1.9 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         style={motionDivContainerStyles}
@@ -299,10 +299,9 @@ export default function BlueprintItemPageLayout(props) {
           </Box>
         </Box>
       </motion.div>
-
       <motion.div
         className="container4-customizePlan"
-        transition={{ delay: 2.0 }}
+        transition={{ delay: 2.4 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         style={motionDivContainerStyles}
@@ -325,10 +324,9 @@ export default function BlueprintItemPageLayout(props) {
           </Typography>
         </Box>
       </motion.div>
-
       <motion.div
         className="container4-floorPlanPreview"
-        transition={{ delay: 2.4 }}
+        transition={{ delay: 2.8 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         style={motionDivContainerStyles}
