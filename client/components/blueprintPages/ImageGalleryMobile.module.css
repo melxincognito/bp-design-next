@@ -1,0 +1,48 @@
+.mainContainer {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
+  width: 1rem;
+}
+
+.viewImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewImageContainer img {
+  width: 25%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.44);
+}
+
+.slidesContainer {
+  width: 30%;
+  padding: 1rem;
+}
+
+.slides {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  align-items: center;
+  padding: 1rem;
+}
+
+.slides img {
+  scroll-snap-align: start;
+  border-radius: 2px;
+  width: 240px;
+  object-fit: contain;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.44);
+}
+
+.slides::-webkit-scrollbar {
+  display: none;
+}
