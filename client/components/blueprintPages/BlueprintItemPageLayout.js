@@ -19,6 +19,7 @@ import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ImageGallery from "./ImageGallery";
+import ImageGalleryMobile from "./ImageGalleryMobile";
 
 export default function BlueprintItemPageLayout(props) {
   const [planSetOptions, setPlanSetOptions] = useState("");
@@ -57,11 +58,16 @@ export default function BlueprintItemPageLayout(props) {
   };
 
   const imagesContainerStyles = {
-    display: "grid",
+    display: { xs: "none", md: "grid" },
     justifyContent: "center",
     justifyItems: "center",
     alignItems: "center",
     gap: "2rem",
+  };
+
+  const mobileImagesContainerStyles = {
+    display: { xs: "flex", md: "none" },
+    width: "70%",
   };
   const planNumberContainerStyles = {
     display: "flex-box",
@@ -163,17 +169,22 @@ export default function BlueprintItemPageLayout(props) {
 
       <motion.div
         className="container1-images"
-        style={imagesContainerStyles}
         transition={{ delay: 0.7 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
-        <Box className="planNumberContainer" sx={planNumberContainerStyles}>
-          <Typography variant="h4"> Plan #{props.planNumber} </Typography>
-          <hr width="100%" />
+        <Box className="desktopGallery" sx={imagesContainerStyles}>
+          <Box className="planNumberContainer" sx={planNumberContainerStyles}>
+            <Typography variant="h4"> Plan #{props.planNumber} </Typography>
+            <hr width="100%" />
+          </Box>
+
+          <ImageGallery />
         </Box>
 
-        <ImageGallery />
+        <Box className="mobileGallery" sx={mobileImagesContainerStyles}>
+          <ImageGalleryMobile />
+        </Box>
       </motion.div>
 
       <motion.div
