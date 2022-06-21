@@ -1,35 +1,57 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import galleryStyles from "./ImageGallery.module.css";
 
-export default function ImageGallery() {
-  const [previewImage, setPreviewImage] = useState(images[0].img);
-  const [previewImageAlt, setPreviewImageAlt] = useState(images[0].alt);
-  return (
-    <div className={galleryStyles.container}>
-      <div className={galleryStyles.viewImageContainer}>
-        <img src={previewImage} alt={previewImageAlt} />
-      </div>
+export default class ImageGallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      previewImage: images[0].img,
+      previewImageAlt: images[0].alt,
+    };
+  }
+  render() {
+    return (
+      <div className={galleryStyles.container}>
+        <div className={galleryStyles.viewImageContainer}>
+          <img src={this.state.previewImage} alt={this.state.previewImageAlt} />
+        </div>
 
-      <div className={galleryStyles.slidesContainer}>
-        <div className={galleryStyles.slides}>
-          {images.map((image, index) => (
-            <>
-              <img
-                key={index}
-                className={galleryStyles.image}
-                src={image.img}
-                alt={image.alt}
-                onClick={() => {
-                  setPreviewImage(image.img);
-                  setPreviewImageAlt(image.alt);
-                }}
-              />
-            </>
-          ))}
+        <div className={galleryStyles.slidesContainer}>
+          <button
+            onClick={() =>
+              console.log(
+                "image " +
+                  this.props.PreviewImage +
+                  " alt : " +
+                  this.props.PreviewImageAlt
+              )
+            }
+          >
+            {" "}
+            click me
+          </button>
+          <div className={galleryStyles.slides}>
+            {images.map((image, index) => (
+              <>
+                <img
+                  key={index}
+                  className={galleryStyles.image}
+                  src={image.img}
+                  alt={image.alt}
+                  onClick={() => {
+                    this.setState({
+                      previewImage: image.img,
+                      previewImageAlt: image.alt,
+                    });
+                  }}
+                />
+              </>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 const images = [
