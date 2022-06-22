@@ -83,17 +83,27 @@ export default class BlueprintCard extends Component {
       { icon: <GarageOutlinedIcon />, text: this.props.garages + " Garage" },
     ];
 
+    // styles variables
+
+    const cardStyles = {
+      maxWidth: 345,
+      boxShadow: "0px 3px 15px 5px rgba(0,0,0,0.3)",
+      display: "grid",
+      justifyContent: "center",
+      justifyItems: "center",
+      textAlign: "center",
+    };
+
+    const keyFeaturesContainerStyles = {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 1,
+      justifyContent: "center",
+      marginTop: "0.5rem",
+    };
+
     return (
-      <Card
-        sx={{
-          maxWidth: 345,
-          boxShadow: "0px 3px 15px 5px rgba(0,0,0,0.3)",
-          display: "grid",
-          justifyContent: "center",
-          justifyItems: "center",
-          textAlign: "center",
-        }}
-      >
+      <Card sx={cardStyles}>
         <CardMedia
           component="img"
           height="200"
@@ -105,16 +115,7 @@ export default class BlueprintCard extends Component {
             Plan # {this.props.planNumber}
           </Typography>
           <Divider />
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 1,
-
-              justifyContent: "center",
-              marginTop: "0.5rem",
-            }}
-          >
+          <Box sx={keyFeaturesContainerStyles}>
             {blueprintKeyFeatureData.map((item, index) => (
               <Box
                 key={index}
