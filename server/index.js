@@ -116,11 +116,11 @@ app.get("/api/get", (req, res) => {
   });
 });
 
-app.delete("/api/delete_cart", (req, res) => {
-  const planNumber = req.body.planNumber;
+app.delete("/api/delete_cart/:planNumber", (req, res) => {
+  const planNumber = req.params.planNumber;
   const sqlDelete = "DELETE FROM cart_items WHERE plan_number = ?";
   db.query(sqlDelete, planNumber, (err, result) => {
-    console.log(result);
+    if (err) console.log(err);
   });
 });
 
@@ -132,7 +132,7 @@ function deletePlan(databaseName, planNumber) {
 }
 
 deletePlan("cart_items", 2829);
-deletePlan("favorites_test", 1012);
+deletePlan("favorites_test", 889);
 
 // pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");
