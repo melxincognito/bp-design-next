@@ -15,10 +15,8 @@ import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 preview photo and the details */
 
 export default function ShoppingCartItemCard(props) {
-  const planNumber = useState(props.planNumber);
-
-  const removeItemFromCart = () => {
-    Axios.delete("/api/delete_cart", planNumber);
+  const removeItemFromCart = (plan) => {
+    Axios.delete(`http://localhost:3002/api/delete_cart/${plan}`);
   };
 
   const cartItemContainerStyles = {
@@ -109,7 +107,11 @@ export default function ShoppingCartItemCard(props) {
               <Button>
                 <FavoriteBorderIcon fontSize="large" />
               </Button>
-              <Button onClick={removeItemFromCart}>
+              <Button
+                onClick={() => {
+                  removeItemFromCart(props.planNumber);
+                }}
+              >
                 <DeleteOutlineOutlinedIcon fontSize="large" />
               </Button>
             </div>
