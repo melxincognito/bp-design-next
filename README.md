@@ -57,6 +57,8 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
         <li>stories</li>
         <li>squareFeet</li>
         <li>garages</li>
+        <li>description </li>
+        <li>style</li>
     </ul>
 </ul>
 
