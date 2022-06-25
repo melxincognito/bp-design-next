@@ -33,7 +33,7 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchorElNav: null,
+      anchorElNav: false,
       open: false,
       value: 0,
     };
@@ -43,12 +43,12 @@ export default class NavBar extends Component {
     this.setState({ value: newValue });
   };
 
-  handleOpenNavMenu = (e) => {
-    this.setState({ anchorElNav: e.currentTarget });
+  handleOpenNavMenu = () => {
+    this.setState({ anchorElNav: true });
   };
 
   handleCloseNavMenu = () => {
-    this.setState({ anchorElNav: null });
+    this.setState({ anchorElNav: false });
   };
 
   handleClickOpen = () => {
@@ -154,7 +154,7 @@ export default class NavBar extends Component {
                   id="menu-appbar"
                   anchorEl={this.anchorElNav}
                   anchorOrigin={{
-                    vertical: "bottom",
+                    vertical: "top",
                     horizontal: "left",
                   }}
                   keepMounted
@@ -162,7 +162,7 @@ export default class NavBar extends Component {
                     vertical: "top",
                     horizontal: "left",
                   }}
-                  open={Boolean(this.anchorElNav)}
+                  open={this.state.anchorElNav}
                   onClose={this.handleCloseNavMenu}
                   sx={{
                     display: { xs: "block", md: "none" },
