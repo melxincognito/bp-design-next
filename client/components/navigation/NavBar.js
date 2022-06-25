@@ -39,7 +39,7 @@ export default class NavBar extends Component {
     };
   }
 
-  handleChange = (e, newValue) => {
+  handleChange = (newValue) => {
     this.setState({ value: newValue });
   };
 
@@ -190,12 +190,11 @@ export default class NavBar extends Component {
                 <Tabs
                   variant="scrollable"
                   value={this.state.value}
-                  onChange={this.handleChange}
                   indicatorColor="secondary"
                 >
                   {tabsItems.map((tab) => (
-                    <div key={tab.id}>
-                      <Link href={tab.link} value={tab.id} passHref>
+                    <div key={tab.id} onClick={() => this.handleChange(tab.id)}>
+                      <Link href={tab.link} passHref>
                         <Tab label={tab.label} sx={tabsStyles} />
                       </Link>
                     </div>
