@@ -97,7 +97,7 @@ app.get("/api/get_blueprint_number/:planNumber", (req, res) => {
   });
 });
 
-// Getting all blueprint data to render all items in the all blueprints page
+// ONE
 app.get("/api/get", (req, res) => {
   const sqlSelect = "SELECT * FROM allBlueprintsII ";
   db.query(sqlSelect, (err, result) => {
@@ -105,9 +105,7 @@ app.get("/api/get", (req, res) => {
   });
 });
 
-// DELETE ITEM FROM CART ITEMS DATABASE IF A USER CLICKS ON THE
-// SHOPPING CART ITEM TRASH CAN ICON
-
+// TWO
 app.delete("/api/delete_cart/:planNumber", (req, res) => {
   const planNumber = req.params.planNumber;
   const sqlDelete = "DELETE FROM cart_items WHERE plan_number = ?";
@@ -116,9 +114,7 @@ app.delete("/api/delete_cart/:planNumber", (req, res) => {
   });
 });
 
-// DELETE ITEM FROM FAVORITES DATABASE IF A USER CLICKS ON THE
-// BLUEPRINT CARD FILLED HEART ICON
-
+// THREE
 app.delete("/api/delete_favorites/:planNumber", (req, res) => {
   const planNumber = req.params.planNumber;
   const sqlDelete = "DELETE FROM favorites_test WHERE plan_number = ?";
