@@ -4,7 +4,6 @@ const mysql = require("mysql");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
 dotenv.config();
 
 // parses body content in app
@@ -16,6 +15,7 @@ app.use(cors());
 // api call
 app.use(express.json());
 
+// connecting to SQL database
 const db = mysql.createConnection({
   host: process.env.MY_SQL_HOST,
   user: process.env.MY_SQL_USER,
@@ -30,6 +30,8 @@ db.connect((err) => {
   console.log("MySQL Connected...");
 });
 
+// Creating dynamic paths for getting blueprint item data by the
+// database name in MySQL
 function getBlueprintsByDatabaseName(databaseName) {
   app.get(`/api/get_${databaseName}`, (req, res) => {
     const sqlSelect = `SELECT * FROM ${databaseName}  `;
@@ -39,7 +41,7 @@ function getBlueprintsByDatabaseName(databaseName) {
   });
 }
 
-// creating dynamic paths for browsing blueprints by styles
+// Creating dynamic paths for browsing blueprints by styles
 function getBlueprintDataByStyle(style) {
   app.get(`/api/get_${style}`, (req, res) => {
     const sqlSelect = `SELECT * FROM allBlueprintsII WHERE style= '${style}';`;
@@ -48,29 +50,6 @@ function getBlueprintDataByStyle(style) {
     });
   });
 }
-
-// grabbing the data for an item for the individual blueprint page
-
-/*function getBlueprintDataByItem(planNumber) {
-  const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = ${planNumber}`;
-  db.query(sqlSelect, (err, result) => {
-    console.log(result);
-    return result;
-  });
-}
-
-getBlueprintDataByItem(1017);
-*/
-// TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
-
-app.get("/api/get_blueprint_number/:planNumber", (req, res) => {
-  const planNumber = req.params.planNumber;
-  const sqlSelectPlan = `SELECT * FROM allBlueprintsII WHERE plan_number = ?`;
-  db.query(sqlSelectPlan, planNumber, (err, result) => {
-    console.log(result);
-    res.send(result);
-  });
-});
 
 // insert data from admin dashboard into database
 
@@ -107,13 +86,27 @@ function passBlueprintDataToDatabase(slugName, databaseName) {
   });
 }
 
-// get all blueprint data for all blueprints page
+// TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
+
+app.get("/api/get_blueprint_number/:planNumber", (req, res) => {
+  const planNumber = req.params.planNumber;
+  const sqlSelectPlan = `SELECT * FROM allBlueprintsII WHERE plan_number = ?`;
+  db.query(sqlSelectPlan, planNumber, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
+// Getting all blueprint data to render all items in the all blueprints page
 app.get("/api/get", (req, res) => {
   const sqlSelect = "SELECT * FROM allBlueprintsII ";
   db.query(sqlSelect, (err, result) => {
     res.send(result);
   });
 });
+
+// DELETE ITEM FROM CART ITEMS DATABASE IF A USER CLICKS ON THE
+// SHOPPING CART ITEM TRASH CAN ICON
 
 app.delete("/api/delete_cart/:planNumber", (req, res) => {
   const planNumber = req.params.planNumber;
@@ -122,6 +115,9 @@ app.delete("/api/delete_cart/:planNumber", (req, res) => {
     if (err) console.log(err);
   });
 });
+
+// DELETE ITEM FROM FAVORITES DATABASE IF A USER CLICKS ON THE
+// BLUEPRINT CARD FILLED HEART ICON
 
 app.delete("/api/delete_favorites/:planNumber", (req, res) => {
   const planNumber = req.params.planNumber;
