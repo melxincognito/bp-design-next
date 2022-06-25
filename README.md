@@ -208,13 +208,13 @@ Private keys are to be configured by creating a .env file in the <i> SERVER </i>
 
 ## API ROUTES
 
-<h3> <b>ONE</b> - app.get - <i>/api/get</i> </h3>
+<h3> <b>I</b> - app.get - <i>/api/get</i> </h3>
 
 <ul>
 <li> This API route is grabbing all the blueprint data from the database so we can render every item for users to browse through on the <b>Browse All Blueprints</b> page. The API route is used in the <i>client</i> folder under <i>client/pages/allBlueprints/index.js</i> </li>
 </ul>
 
-<h3> <b>TWO</b> - app.delete - <i>/api/delete_cart/:planNumber</i> </h3>
+<h3> <b>II</b> - app.delete - <i>/api/delete_cart/:planNumber</i> </h3>
 
 <ul>
 <li> This API route is used to to delete a particular blueprint in a users cart. It uses the plan number to dynamically delete the matching plan in the database. </li>
@@ -225,7 +225,7 @@ When a user is browsing through the items in their cart and they click on the tr
 <li> The API route is used in the <i>client</i> folder under <i>client/components/cards/ShoppingCartItemCard.js</i> </li>
 </ul>
 
-<h3> <b>THREE</b> - app.delete - <i>/api/delete_favorites/:planNumber</i> </h3>
+<h3> <b>III</b> - app.delete - <i>/api/delete_favorites/:planNumber</i> </h3>
 
 <ul>
 <li> This API route is used to to delete a particular blueprint in a users favorites. It uses the plan number to dynamically delete the matching plan in the database. </li>
