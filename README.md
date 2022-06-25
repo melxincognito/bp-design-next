@@ -203,3 +203,33 @@ Private keys are to be configured by creating a .env file in the <i> SERVER </i>
 <li>MY_SQL_PASSWORD</li>
 <li>MY_SQL_DATABASE </li>
 </ul>
+
+## API ROUTES
+
+<h3> <b>ONE</b> - app.get - <i>/api/get</i> </h3>
+
+<ul>
+<li> This API route is grabbing all the blueprint data from the database so we can render every item for users to browse through on the <b>Browse All Blueprints</b> page. The API route is used in the <i>client</i> folder under <i>client/pages/allBlueprints/index.js</i> </li>
+</ul>
+
+<h3> <b>TWO</b> - app.delete - <i>/api/delete_cart/:planNumber</i> </h3>
+
+<ul>
+<li> This API route is used to to delete a particular blueprint in a users cart. It uses the plan number to dynamically delete the matching plan in the database. </li>
+<li>
+When a user is browsing through the items in their cart and they click on the trash can icon in the upper right, the api call is triggered and the item is removed the cart items database. 
+ </li>
+
+<li> The API route is used in the <i>client</i> folder under <i>client/components/cards/ShoppingCartItemCard.js</i> </li>
+</ul>
+
+<h3> <b>THREE</b> - app.delete - <i>/api/delete_favorites/:planNumber</i> </h3>
+
+<ul>
+<li> This API route is used to to delete a particular blueprint in a users favorites. It uses the plan number to dynamically delete the matching plan in the database. </li>
+<li>
+When a user is browsing through their favorites, if the item is in their favorites database the icon will appear as a heart filled icon. When a user clicks on the heart filled icon, the api call is triggered and the item is removed the favorites database. 
+ </li>
+
+<li> The API route is used in the <i>client</i> folder under <i>client/components/cards/BlueprintCard.js</i> </li>
+</ul>
