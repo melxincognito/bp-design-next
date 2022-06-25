@@ -20,21 +20,23 @@ import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-// TODO delete favorite item from database when the user clicks the filled heart icon
-
 export default class BlueprintCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       description: this.props.description,
       favorite: props.favorite,
+      planNumber: props.planNumber,
     };
   }
   // state for description is set because it doesn't need to be displayed on the card but it
   // does need to be passed to the database for add cart and add to favorites.
 
-  addToCart = (e) => {
-    e.preventDefault();
+  /* state for planNumber is set so it can get passed into the removeFromFavorites
+      function as a parameter. Passing in props.planNumber as a parameter breaks 
+      the page onClick*/
+
+  addToCart = () => {
     Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.props.image,
       planNumber: this.props.planNumber,
@@ -50,8 +52,7 @@ export default class BlueprintCard extends Component {
     });
   };
 
-  addToFavorites = (e) => {
-    e.preventDefault();
+  addToFavorites = () => {
     this.setState({ favorite: true });
     Axios.post("http://localhost:3002/api/insert_favorites", {
       image: this.props.image,
@@ -68,10 +69,13 @@ export default class BlueprintCard extends Component {
     });
   };
 
-  removeFromFavorites = (e) => {
-    e.preventDefault();
+  removeFromFavorites = (plan) => {
     this.setState({ favorite: false });
-    console.log(this.state.favorite);
+    Axios.delete(`http://localhost:3002/api/delete_favorites/${plan}`).then(
+      () => {
+        alert("deleted from favorites");
+      }
+    );
   };
 
   render() {
@@ -131,7 +135,10 @@ export default class BlueprintCard extends Component {
         </CardContent>
         <CardActions>
           {this.state.favorite ? (
-            <Button size="small" onClick={this.removeFromFavorites}>
+            <Button
+              size="small"
+              onClick={() => this.removeFromFavorites(this.state.planNumber)}
+            >
               <FavoriteIcon />
             </Button>
           ) : (
