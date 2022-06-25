@@ -13,10 +13,6 @@ export default function admindashboard() {
   const [stories, setStories] = useState("");
   const [description, setDescription] = useState("");
 
-  const loader = () => {
-    `https://images.unsplash.com/photo-1555881400-74d7acaacd8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80`;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
