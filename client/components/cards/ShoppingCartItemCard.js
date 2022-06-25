@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 
 import Axios from "axios";
 import { Box, Typography, ListItem, Button } from "@mui/material";
 
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import BathroomOutlinedIcon from "@mui/icons-material/BathroomOutlined";
@@ -14,113 +15,171 @@ import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 /* TODO fix positioning for mobile view on container 3 so its positioned below the plan 
 preview photo and the details */
 
-export default function ShoppingCartItemCard(props) {
-  const removeItemFromCart = (plan) => {
+export default class ShoppingCartItemCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorite: false,
+      planNumber: this.props.planNumber,
+      image: this.props.image,
+      beds: this.props.beds,
+      baths: this.props.baths,
+      squareFeet: this.props.squareFeet,
+      garages: this.props.garages,
+      stories: this.props.stories,
+      style: this.props.style,
+      description: this.props.description,
+    };
+  }
+  // style and description states aren't shown but need to get passed into the favorites database
+
+  removeItemFromCart = (plan) => {
     Axios.delete(`http://localhost:3002/api/delete_cart/${plan}`);
   };
 
-  const cartItemContainerStyles = {
-    display: "flex",
-    width: "100%",
-    gap: "2rem",
-    padding: 1,
+  addToFavorites = () => {
+    this.setState({ favorite: true });
+    Axios.post("http://localhost:3002/api/insert_favorites", {
+      image: this.state.image,
+      planNumber: this.state.planNumber,
+      beds: this.state.beds,
+      baths: this.state.baths,
+      sqft: this.state.squareFeet,
+      style: this.state.style,
+      garages: this.state.garages,
+      stories: this.state.stories,
+      description: this.state.description,
+    }).then(() => {
+      alert("inserted into database");
+    });
   };
 
-  const containerOneStyles = {
-    display: "grid",
-    textAlign: "center",
-    gap: "1rem",
+  removeFromFavorites = (plan) => {
+    this.setState({ favorite: false });
+    Axios.delete(`http://localhost:3002/api/delete_favorites/${plan}`).then(
+      () => {
+        alert("deleted from favorites");
+      }
+    );
   };
+  render() {
+    const cartItemContainerStyles = {
+      display: "flex",
+      width: "100%",
+      gap: "2rem",
+      padding: 1,
+    };
 
-  const containerTwoStyles = {
-    display: "grid",
-    width: "100%",
-  };
+    const containerOneStyles = {
+      display: "grid",
+      textAlign: "center",
+      gap: "1rem",
+    };
 
-  const containerThreeStyles = {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-  };
+    const containerTwoStyles = {
+      display: "grid",
+      width: "100%",
+    };
 
-  const detailsIconContainerStyles = {
-    display: "flex",
-    justifyContent: "flex-end",
-  };
+    const containerThreeStyles = {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+    };
 
-  const detailsIconDivStyles = {
-    display: "flex",
-    gap: 5,
-  };
+    const detailsIconContainerStyles = {
+      display: "flex",
+      justifyContent: "flex-end",
+    };
 
-  const viewBlueprintButtonContainerStyles = {
-    display: "flex",
-    height: "100%",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-  };
-  return (
-    <>
-      <ListItem button>
-        <Box sx={cartItemContainerStyles}>
-          <Box className="container1-imagePreview" sx={containerOneStyles}>
-            <img
-              src={props.image}
-              width="200px"
-              height="200px"
-              alt="img"
-              style={{
-                boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.3)",
-                borderRadius: 2,
-              }}
-            />
-            <Typography> Plan #{props.planNumber}</Typography>
-          </Box>
-          <Box className="container2-planDetails" sx={containerTwoStyles}>
-            <div classsName="beds" style={detailsIconDivStyles}>
-              <KingBedOutlinedIcon />{" "}
-              <Typography> {props.beds} Beds </Typography>
-            </div>
+    const detailsIconDivStyles = {
+      display: "flex",
+      gap: 5,
+    };
 
-            <div className="baths" style={detailsIconDivStyles}>
-              <BathroomOutlinedIcon />{" "}
-              <Typography> {props.baths} Baths </Typography>
-            </div>
-            <div className="squareFeet" style={detailsIconDivStyles}>
-              <SquareFootIcon />{" "}
-              <Typography> {props.squareFeet} SqFt </Typography>
-            </div>
-            <div className="stories" style={detailsIconDivStyles}>
-              <StairsOutlinedIcon />{" "}
-              <Typography> {props.stories} Stories </Typography>
-            </div>
-            <div className="garages" style={detailsIconDivStyles}>
-              <GarageOutlinedIcon />{" "}
-              <Typography> {props.garages} Garages </Typography>
-            </div>
-          </Box>
-          <Box
-            className="container3-favoriteRemoveOrView"
-            sx={containerThreeStyles}
-          >
-            <div style={detailsIconContainerStyles}>
-              <Button>
-                <FavoriteBorderIcon fontSize="large" />
-              </Button>
-              <Button
-                onClick={() => {
-                  removeItemFromCart(props.planNumber);
+    const viewBlueprintButtonContainerStyles = {
+      display: "flex",
+      height: "100%",
+      alignItems: "flex-end",
+      justifyContent: "flex-end",
+    };
+
+    return (
+      <>
+        <ListItem button>
+          <Box sx={cartItemContainerStyles}>
+            <Box className="container1-imagePreview" sx={containerOneStyles}>
+              <img
+                src={this.state.image}
+                width="200px"
+                height="200px"
+                alt="img"
+                style={{
+                  boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.3)",
+                  borderRadius: 2,
                 }}
-              >
-                <DeleteOutlineOutlinedIcon fontSize="large" />
-              </Button>
-            </div>
-            <div style={viewBlueprintButtonContainerStyles}>
-              <Button variant="contained"> View Blueprint</Button>
-            </div>
+              />
+              <Typography> Plan #{this.state.planNumber}</Typography>
+            </Box>
+            <Box className="container2-planDetails" sx={containerTwoStyles}>
+              <div classsName="beds" style={detailsIconDivStyles}>
+                <KingBedOutlinedIcon />{" "}
+                <Typography> {this.state.beds} Beds </Typography>
+              </div>
+
+              <div className="baths" style={detailsIconDivStyles}>
+                <BathroomOutlinedIcon />{" "}
+                <Typography> {this.state.baths} Baths </Typography>
+              </div>
+              <div className="squareFeet" style={detailsIconDivStyles}>
+                <SquareFootIcon />{" "}
+                <Typography> {this.state.squareFeet} SqFt </Typography>
+              </div>
+              <div className="stories" style={detailsIconDivStyles}>
+                <StairsOutlinedIcon />{" "}
+                <Typography> {this.state.stories} Stories </Typography>
+              </div>
+              <div className="garages" style={detailsIconDivStyles}>
+                <GarageOutlinedIcon />{" "}
+                <Typography> {this.state.garages} Garages </Typography>
+              </div>
+            </Box>
+            <Box
+              className="container3-favoriteRemoveOrView"
+              sx={containerThreeStyles}
+            >
+              <div style={detailsIconContainerStyles}>
+                <Button>
+                  {this.state.favorite ? (
+                    <FavoriteIcon
+                      fontSize="large"
+                      onClick={() =>
+                        this.removeFromFavorites(this.state.planNumber)
+                      }
+                    />
+                  ) : (
+                    <FavoriteBorderIcon
+                      fontSize="large"
+                      onClick={this.addToFavorites}
+                    />
+                  )}
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    this.removeItemFromCart(this.state.planNumber);
+                  }}
+                >
+                  <DeleteOutlineOutlinedIcon fontSize="large" />
+                </Button>
+              </div>
+              <div style={viewBlueprintButtonContainerStyles}>
+                <Button variant="contained"> View Blueprint</Button>
+              </div>
+            </Box>
           </Box>
-        </Box>
-      </ListItem>
-    </>
-  );
+        </ListItem>
+      </>
+    );
+  }
 }
