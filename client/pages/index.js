@@ -91,7 +91,9 @@ export default function Home() {
   const headerImageContainerStyles = {
     display: "flex",
     justifyContent: "center",
-    padding: "1rem",
+    width: "100%",
+    height: "100%",
+    boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.50)",
   };
 
   const textContentContainerStyles = {
@@ -123,11 +125,11 @@ export default function Home() {
             className="header-image-container"
             sx={headerImageContainerStyles}
           >
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
-              width="90%"
-              height="100%"
-              style={{ boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.50)" }}
+              height="600px"
+              width="1400px"
+              layout="fixed"
             />
             <motion.div
               id="blueprints-form-container"
