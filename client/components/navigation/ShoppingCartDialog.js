@@ -84,6 +84,8 @@ export default class ShoppingCartDialog extends Component {
                   baths={item.baths}
                   garages={item.garages}
                   stories={item.stories}
+                  description={item.description}
+                  style={item.style}
                 />
                 <Divider />
               </>
