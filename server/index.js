@@ -34,7 +34,6 @@ function getBlueprintsByDatabaseName(databaseName) {
   app.get(`/api/get_${databaseName}`, (req, res) => {
     const sqlSelect = `SELECT * FROM ${databaseName}  `;
     db.query(sqlSelect, (err, result) => {
-      console.log(result);
       res.send(result);
     });
   });
@@ -45,7 +44,6 @@ function getBlueprintDataByStyle(style) {
   app.get(`/api/get_${style}`, (req, res) => {
     const sqlSelect = `SELECT * FROM allBlueprintsII WHERE style= '${style}';`;
     db.query(sqlSelect, (err, result) => {
-      console.log(result);
       res.send(result);
     });
   });
@@ -65,9 +63,10 @@ getBlueprintDataByItem(1017);
 */
 // TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
 
-app.get("/api/get_item_", (req, res) => {
-  const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = '1007'; `;
-  db.query(sqlSelect, (err, result) => {
+app.get("/api/get_blueprint_number/:planNumber", (req, res) => {
+  const planNumber = req.params.planNumber;
+  const sqlSelectPlan = `SELECT * FROM allBlueprintsII WHERE plan_number = ?`;
+  db.query(sqlSelectPlan, planNumber, (err, result) => {
     console.log(result);
     res.send(result);
   });
@@ -124,15 +123,13 @@ app.delete("/api/delete_cart/:planNumber", (req, res) => {
   });
 });
 
-function deletePlan(databaseName, planNumber) {
-  const sqlDelete = `DELETE FROM ${databaseName} WHERE plan_number = ${planNumber};`;
+app.delete("/api/delete_favorites/:planNumber", (req, res) => {
+  const planNumber = req.params.planNumber;
+  const sqlDelete = "DELETE FROM favorites_test WHERE plan_number = ?";
   db.query(sqlDelete, planNumber, (err, result) => {
-    console.log(result);
+    if (err) console.log(err);
   });
-}
-
-deletePlan("cart_items", 2829);
-deletePlan("favorites_test", 889);
+});
 
 // pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");
