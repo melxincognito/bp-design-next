@@ -231,5 +231,5 @@ When a user is browsing through the items in their cart and they click on the tr
 When a user is browsing through their favorites, if the item is in their favorites database the icon will appear as a heart filled icon. When a user clicks on the heart filled icon, the api call is triggered and the item is removed the favorites database. 
  </li>
 
-<li> The API route is used in the <i>client</i> folder under <i>client/components/cards/BlueprintCard.js</i> </li>
+<li> The API route is used in the <i>client</i> folder under <i>client/components/cards/BlueprintCard.js</i> <b>AND</b> <i>client/components/cards/ShoppingCartItemCard.js</i></li>
 </ul>
