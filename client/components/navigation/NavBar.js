@@ -31,7 +31,7 @@ function HeaderBanner() {
   const searchByPlanNumber = () => {
     Axios.get(`http://localhost:3002/api/get_item_${planNumber}`).then(
       (response) => {
-        let pathname = `/browsebpbystyle/${response.data.style}/${planNumber}`;
+        let pathname = `/browsebpbystyle/${response.data[0].style}/${planNumber}`;
 
         router.push(pathname);
       }
