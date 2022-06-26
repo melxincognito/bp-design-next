@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Link from "next/link";
-
+import Axios from "axios";
+import { useRouter } from "next/router";
 import {
   AppBar,
   Box,
@@ -19,9 +20,69 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-
 import ShoppingCartDialog from "./ShoppingCartDialog";
 import FavoritesDialog from "./FavoritesDialog";
+
+function HeaderBanner() {
+  const [planNumber, setPlanNumber] = useState(0);
+
+  const router = useRouter();
+
+  const searchByPlanNumber = () => {
+    Axios.get(`http://localhost:3002/api/get_item_${planNumber}`).then(
+      (response) => {
+        let pathname = `/browsebpbystyle/${response.data.style}/${planNumber}`;
+
+        router.push(pathname);
+      }
+    );
+  };
+
+  const iconStyles = {
+    cursor: "pointer",
+  };
+  return (
+    <>
+      <Container
+        maxWidth="xl"
+        sx={{
+          p: 2,
+          bgcolor: "black",
+          display: "flex",
+        }}
+      >
+        {" "}
+        <Box sx={{ flexGrow: 2 }}>
+          <Link href="/">
+            <Typography sx={iconStyles} variant="h6" noWrap component="div">
+              BP DESIGN STUDIO
+            </Typography>
+          </Link>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0.5,
+          }}
+        >
+          <TextField
+            variant="standard"
+            placeholder="Search by plan #"
+            sx={{
+              backgroundColor: "white",
+              borderRadius: 1.5,
+            }}
+            onChange={(e) => {
+              setPlanNumber(e.target.value);
+            }}
+          />
+          <Search sx={iconStyles} onClick={searchByPlanNumber} />
+        </Box>
+      </Container>
+    </>
+  );
+}
 
 const tabsItems = [
   { label: "Home", link: "/", id: 0 },
@@ -104,45 +165,7 @@ export default class NavBar extends Component {
       <>
         <AppBar position="static" maxWidth="xl">
           {/* Top Banner Container*/}
-          <Container
-            maxWidth="xl"
-            sx={{
-              p: 2,
-              bgcolor: "black",
-              display: "flex",
-            }}
-          >
-            {" "}
-            <Box sx={{ flexGrow: 2 }}>
-              <Link href="/">
-                <Typography sx={iconStyles} variant="h6" noWrap component="div">
-                  BP DESIGN STUDIO
-                </Typography>
-              </Link>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 0.5,
-              }}
-            >
-              <TextField
-                variant="standard"
-                placeholder="Search by plan #"
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: 1.5,
-                }}
-              />
-              <Search
-                sx={iconStyles}
-                onClick={() => {
-                  console.log("hello");
-                }}
-              />
-            </Box>
-          </Container>
+          <HeaderBanner />
 
           {/* Navigation Bar Container */}
           <Container maxWidth="xl">
