@@ -20,7 +20,9 @@ export default withRouter(
     }
 
     componentDidMount() {
-      Axios.get("http://localhost:3002/api/get_item_").then((response) => {
+      Axios.get(
+        `http://localhost:3002/api/get_item_${this.state.planNumber}`
+      ).then((response) => {
         this.setState({
           description: response.data[0].description,
           beds: response.data[0].beds,
