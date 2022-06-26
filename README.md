@@ -60,6 +60,25 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
         <li>description </li>
         <li>style</li>
     </ul>
+     <li>The ShoppingCartItemCard component is imported into the <b>ShoppingCartDialog</b> component in the <i>navigation</i> folder </li>
+</ul>
+
+<h3> FavoriteItemCard</h3>
+<ul>
+<li> Reusable component to be used to display the items passed to the customers favorites. The favorites dialog will display the main image for the blueprint, the blueprint number, have an overview of the plan details and buttons giving the user the ability to remove the item from their favorites, send the item to their cart or view the items page. </li>
+    <li> The card needs the following props to be passed:  </li>
+    <ul>
+        <li>image </li>
+        <li>planNumber </li>
+        <li>beds</li>
+        <li>baths</li>
+        <li>stories</li>
+        <li>squareFeet</li>
+        <li>garages</li>
+        <li>description </li>
+        <li>style</li>
+    </ul>
+    <li>The FavoriteItemCard component is imported into the <b>FavoritesDialog</b> component in the <i>navigation</i> folder </li>
 </ul>
 
 ## Browse Styles Components
