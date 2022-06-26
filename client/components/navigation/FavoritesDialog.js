@@ -75,23 +75,29 @@ export default class FavoritesDialog extends Component {
           </AppBar>
 
           <List>
-            {this.state.favoritesItems.map((item, index) => (
+            {this.state.favoritesItems.length === 0 ? (
               <>
-                <FavoriteItemCard
-                  key={index}
-                  image={item.image}
-                  planNumber={item.plan_number}
-                  beds={item.beds}
-                  squareFeet={item.sq_ft}
-                  baths={item.baths}
-                  garages={item.garages}
-                  stories={item.stories}
-                  description={item.description}
-                  style={item.style}
-                />
-                <Divider />
+                <p> Nothing in your favorites </p>{" "}
               </>
-            ))}
+            ) : (
+              this.state.favoritesItems.map((item, index) => (
+                <>
+                  <FavoriteItemCard
+                    key={index}
+                    image={item.image}
+                    planNumber={item.plan_number}
+                    beds={item.beds}
+                    squareFeet={item.sq_ft}
+                    baths={item.baths}
+                    garages={item.garages}
+                    stories={item.stories}
+                    description={item.description}
+                    style={item.style}
+                  />
+                  <Divider />
+                </>
+              ))
+            )}
           </List>
         </Dialog>
       </div>
