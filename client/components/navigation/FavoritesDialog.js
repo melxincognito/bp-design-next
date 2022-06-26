@@ -13,7 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";
+import FavoriteItemCard from "../cards/FavoritesItemCard";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -77,7 +77,7 @@ export default class FavoritesDialog extends Component {
           <List>
             {this.state.favoritesItems.map((item, index) => (
               <>
-                <ShoppingCartItemCard
+                <FavoriteItemCard
                   key={index}
                   image={item.image}
                   planNumber={item.plan_number}
