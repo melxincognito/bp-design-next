@@ -21,6 +21,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import ShoppingCartDialog from "./ShoppingCartDialog";
+import FavoritesDialog from "./FavoritesDialog";
 
 const tabsItems = [
   { label: "Home", link: "/", id: 0 },
@@ -34,7 +35,8 @@ export default class NavBar extends Component {
     super(props);
     this.state = {
       anchorElNav: false,
-      open: false,
+      openShoppingCart: false,
+      openFavorites: false,
       value: 0,
     };
   }
@@ -51,10 +53,14 @@ export default class NavBar extends Component {
     this.setState({ anchorElNav: false });
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: !this.state.open });
-    console.log(this.state.open);
+  handleClickOpenShoppingCart = () => {
+    this.setState({ openShoppingCart: !this.state.openShoppingCart });
   };
+
+  handleClickOpenFavorites = () => {
+    this.setState({ openFavorites: !this.state.openFavorites });
+  };
+
   render() {
     const tabsContainerStyles = {
       flexGrow: 1,
@@ -205,10 +211,11 @@ export default class NavBar extends Component {
                 display="flex"
                 sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
               >
-                <Link href="/myfavorites">
+                <Box onClick={this.handleClickOpenFavorites}>
                   <FavoriteBorderIcon sx={iconStyles} />
-                </Link>
-                <Box onClick={this.handleClickOpen}>
+                </Box>
+
+                <Box onClick={this.handleClickOpenShoppingCart}>
                   <ShoppingCartOutlinedIcon sx={iconStyles} />
                 </Box>
 
@@ -221,7 +228,15 @@ export default class NavBar extends Component {
         </AppBar>
         {/* Shopping Cart Dialog */}
 
-        {this.state.open && <ShoppingCartDialog open={this.state.open} />}
+        {this.state.openShoppingCart && (
+          <ShoppingCartDialog open={this.state.openShoppingCart} />
+        )}
+
+        {/* Favorites Dialog */}
+
+        {this.state.openFavorites && (
+          <FavoritesDialog open={this.state.openFavorites} />
+        )}
       </>
     );
   }
