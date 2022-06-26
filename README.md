@@ -81,6 +81,26 @@ Run the app locally by running <b> npm run dev </b> in the terminal and opening 
     <li>The FavoriteItemCard component is imported into the <b>FavoritesDialog</b> component in the <i>navigation</i> folder </li>
 </ul>
 
+## Navigation Components
+
+<h3> FavoritesDialog</h3>
+<ul>
+<li> Dialog component used to display the items in a users favorite database. The component is imported into the <b>NavBar</b> to be displayed when the user clicks on the favorites border icon.</li>
+<li> The component needs the following props to be passed:</li>
+<ul>
+<li> open - <i> should be set to a boolean of <b>TRUE</b> or <b>FALSE</b>. This state determines if the component is visible or not. It's default is set to <b> FALSE</b>.<i></li> 
+</ul>
+</ul>
+
+<h3> ShoppingCartDialog</h3>
+<ul>
+<li> Dialog component used to display the items in a users shopping cart database. The component is imported into the <b>NavBar</b> to be displayed when the user clicks on the shopping cart icon.</li>
+<li> The component needs the following props to be passed:</li>
+<ul>
+<li> open - <i> should be set to a boolean of <b>TRUE</b> or <b>FALSE</b>. This state determines if the component is visible or not. It's default is set to <b> FALSE</b>.<i></li> 
+</ul>
+</ul>
+
 ## Browse Styles Components
 
 <h3>FilterBlueprintsAppBar </h3>
