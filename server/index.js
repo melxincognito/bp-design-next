@@ -123,6 +123,17 @@ app.delete("/api/delete_favorites/:planNumber", (req, res) => {
   });
 });
 
+// FOUR
+
+app.get("/api/get_item_:planNumber", (req, res) => {
+  const planNumber = req.params.planNumber;
+  const sqlSelect = `SELECT * FROM allBlueprintsII WHERE plan_number = ?`;
+  db.query(sqlSelect, planNumber, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
+
 // pass blueprint data to db
 passBlueprintDataToDatabase("cart_items", "cart_items");
 passBlueprintDataToDatabase("all_blueprints", "allBlueprintsII");
