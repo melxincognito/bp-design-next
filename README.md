@@ -280,5 +280,6 @@ When a user is browsing through their favorites, if the item is in their favorit
 <ul>
 <li> This API route is used to to grab the information for a particular blueprint in the all blueprints database. It uses the plan number to dynamically grab all the information it needs by matching the planNumber in the database. </li>
 
-<li> The API route is used in the <i>client</i> folder under <i>client/pages/browsebpbystyle/[style]/[planNumber]</i></li>
+<li> The API route is used in the <i>client</i> folder under <i>client/pages/browsebpbystyle/[style]/[planNumber].js</i> <b>AND</b> <i> NavBar.js</i></li>
+<li> In <b>NavBar.js</b>, the API call is used to search the entire database by plan number. If the plan # exists in the database, the <i>planNumber</i> and <i>style</i> are returned. These are used to route to the blueprint page for this item. </li>
 </ul>
