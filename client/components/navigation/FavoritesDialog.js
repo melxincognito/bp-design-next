@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteItemCard from "../cards/FavoriteItemCard";
-
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -61,8 +61,18 @@ export default class FavoritesDialog extends Component {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                My Favorites
+              <Typography
+                sx={{
+                  ml: 2,
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
+                variant="h6"
+                component="div"
+              >
+                <FavoriteBorderIcon /> My Favorites
               </Typography>
               <Button
                 autoFocus
@@ -76,9 +86,19 @@ export default class FavoritesDialog extends Component {
 
           <List>
             {this.state.favoritesItems.length === 0 ? (
-              <>
-                <p> Nothing in your favorites </p>{" "}
-              </>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "15rem",
+                }}
+              >
+                <Typography variant="h4" color="highlight.dark">
+                  {" "}
+                  Nothing in your favorites
+                </Typography>{" "}
+              </div>
             ) : (
               this.state.favoritesItems.map((item, index) => (
                 <>

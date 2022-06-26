@@ -15,6 +15,8 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";
 
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -59,8 +61,18 @@ export default class ShoppingCartDialog extends Component {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                My Shopping Cart
+              <Typography
+                sx={{
+                  ml: 2,
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
+                variant="h6"
+                component="div"
+              >
+                <ShoppingCartOutlinedIcon /> My Shopping Cart
               </Typography>
               <Button
                 autoFocus
@@ -73,23 +85,39 @@ export default class ShoppingCartDialog extends Component {
           </AppBar>
 
           <List>
-            {this.state.shoppingCartItems.map((item, index) => (
-              <>
-                <ShoppingCartItemCard
-                  key={index}
-                  image={item.image}
-                  planNumber={item.plan_number}
-                  beds={item.beds}
-                  squareFeet={item.sq_ft}
-                  baths={item.baths}
-                  garages={item.garages}
-                  stories={item.stories}
-                  description={item.description}
-                  style={item.style}
-                />
-                <Divider />
-              </>
-            ))}
+            {this.state.shoppingCartItems.length === 0 ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "15rem",
+                }}
+              >
+                <Typography variant="h4" color="highlight.dark">
+                  {" "}
+                  Nothing in your shopping cart{" "}
+                </Typography>{" "}
+              </div>
+            ) : (
+              this.state.shoppingCartItems.map((item, index) => (
+                <>
+                  <ShoppingCartItemCard
+                    key={index}
+                    image={item.image}
+                    planNumber={item.plan_number}
+                    beds={item.beds}
+                    squareFeet={item.sq_ft}
+                    baths={item.baths}
+                    garages={item.garages}
+                    stories={item.stories}
+                    description={item.description}
+                    style={item.style}
+                  />
+                  <Divider />
+                </>
+              ))
+            )}
           </List>
         </Dialog>
       </div>
