@@ -13,7 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import FavoriteItemCard from "../cards/FavoritesItemCard";
+import FavoriteItemCard from "../cards/FavoriteItemCard";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
