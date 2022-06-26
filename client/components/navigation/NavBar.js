@@ -24,7 +24,7 @@ import ShoppingCartDialog from "./ShoppingCartDialog";
 import FavoritesDialog from "./FavoritesDialog";
 
 function HeaderBanner() {
-  const [planNumber, setPlanNumber] = useState(0);
+  const [planNumber, setPlanNumber] = useState("");
 
   const router = useRouter();
 
@@ -32,7 +32,7 @@ function HeaderBanner() {
     Axios.get(`http://localhost:3002/api/get_item_${planNumber}`).then(
       (response) => {
         let pathname = `/browsebpbystyle/${response.data[0].style}/${planNumber}`;
-
+        setPlanNumber("");
         router.push(pathname);
       }
     );
@@ -73,6 +73,7 @@ function HeaderBanner() {
               backgroundColor: "white",
               borderRadius: 1.5,
             }}
+            value={planNumber}
             onChange={(e) => {
               setPlanNumber(e.target.value);
             }}
