@@ -256,7 +256,7 @@ Private keys are to be configured by creating a .env file in the <i> SERVER </i>
 <h3> <b>II</b> - app.delete - <i>/api/delete_cart/:planNumber</i> </h3>
 
 <ul>
-<li> This API route is used to to delete a particular blueprint in a users cart. It uses the plan number to dynamically delete the matching plan in the database. </li>
+<li> This API route is used to delete a particular blueprint in a users cart. It uses the plan number to dynamically delete the matching plan in the database. </li>
 <li>
 When a user is browsing through the items in their cart and they click on the trash can icon in the upper right, the api call is triggered and the item is removed the cart items database. 
  </li>
@@ -267,10 +267,18 @@ When a user is browsing through the items in their cart and they click on the tr
 <h3> <b>III</b> - app.delete - <i>/api/delete_favorites/:planNumber</i> </h3>
 
 <ul>
-<li> This API route is used to to delete a particular blueprint in a users favorites. It uses the plan number to dynamically delete the matching plan in the database. </li>
+<li> This API route is used to delete a particular blueprint in a users favorites. It uses the plan number to dynamically delete the matching plan in the database. </li>
 <li>
 When a user is browsing through their favorites, if the item is in their favorites database the icon will appear as a heart filled icon. When a user clicks on the heart filled icon, the api call is triggered and the item is removed the favorites database. 
  </li>
 
 <li> The API route is used in the <i>client</i> folder under <i>client/components/cards/BlueprintCard.js</i> <b>AND</b> <i>client/components/cards/ShoppingCartItemCard.js</i></li>
+</ul>
+
+<h3> <b>IV</b> - app.get - <i>/api/get_item_:planNumber</i> </h3>
+
+<ul>
+<li> This API route is used to to grab the information for a particular blueprint in the all blueprints database. It uses the plan number to dynamically grab all the information it needs by matching the planNumber in the database. </li>
+
+<li> The API route is used in the <i>client</i> folder under <i>client/pages/browsebpbystyle/[style]/[planNumber]</i></li>
 </ul>
