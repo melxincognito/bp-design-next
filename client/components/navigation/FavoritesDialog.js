@@ -19,6 +19,25 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+function NoFavoritesMessage() {
+  const noFavoritesContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "15rem",
+  };
+  return (
+    <Typography
+      component="div"
+      variant="h4"
+      color="highlight.dark"
+      sx={noFavoritesContainerStyles}
+    >
+      Nothing in your favorites
+    </Typography>
+  );
+}
+
 export default class FavoritesDialog extends Component {
   constructor(props) {
     super(props);
@@ -86,19 +105,7 @@ export default class FavoritesDialog extends Component {
 
           <List>
             {this.state.favoritesItems.length === 0 ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "15rem",
-                }}
-              >
-                <Typography variant="h4" color="highlight.dark">
-                  {" "}
-                  Nothing in your favorites
-                </Typography>{" "}
-              </div>
+              <NoFavoritesMessage />
             ) : (
               this.state.favoritesItems.map((item, index) => (
                 <>

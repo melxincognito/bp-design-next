@@ -20,6 +20,24 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+function NoShoppingCartItemsMessage() {
+  const noShoppingCartItemsContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "15rem",
+  };
+  return (
+    <Typography
+      component="div"
+      variant="h4"
+      color="highlight.dark"
+      sx={noShoppingCartItemsContainerStyles}
+    >
+      Nothing in your shopping cart
+    </Typography>
+  );
+}
 
 export default class ShoppingCartDialog extends Component {
   constructor(props) {
@@ -86,19 +104,7 @@ export default class ShoppingCartDialog extends Component {
 
           <List>
             {this.state.shoppingCartItems.length === 0 ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "15rem",
-                }}
-              >
-                <Typography variant="h4" color="highlight.dark">
-                  {" "}
-                  Nothing in your shopping cart{" "}
-                </Typography>{" "}
-              </div>
+              <NoShoppingCartItemsMessage />
             ) : (
               this.state.shoppingCartItems.map((item, index) => (
                 <>
