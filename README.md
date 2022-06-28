@@ -2,17 +2,20 @@
 
 ## Getting Started
 
+```
+ git clone https://github.com/melxincognito/bp-design-next.git
+    cd bp-design-next
+    cd client
+    npm i
+    cd ../
+    cd server
+    npm i
+
+```
+
 <ol>
     <li> Clone the repository and install the dependencies </li>
-    ``` 
-    git clone https://github.com/melxincognito/bp-design-next.git 
-    cd bp-design-next
-    cd client 
-    npm i 
-    cd ../
-    cd server 
-    npm i
-    ```
+  
     <li> test</li>
 
 </ol>
