@@ -28,19 +28,24 @@ export default withRouter(
 
     componentDidMount() {
       Axios.get(this.state.route).then((response) => {
-        this.setState({ blueprints: response.data });
+        try {
+          this.setState({ blueprints: response.data });
+        } catch (error) {
+          alert(error);
+        }
       });
     }
 
     render() {
-      // StyleName prop is having the first letter capitalized for the title of the page
+      let styleNameCapitalized =
+        ((this.state.styleName || "").charAt(0) || "").toUpperCase() +
+        ((this.state.styleName || "").slice(1) || "");
+
+      // styleNameCapitalized has the code safeized
+      // https://stackoverflow.com/questions/55088329/cannot-read-property-charat-of-undefined-in-react-storm
+
       return (
-        <BrowseStylesLayout
-          StyleName={
-            this.state.styleName.charAt(0).toUpperCase() +
-            this.state.styleName.slice(1)
-          }
-        >
+        <BrowseStylesLayout StyleName={styleNameCapitalized}>
           {this.state.blueprints.length === 0 ? (
             <NoBlueprintsMessage />
           ) : (
