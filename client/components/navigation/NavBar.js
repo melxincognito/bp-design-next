@@ -42,19 +42,27 @@ function HeaderBanner() {
     );
   };
 
+  const containerStyles = {
+    p: 2,
+    bgcolor: "black",
+    display: "flex",
+  };
   const iconStyles = {
     cursor: "pointer",
   };
+
+  const textFieldContainerStyles = {
+    display: "flex",
+    alignItems: "center",
+    gap: 0.5,
+  };
+  const textFieldStyles = {
+    backgroundColor: "white",
+    borderRadius: 1.5,
+  };
   return (
     <>
-      <Container
-        maxWidth="xl"
-        sx={{
-          p: 2,
-          bgcolor: "black",
-          display: "flex",
-        }}
-      >
+      <Container maxWidth="xl" sx={containerStyles}>
         {" "}
         <Box sx={{ flexGrow: 2 }}>
           <Link href="/">
@@ -63,20 +71,11 @@ function HeaderBanner() {
             </Typography>
           </Link>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 0.5,
-          }}
-        >
+        <Box sx={textFieldContainerStyles}>
           <TextField
             variant="standard"
             placeholder="Search by plan #"
-            sx={{
-              backgroundColor: "white",
-              borderRadius: 1.5,
-            }}
+            sx={textFieldStyles}
             value={planNumber}
             onChange={(e) => {
               setPlanNumber(e.target.value);
