@@ -3,8 +3,17 @@ import BrowseStylesLayout from "../../../components/browseStyles/BrowseStylesLay
 import BlueprintCard from "../../../components/cards/BlueprintCard";
 import Axios from "axios";
 import { withRouter } from "next/router";
+import { Typography } from "@mui/material";
 
 // TODO fix solution so it works on REFRESH
+
+function NoBlueprintsMessage() {
+  return (
+    <Typography variant="h6" noWrap component="div">
+      No blueprints found.
+    </Typography>
+  );
+}
 
 export default withRouter(
   class style extends Component {
@@ -32,22 +41,26 @@ export default withRouter(
             this.state.styleName.slice(1)
           }
         >
-          {this.state.blueprints.map((blueprint, index) => (
-            <>
-              <BlueprintCard
-                key={index}
-                image={blueprint.image}
-                planNumber={blueprint.plan_number}
-                beds={blueprint.beds}
-                baths={blueprint.baths}
-                sqFt={blueprint.sq_ft}
-                stories={blueprint.stories}
-                garages={blueprint.garages}
-                slug="browsebpbystyle"
-                style={blueprint.style}
-              />
-            </>
-          ))}
+          {this.state.blueprints.length === 0 ? (
+            <NoBlueprintsMessage />
+          ) : (
+            this.state.blueprints.map((blueprint, index) => (
+              <>
+                <BlueprintCard
+                  key={index}
+                  image={blueprint.image}
+                  planNumber={blueprint.plan_number}
+                  beds={blueprint.beds}
+                  baths={blueprint.baths}
+                  sqFt={blueprint.sq_ft}
+                  stories={blueprint.stories}
+                  garages={blueprint.garages}
+                  slug="browsebpbystyle"
+                  style={blueprint.style}
+                />
+              </>
+            ))
+          )}
         </BrowseStylesLayout>
       );
     }
