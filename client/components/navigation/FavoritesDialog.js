@@ -93,13 +93,6 @@ export default class FavoritesDialog extends Component {
               >
                 <FavoriteBorderIcon /> My Favorites
               </Typography>
-              <Button
-                autoFocus
-                sx={{ backgroundColor: "primary.light", color: "white" }}
-                onClick={this.handleClose}
-              >
-                <Link href="/checkout">Checkout</Link>
-              </Button>
             </Toolbar>
           </AppBar>
 
