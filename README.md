@@ -17,7 +17,9 @@ npm i
 
 2. Create a .env file in the server folder to configure your local environment
 
-`touch .env // action performed from the server folder in the terminal`
+```
+touch .env
+```
 
 # CLIENT SIDE DOCUMENTATION
 
