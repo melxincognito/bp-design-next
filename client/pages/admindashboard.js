@@ -1,6 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 import Axios from "axios";
 import Image from "next/image";
+
+function Counter(props) {
+  function reducer(state, action) {
+    switch (action.type) {
+      case "increment":
+        return { count: state.count + 1 };
+      case "decrement":
+        return { count: state.count - 1 };
+      case "increment5":
+        return { count: state.count + 5 };
+      case "decrement5":
+        return { count: state.count - 5 };
+      default:
+        throw new Error("Unexpected action");
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducer, { count: props.initialCount });
+
+  return (
+    <div>
+      <h1> count: {state.count} </h1>
+      <button onClick={() => dispatch({ type: "increment" })}> Up</button>
+      <button onClick={() => dispatch({ type: "decrement" })}> Down</button>
+      <button onClick={() => dispatch({ type: "increment5" })}> Up 5</button>
+      <button onClick={() => dispatch({ type: "decrement5" })}> Down 5</button>
+    </div>
+  );
+}
+
+Counter.defaultProps = {
+  initialCount: 4,
+};
 
 export default function admindashboard() {
   const [image, setImage] = useState("");
@@ -117,6 +150,7 @@ export default function admindashboard() {
       </div>
 
       <button onClick={handleSubmit}> Submit</button>
+      <Counter initialCount={0} />
     </div>
   );
 }
