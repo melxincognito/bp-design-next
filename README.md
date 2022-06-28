@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1. Clone the repository and install the dependencies
+### 1. Clone the repository and install the dependencies in the client folder <b>AND</b> the server folder.
 
 ```
 git clone https://github.com/melxincognito/bp-design-next.git
@@ -21,11 +21,19 @@ npm i
 touch .env
 ```
 
+3. Configure the following keys in your local environment:
+
+```
+MY_SQL_HOST
+MY_SQL_USER
+MY_SQL_PASSWORD
+MY_SQL_DATABASE
+
+```
+
 # CLIENT SIDE DOCUMENTATION
 
 ## Dependencies
-
-Install the dependencies by moving into the <i> client </i> folder and running <b> npm i</b> in the terminal
 
 Dependencies List:
 
