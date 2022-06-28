@@ -9,7 +9,7 @@
 On the landing page for a specific blueprint plan, all the information will be displayed for that plan # which includes the plan number, a photo gallery, a description, all the key features and a 3D floor plan model. There is also the ability for users to add the item to their cart and have it set to different specifications, such as wood and foundation type, but the application goes a step further by also processing requests from clients for custom blueprints. Requests can be made to either customize existing blueprints or to request a consultation to create an entire custom blueprint for a desired home from the ground up.
 </li>
 </ul>
-
+<hr />
 <ul>
 <li>The client side has been created using <b> Next.JS</b>,<b>Material-UI</b> and <b>framer-motion</b>  </li>
 <li>The server side has been created using <b>Node.JS</b>, <b>Express </b> and <b>MySQL</b> </li>
