@@ -6,8 +6,16 @@ import { motion } from "framer-motion";
 
 import Axios from "axios";
 
-{
-  /* TODO fix slug for dynamic routing to content */
+/* TODO fix slug for dynamic routing to content */
+
+// NoBlueprintsFoundMessage is used for error handling incase an error ever happens with the API call
+function NoBlueprintsFoundMessage() {
+  return (
+    <Typography component="div" variant="h4" color="highlight.dark">
+      {" "}
+      No Blueprints Found
+    </Typography>
+  );
 }
 
 function BrowseBlueprintsContainer(props) {
@@ -73,23 +81,27 @@ export default function allBlueprints() {
       style={{ display: "grid", width: "100%", gap: "1rem" }}
     >
       <BrowseBlueprintsContainer>
-        {blueprints.map((blueprint, index) => (
-          <>
-            <BlueprintCard
-              key={index}
-              image={blueprint.image}
-              planNumber={blueprint.plan_number}
-              beds={blueprint.beds}
-              baths={blueprint.baths}
-              sqFt={blueprint.sq_ft}
-              stories={blueprint.stories}
-              slug="browsebpbystyle"
-              style={blueprint.style}
-              garages={blueprint.garages}
-              description={blueprint.description}
-            />
-          </>
-        ))}
+        {blueprints.length === 0 ? (
+          <NoBlueprintsFoundMessage />
+        ) : (
+          blueprints.map((blueprint, index) => (
+            <>
+              <BlueprintCard
+                key={index}
+                image={blueprint.image}
+                planNumber={blueprint.plan_number}
+                beds={blueprint.beds}
+                baths={blueprint.baths}
+                sqFt={blueprint.sq_ft}
+                stories={blueprint.stories}
+                slug="browsebpbystyle"
+                style={blueprint.style}
+                garages={blueprint.garages}
+                description={blueprint.description}
+              />
+            </>
+          ))
+        )}
       </BrowseBlueprintsContainer>
     </motion.div>
   );
