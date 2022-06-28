@@ -18,6 +18,8 @@ On the landing page for a specific blueprint plan, all the information will be d
 <ul>
 ---
 
+.
+
 ## Getting Started
 
 ### 1. Clone the repository and install the dependencies in the client directory <b>AND</b> the server directory.
