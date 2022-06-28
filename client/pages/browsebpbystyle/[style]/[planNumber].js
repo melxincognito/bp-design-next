@@ -23,15 +23,19 @@ export default withRouter(
       Axios.get(
         `http://localhost:3002/api/get_item_${this.state.planNumber}`
       ).then((response) => {
-        this.setState({
-          description: response.data[0].description,
-          beds: response.data[0].beds,
-          baths: response.data[0].baths,
-          stories: response.data[0].stories,
-          image: response.data[0].image,
-          sq_ft: response.data[0].sq_ft,
-          garages: response.data[0].garages,
-        });
+        try {
+          this.setState({
+            description: response.data[0].description,
+            beds: response.data[0].beds,
+            baths: response.data[0].baths,
+            stories: response.data[0].stories,
+            image: response.data[0].image,
+            sq_ft: response.data[0].sq_ft,
+            garages: response.data[0].garages,
+          });
+        } catch (error) {
+          alert(error);
+        }
       });
     }
 
