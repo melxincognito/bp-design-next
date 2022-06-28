@@ -1,5 +1,18 @@
 ## Overview
 
+<ul>
+<li>Web application used primarily to sell blueprints online. Users are displayed a variety of blueprints and are able to filter through blueprints by style, number of beds, baths, square feet, etc. The plans are identified by their unique plan number.  </li>
+<li>On the browsing pages, users will see a card displaying an overview of key features from each plan such as an image, the number of beds, baths, square feet, etc. Users have the ability from here to decide if they want to add an item to their favorites or their shopping cart by clicking on the icons on the plans card. Favorites are accessed from the navigation bar by clicking on the heart outline icon while the shopping cart is accessed from the navigation bar by clicking on the shopping cart icon. </li>
+<li> If a user would like to view all the information for a blueprint plan, they will have to access the plans page by either clicking <b>'View Floor Plan'</b> on the card displayed on the browsing pages or by searching a specific plan number in the <b>search bar</b> located in the navigation bar. </li>
+
+<li>
+On the landing page for a specific blueprint plan, all the information will be displayed for that plan # which includes the plan number, a photo gallery, a description, all the key features and a 3D floor plan model. There is also the ability for users to add the item to their cart and have it set to different specifications, such as wood and foundation type, but the application goes a step further by also processing requests from clients for custom blueprints. Requests can be made to either customize existing blueprints or to request a consultation to create an entire custom blueprint for a desired home from the ground up.
+</li>
+</ul>
+
+The client side has been created using <b> Next.JS</b>,<b>Material-UI</b> and <b>framer-motion</b>
+The server side has been created using <b>Node.JS</b>, <b>Express </b> and <b>MySQL</b>
+
 ## Getting Started
 
 ### 1. Clone the repository and install the dependencies in the client directory <b>AND</b> the server directory.
@@ -14,7 +27,7 @@ cd server
 npm i
 ```
 
-### 2. Create a .env file in the server folder to configure your local environment
+### 2. Create a .env file in the SERVER directory to configure your local environment
 
 ```
 touch .env
