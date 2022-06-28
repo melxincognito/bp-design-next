@@ -54,9 +54,13 @@ export default class FavoritesDialog extends Component {
   componentDidMount() {
     Axios.get("http://localhost:3002/api/get_favorites_test").then(
       (response) => {
-        this.setState({
-          favoritesItems: response.data,
-        });
+        try {
+          this.setState({
+            favoritesItems: response.data,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }
     );
   }

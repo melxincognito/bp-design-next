@@ -54,9 +54,13 @@ export default class ShoppingCartDialog extends Component {
 
   componentDidMount() {
     Axios.get("http://localhost:3002/api/get_cart_items").then((response) => {
-      this.setState({
-        shoppingCartItems: response.data,
-      });
+      try {
+        this.setState({
+          shoppingCartItems: response.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     });
   }
 
