@@ -2,23 +2,22 @@
 
 ## Getting Started
 
-```
- git clone https://github.com/melxincognito/bp-design-next.git
-    cd bp-design-next
-    cd client
-    npm i
-    cd ../
-    cd server
-    npm i
+1. Clone the repository and install the dependencies
 
 ```
+git clone https://github.com/melxincognito/bp-design-next.git
+cd bp-design-next
+cd client
+npm i
+cd ../
+cd server
+npm i
 
-<ol>
-    <li> Clone the repository and install the dependencies </li>
-  
-    <li> test</li>
+```
 
-</ol>
+2. Create a .env file in the server folder to configure your local environment
+
+`touch .env // action performed from the server folder in the terminal`
 
 # CLIENT SIDE DOCUMENTATION
 
