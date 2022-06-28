@@ -1,7 +1,5 @@
 ## BP Design Studio
 
----
-
 ## Overview
 
 <ul>
