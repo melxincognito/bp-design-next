@@ -31,16 +31,16 @@ MY_SQL_DATABASE
 
 ### 4. Start the application
 
-    To run the application locally, you'll need to open two terminals.
-    In the first terminal, assuming your in the main folder, change to the client directory
-    and run the following:
+To run the application locally, you'll need to open two terminals.
+In the first terminal, assuming your in the main folder, change to the client directory
+and run the following:
 
     ```
     cd client
     npm run dev
     ```
 
-    In the second terminal, change to the server directory and run the following:
+In the second terminal, change to the server directory and run the following:
 
     ```
     cd server
