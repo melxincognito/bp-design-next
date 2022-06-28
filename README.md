@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-### 1. Clone the repository and install the dependencies in the client folder <b>AND</b> the server folder.
+### 1. Clone the repository and install the dependencies in the client directory <b>AND</b> the server directory.
 
 ```
 git clone https://github.com/melxincognito/bp-design-next.git
@@ -12,24 +12,41 @@ npm i
 cd ../
 cd server
 npm i
-
 ```
 
-2. Create a .env file in the server folder to configure your local environment
+### 2. Create a .env file in the server folder to configure your local environment
 
 ```
 touch .env
 ```
 
-3. Configure the following keys in your local environment:
+### 3. Configure the following keys in your local environment:
 
 ```
 MY_SQL_HOST
 MY_SQL_USER
 MY_SQL_PASSWORD
 MY_SQL_DATABASE
-
 ```
+
+### 4. Start the application
+
+    To run the application locally, you'll need to open two terminals.
+    In the first terminal, assuming your in the main folder, change to the client directory
+    and run the following:
+    ```
+    cd client
+    npm run dev
+    ```
+    In the second terminal, change to the server directory and run the following:
+    ```
+    cd server
+    npm run devStart
+    ```
+
+### 5. View application locally
+
+    Open your browser to localhost:3000 to view the application locally
 
 # CLIENT SIDE DOCUMENTATION
 
@@ -49,8 +66,6 @@ Dependencies List:
 <li>react 18.1.0 </li>
 <li>react-dom 18.1.0 </li>
 </ul>
-
-Run the app locally by running <b> npm run dev </b> in the terminal and opening the browser to <b> localhost:3000 </b>
 
 <ins><i> App wont load data correctly if you don't have the database running at the same time. Scroll down and read Server Side documentation for instructions on how to run it locally. </i></ins>
 
@@ -247,8 +262,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Dependencies
 
-Install the dependencies by moving into the <i> server </i> folder running <b> npm i</b> in the terminal
-
 Dependencies List:
 
 <ul>
@@ -259,21 +272,6 @@ Dependencies List:
 <li>mysql</li>
 <li>nodemon </li>
 
-</ul>
-
-Run the database locally by running <b> npm run devStart</b> in the terminal and opening the browser to <b> localhost:3002 </b>
-
-## KEYS
-
-Private keys are to be configured by creating a .env file in the <i> SERVER </i> folder with the appropriate key names.
-
-<h3> Private Keys: </h3>
-
-<ul>
-<li>MY_SQL_HOST</li>
-<li>MY_SQL_USER </li>
-<li>MY_SQL_PASSWORD</li>
-<li>MY_SQL_DATABASE </li>
 </ul>
 
 ## API ROUTES
