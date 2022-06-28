@@ -10,7 +10,10 @@ On the landing page for a specific blueprint plan, all the information will be d
 </li>
 </ul>
 
-`The client side has been created using <b> Next.JS</b>,<b>Material-UI</b> and <b>framer-motion</b> The server side has been created using <b>Node.JS</b>, <b>Express </b> and <b>MySQL</b>`
+<ul>
+<li>The client side has been created using <b> Next.JS</b>,<b>Material-UI</b> and <b>framer-motion</b>  </li>
+<li>The server side has been created using <b>Node.JS</b>, <b>Express </b> and <b>MySQL</b> </li>
+<ul>
 
 ## Getting Started
 
