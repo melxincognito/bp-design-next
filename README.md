@@ -70,7 +70,7 @@ npm run devStart
 
 ### 5. View application locally
 
-Open your browser to localhost:3000 to view the application locally
+Open your browser to <b>localhost:3000</b> to view the application locally
 
 # CLIENT SIDE DOCUMENTATION
 
