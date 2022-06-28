@@ -11,7 +11,7 @@ import Axios from "axios";
 // NoBlueprintsFoundMessage is used for error handling incase an error ever happens with the API call
 function NoBlueprintsFoundMessage() {
   return (
-    <Typography component="div" variant="h4" color="highlight.dark">
+    <Typography component="div" variant="h4">
       {" "}
       No Blueprints Found
     </Typography>

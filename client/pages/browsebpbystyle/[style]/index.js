@@ -9,8 +9,8 @@ import { Typography } from "@mui/material";
 
 function NoBlueprintsMessage() {
   return (
-    <Typography variant="h6" noWrap component="div">
-      No blueprints found.
+    <Typography variant="h4" noWrap component="div">
+      No Blueprints Found.
     </Typography>
   );
 }
