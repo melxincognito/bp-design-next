@@ -36,7 +36,8 @@ function HeaderBanner() {
           setPlanNumber("");
           router.push(pathname);
         } catch (error) {
-          alert("Plan number not found");
+          let plan = planNumber;
+          setPlanNumber(`Plan #${plan} Not Found`);
         }
       }
     );
