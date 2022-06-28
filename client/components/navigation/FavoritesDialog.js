@@ -15,6 +15,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteItemCard from "../cards/FavoriteItemCard";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
