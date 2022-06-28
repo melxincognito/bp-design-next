@@ -56,7 +56,11 @@ export default function allBlueprints() {
 
   useEffect(() => {
     Axios.get("http://localhost:3002/api/get").then((response) => {
-      setBlueprints(response.data);
+      try {
+        setBlueprints(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     });
   }, []);
 
