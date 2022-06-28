@@ -70,7 +70,7 @@ Dependencies List:
 <li>react-dom 18.1.0 </li>
 </ul>
 
-<ins><i> App wont load data correctly if you don't have the database running at the same time. Scroll down and read Server Side documentation for instructions on how to run it locally. </i></ins>
+<ins><i> App wont load data correctly if you don't have the database running at the same time. Read getting started to see how to run application in the client and server directories. </i></ins>
 
 ## Cards Components
 
