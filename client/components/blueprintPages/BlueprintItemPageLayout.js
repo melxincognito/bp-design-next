@@ -21,7 +21,15 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ImageGallery from "./ImageGallery";
 import ImageGalleryMobile from "./ImageGalleryMobile";
 
-export default function BlueprintItemPageLayout(props) {
+export default function BlueprintItemPageLayout({
+  planNumber,
+  description,
+  beds,
+  baths,
+  stories,
+  sq_ft,
+  garages,
+}) {
   const [planSetOptions, setPlanSetOptions] = useState("");
   const [foundationOptions, setFoundationOptions] = useState("");
   const [framingOptions, setFramingOptions] = useState("");
@@ -185,7 +193,7 @@ export default function BlueprintItemPageLayout(props) {
         style={planNumberContainerStyles}
       >
         <hr width="100%" />
-        <Typography variant="h4"> Plan # {props.planNumber} </Typography>
+        <Typography variant="h4"> Plan # {planNumber} </Typography>
         <hr width="100%" />
       </motion.div>
       <motion.div
@@ -203,7 +211,7 @@ export default function BlueprintItemPageLayout(props) {
 
           <Typography variant="body1" sx={{ textAlign: "center" }}>
             {" "}
-            {props.description}
+            {description}
           </Typography>
         </Box>
 
@@ -278,23 +286,23 @@ export default function BlueprintItemPageLayout(props) {
           >
             <div className="beds">
               <KingBedOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> {props.beds} beds</Typography>
+              <Typography variant="body1"> {beds} beds</Typography>
             </div>
             <div className="baths">
               <BathroomOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> {props.baths} Baths</Typography>
+              <Typography variant="body1"> {baths} Baths</Typography>
             </div>
             <div className="garages">
               <GarageOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> {props.garages} Garages</Typography>
+              <Typography variant="body1"> {garages} Garages</Typography>
             </div>
             <div className="stories">
               <StairsOutlinedIcon fontSize="large" />
-              <Typography variant="body1"> {props.stories} Stories</Typography>
+              <Typography variant="body1"> {stories} Stories</Typography>
             </div>{" "}
             <div className="squareFeet">
               <SquareFootIcon fontSize="large" />
-              <Typography variant="body1"> {props.sq_ft} SqFt</Typography>
+              <Typography variant="body1"> {sq_ft} SqFt</Typography>
             </div>
           </Box>
         </Box>
@@ -358,5 +366,5 @@ export default function BlueprintItemPageLayout(props) {
 
 BlueprintItemPageLayout.defaultProps = {
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "This is the default prop. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 };
