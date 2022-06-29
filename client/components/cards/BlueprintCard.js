@@ -19,6 +19,20 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { styled } from "@mui/material/styles";
+
+const CustomizedCard = styled(Card)`
+  max-width: 345px;
+  box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.3);
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+
+  :hover {
+    color: rgba(0, 0, 0, 0.55);
+  }
+`;
 
 export default class BlueprintCard extends Component {
   constructor(props) {
@@ -89,15 +103,6 @@ export default class BlueprintCard extends Component {
 
     // styles variables
 
-    const cardStyles = {
-      maxWidth: 345,
-      boxShadow: "0px 3px 15px 5px rgba(0,0,0,0.3)",
-      display: "grid",
-      justifyContent: "center",
-      justifyItems: "center",
-      textAlign: "center",
-    };
-
     const keyFeaturesContainerStyles = {
       display: "flex",
       flexWrap: "wrap",
@@ -107,7 +112,7 @@ export default class BlueprintCard extends Component {
     };
 
     return (
-      <Card sx={cardStyles}>
+      <CustomizedCard>
         <CardMedia
           component="img"
           height="200"
@@ -159,7 +164,7 @@ export default class BlueprintCard extends Component {
             </Link>
           </Button>
         </CardActions>
-      </Card>
+      </CustomizedCard>
     );
   }
 }
