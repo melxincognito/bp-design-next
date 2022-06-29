@@ -23,10 +23,6 @@ export default withRouter(
         blueprints: [],
         styleName: props.router.query.style,
         route: `http://localhost:3002/api/get_${props.router.query.style}`,
-        bedsFilter: "",
-        bathsFilter: "",
-        storiesFilter: "",
-        sqFtFilter: "",
       };
     }
 
@@ -41,6 +37,7 @@ export default withRouter(
     }
 
     render() {
+      const filteredList = [];
       let styleNameCapitalized =
         ((this.state.styleName || "").charAt(0) || "").toUpperCase() +
         ((this.state.styleName || "").slice(1) || "");
@@ -51,17 +48,22 @@ export default withRouter(
       // childToParentFilterValues is grabbing data from it's child component,
       // BrowseStylesLayout. The BrowseStylesLayout component is grabbing the data
       // from its child component of the FilterBlueprintsAppBar Component
+
+      // TODO add square feet filter, don't forget it
       const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
-        this.setState({
-          bedsFilter: beds,
-          bathsFilter: baths,
-          storiesFilter: stories,
-          sqFtFilter: squareFeet,
+        this.state.blueprints.forEach((blueprint) => {
+          if (
+            blueprint.beds === beds &&
+            blueprint.baths === baths &&
+            blueprint.stories === stories
+          ) {
+            filteredList.push(blueprint);
+          }
+          return filteredList;
         });
-        console.log("Beds: " + this.state.bedsFilter);
-        console.log("Baths: " + this.state.bathsFilter);
-        console.log("Stories: " + this.state.storiesFilter);
-        console.log("Square Feet: " + this.state.sqFtFilter);
+
+        this.setState({ blueprints: filteredList });
+        console.log("blueprints state" + this.state.blueprints);
       };
       return (
         <BrowseStylesLayout
