@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import { withRouter } from "next/router";
 import BlueprintItemPageLayout from "../../../components/blueprintPages/BlueprintItemPageLayout";
 import Axios from "axios";
+import { Typography } from "@mui/material";
+
+function ErrorMessage() {
+  return (
+    <Typography variant="h6" color="error" component="div">
+      Error fetching blueprint data
+    </Typography>
+  );
+}
 
 export default withRouter(
   class PlanDeets extends Component {
@@ -16,6 +25,7 @@ export default withRouter(
         image: "",
         sq_ft: "",
         garages: "",
+        error: false,
       };
     }
 
@@ -34,7 +44,7 @@ export default withRouter(
             garages: response.data[0].garages,
           });
         } catch (error) {
-          alert(error);
+          this.setState({ error: true });
         }
       });
     }
@@ -42,15 +52,24 @@ export default withRouter(
     render() {
       console.log(this.state.image);
       return (
-        <BlueprintItemPageLayout
-          planNumber={this.state.planNumber}
-          description={this.state.description}
-          beds={this.state.beds}
-          baths={this.state.baths}
-          stories={this.state.stories}
-          sq_ft={this.state.sq_ft}
-          garages={this.state.garages}
-        />
+        <>
+          {" "}
+          {this.state.error ? (
+            <ErrorMessage />
+          ) : (
+            <BlueprintItemPageLayout
+              planNumber={this.state.planNumber}
+              description={this.state.description}
+              beds={this.state.beds}
+              baths={this.state.baths}
+              stories={this.state.stories}
+              sq_ft={this.state.sq_ft}
+              garages={this.state.garages}
+              previewImageOne={this.state.image}
+              previewImageOneAlt={this.state.planNumber}
+            />
+          )}
+        </>
       );
     }
   }
