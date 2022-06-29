@@ -78,6 +78,7 @@ function HeaderBanner() {
             placeholder="Search by plan #"
             sx={textFieldStyles}
             value={planNumber}
+            inputProps={{ maxLength: 4 }}
             onChange={(e) => {
               setPlanNumber(e.target.value);
             }}
