@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import BrowseStylesLayout from "../../../components/browseStyles/BrowseStylesLayout";
 import BlueprintCard from "../../../components/cards/BlueprintCard";
 import Axios from "axios";
@@ -68,10 +68,16 @@ export default withRouter(
 
         this.setState({ filterBlueprints: filteredList });
       };
+
+      const resetFiltersOnClick = () => {
+        this.setState({ filterOn: false });
+        this.setState({ filterBlueprints: [] });
+      };
       return (
         <BrowseStylesLayout
           StyleName={styleNameCapitalized}
           childToParentFilterValues={childToParentFilterValues}
+          resetFiltersOnClick={resetFiltersOnClick}
         >
           {this.state.blueprints.length === 0 &&
           this.state.filterBlueprints.length === 0 ? (

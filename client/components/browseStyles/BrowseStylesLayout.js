@@ -8,6 +8,7 @@ import FilterBlueprintsAppBar from "./FilterBlueprintsAppBar";
 export default function BrowseStylesLayout({
   StyleName,
   childToParentFilterValues,
+  resetFiltersOnClick,
   children,
 }) {
   const styleSelectionContainerStyles = {
@@ -66,6 +67,7 @@ export default function BrowseStylesLayout({
         <FilterBlueprintsAppBar
           handleClick={() => parentToChild()}
           childToParent={childToParent}
+          resetFiltersOnClick={resetFiltersOnClick}
         />
 
         <Box
