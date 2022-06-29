@@ -51,8 +51,6 @@ function getBlueprintDataByStyle(style) {
   });
 }
 
-// insert data from admin dashboard into database
-
 function passBlueprintDataToDatabase(slugName, databaseName) {
   app.post(`/api/insert_${slugName}`, (req, res) => {
     const image = req.body.image;
@@ -87,7 +85,7 @@ function passBlueprintDataToDatabase(slugName, databaseName) {
 }
 
 // TODO figure out how to get the data for the individual blueprint page dynamically based off the plan number
-
+// Where is this used?
 app.get("/api/get_blueprint_number/:planNumber", (req, res) => {
   const planNumber = req.params.planNumber;
   const sqlSelectPlan = `SELECT * FROM allBlueprintsII WHERE plan_number = ?`;
