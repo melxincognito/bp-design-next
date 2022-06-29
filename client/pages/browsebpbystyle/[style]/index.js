@@ -21,6 +21,8 @@ export default withRouter(
       super(props);
       this.state = {
         blueprints: [],
+        filterOn: false,
+        filterBlueprints: [],
         styleName: props.router.query.style,
         route: `http://localhost:3002/api/get_${props.router.query.style}`,
       };
@@ -51,6 +53,7 @@ export default withRouter(
 
       // TODO add square feet filter, don't forget it
       const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
+        this.setState({ filter: true });
         this.state.blueprints.forEach((blueprint) => {
           if (
             blueprint.beds === beds &&
@@ -62,7 +65,7 @@ export default withRouter(
           return filteredList;
         });
 
-        this.setState({ blueprints: filteredList });
+        this.setState({ filterBlueprints: filteredList });
         console.log("blueprints state" + this.state.blueprints);
       };
       return (
@@ -70,8 +73,26 @@ export default withRouter(
           StyleName={styleNameCapitalized}
           childToParentFilterValues={childToParentFilterValues}
         >
-          {this.state.blueprints.length === 0 ? (
+          {this.state.blueprints.length === 0 &&
+          this.state.filterBlueprints.length === 0 ? (
             <NoBlueprintsMessage />
+          ) : this.state.filterOn === true ? (
+            this.state.filterBlueprints.map((blueprint, index) => (
+              <>
+                <BlueprintCard
+                  key={index}
+                  image={blueprint.image}
+                  planNumber={blueprint.plan_number}
+                  beds={blueprint.beds}
+                  baths={blueprint.baths}
+                  sqFt={blueprint.sq_ft}
+                  stories={blueprint.stories}
+                  garages={blueprint.garages}
+                  slug="browsebpbystyle"
+                  style={blueprint.style}
+                />
+              </>
+            ))
           ) : (
             this.state.blueprints.map((blueprint, index) => (
               <>
