@@ -332,3 +332,21 @@ When a user is browsing through their favorites, if the item is in their favorit
 <li> The API route is used in the <i>client</i> folder under <i>client/pages/browsebpbystyle/[style]/[planNumber].js</i> <b>AND</b> <i> NavBar.js</i></li>
 <li> In <b>NavBar.js</b>, the API call is used to search the entire database by plan number. If the plan # exists in the database, the <i>planNumber</i> and <i>style</i> are returned. These are used to route to the blueprint page for this item. </li>
 </ul>
+
+## Functions
+
+<h3>getBlueprintsByDatabaseName </h3>
+<ul>
+<li> Creates a dynamic app.get call and grabs all the items from the <b>databaseName</b> passed as a parameter when the function is called. The name of the database in MySQL is what you would pass as a parameter to this function.</li>
+</ul>
+
+<h3>getBlueprintsByStyle </h3>
+<ul>
+<li> Creates a dynamic app.get call. A <b>style</b> needs to be passed in lowercase letters(spanish, modern, etc) as a parameter when the function is called in order to get all the items in the MySQL database that match the style name passed.</li>
+
+</ul>
+
+<h3>passBlueprintDataToDatabase </h3>
+<ul>
+<li> Creates a post call to the specified database. The function needs two parameters to be passed through, a <b>slugName</b> and a <b>databaseName</b>. The slugName is used to generate the api url you'll use to link the info from the client side with Axios. The databaseName is the name of the database you want to insert the item into in MySQL. </li>
+</ul>
