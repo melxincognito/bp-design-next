@@ -23,6 +23,10 @@ export default withRouter(
         blueprints: [],
         styleName: props.router.query.style,
         route: `http://localhost:3002/api/get_${props.router.query.style}`,
+        bedsFilter: "",
+        bathsFilter: "",
+        storiesFilter: "",
+        sqFtFilter: "",
       };
     }
 
@@ -44,8 +48,23 @@ export default withRouter(
       // styleNameCapitalized has the code safeized
       // https://stackoverflow.com/questions/55088329/cannot-read-property-charat-of-undefined-in-react-storm
 
+      const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
+        this.setState({
+          bedsFilter: beds,
+          bathsFilter: baths,
+          storiesFilter: stories,
+          sqFtFilter: squareFeet,
+        });
+        console.log("Beds: " + this.state.bedsFilter);
+        console.log("Baths: " + this.state.bathsFilter);
+        console.log("Stories: " + this.state.storiesFilter);
+        console.log("Square Feet: " + this.state.sqFtFilter);
+      };
       return (
-        <BrowseStylesLayout StyleName={styleNameCapitalized}>
+        <BrowseStylesLayout
+          StyleName={styleNameCapitalized}
+          childToParentFilterValues={childToParentFilterValues}
+        >
           {this.state.blueprints.length === 0 ? (
             <NoBlueprintsMessage />
           ) : (
