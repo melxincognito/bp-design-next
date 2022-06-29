@@ -182,6 +182,8 @@ Dependencies List:
     <li> To filter plans while browsing through blueprints by their style name, data is passed through two components, <b> BrowseStylesLayout </b> and the Browse by Style pages in <b>/pages/browsebpbystyle/[style]/index.js </b></li> 
     </ul>
 <li> The component passes the data by passing a <b>childToParent</b> function as a prop. This function is triggered after clicking the 'filter blueprints' button and passes all the user input information upwards.</li>
+<li> The component passes the prop <b>resetFiltersOnClick</b> for the 'Reset Filters' buttons onClick event. </li>
+
 </ul>
 <h3>BrowseStylesLayout: </h3>
 <ul>
@@ -189,6 +191,7 @@ Dependencies List:
 </li>
 <li> This component passes data upwards to one parent component in the Browse by Style pages in <b>/pages/browsebpbystyle/[style]/index.js </b></li>
 <li> The component passes the data by passing a <b>childToParentFilterValues</b> function as a prop. This function is triggered after clicking the 'filter blueprints' button and passes all the user input information upwards.</li>
+<li> The component also passes the prop <b>resetFiltersOnClick</b> for the 'Reset Filters' buttons onClick event in the FilterBlueprintsAppBar. </li>
 </ul>
 
 ## Blueprint Pages Components
