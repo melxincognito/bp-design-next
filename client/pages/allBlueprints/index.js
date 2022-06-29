@@ -27,6 +27,14 @@ function BrowseAllBlueprintsLayout({
     childToParentFilterValues(beds, baths, stories, squareFeet);
   };
 
+  const mainContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    textAlign: "center",
+  };
+
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -44,15 +52,7 @@ function BrowseAllBlueprintsLayout({
   };
   return (
     <>
-      <div
-        style={{
-          display: "grid",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
+      <div style={mainContainerStyles}>
         <Typography variant="h3"> Browse All Blueprints</Typography>
         <hr width="100%" />
       </div>
