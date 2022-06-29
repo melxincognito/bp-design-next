@@ -17,7 +17,9 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 // childToParent used to pass data from selected beds, baths and stories to the parent
-// component onClick of the 'FILTER BLUEPRINTS' button
+// components onClick of the 'FILTER BLUEPRINTS' button.
+// Information is passed to BrowseStylesLayout component and
+// /pages/browsebpbystyle / [style] / index.js
 
 export default function FilterBlueprintsAppBar({ childToParent }) {
   // opening and closing the mobile menu

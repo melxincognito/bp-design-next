@@ -10,11 +10,6 @@ export default function BrowseStylesLayout({
   childToParentFilterValues,
   children,
 }) {
-  const [bedsFilter, setBedsFilter] = useState("");
-  const [bathsFilter, setBathsFilter] = useState("");
-  const [storiesFilter, setStoriesFilter] = useState("");
-  const [squareFeetFilter, setSquareFeetFilter] = useState("");
-
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -34,6 +29,10 @@ export default function BrowseStylesLayout({
   const childToParent = (beds, baths, stories, squareFeet) => {
     childToParentFilterValues(beds, baths, stories, squareFeet);
   };
+
+  // childToParent is grabbing data from it's child component,
+  // FilterBlueprintsAppBar and is passing the data up to the index.js file
+  // for /pages/browsebpbystyle/[style]/index.js
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>

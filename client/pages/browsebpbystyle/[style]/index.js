@@ -48,6 +48,9 @@ export default withRouter(
       // styleNameCapitalized has the code safeized
       // https://stackoverflow.com/questions/55088329/cannot-read-property-charat-of-undefined-in-react-storm
 
+      // childToParentFilterValues is grabbing data from it's child component,
+      // BrowseStylesLayout. The BrowseStylesLayout component is grabbing the data
+      // from its child component of the FilterBlueprintsAppBar Component
       const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
         this.setState({
           bedsFilter: beds,
