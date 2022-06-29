@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Link from "next/link";
 import Axios from "axios";
 import { Box, Typography, ListItem, Button } from "@mui/material";
 
@@ -174,7 +174,14 @@ export default class ShoppingCartItemCard extends Component {
                 </Button>
               </div>
               <div style={viewBlueprintButtonContainerStyles}>
-                <Button variant="contained"> View Blueprint</Button>
+                <Button variant="contained">
+                  <Link
+                    href={`/browsebpbystyle/${this.state.style}/${this.state.planNumber}`}
+                    passHref
+                  >
+                    View Blueprint
+                  </Link>
+                </Button>{" "}
               </div>
             </Box>
           </Box>

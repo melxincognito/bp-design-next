@@ -188,8 +188,8 @@ export default class FavoriteItemCard extends Component {
               <div style={viewBlueprintButtonContainerStyles}>
                 <Button variant="contained">
                   <Link
-                    passHref
                     href={`/browsebpbystyle/${this.state.style}/${this.state.planNumber}`}
+                    passHref
                   >
                     View Blueprint
                   </Link>
