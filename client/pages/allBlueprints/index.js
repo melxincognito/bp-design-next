@@ -18,7 +18,7 @@ function NoBlueprintsFoundMessage() {
   );
 }
 
-function BrowseBlueprintsContainer({ children, childToParentFilterValues }) {
+function BrowseAllBlueprintsLayout({ children, childToParentFilterValues }) {
   const childToParent = (beds, baths, stories, squareFeet) => {
     childToParentFilterValues(beds, baths, stories, squareFeet);
   };
@@ -117,7 +117,7 @@ export default class index extends Component {
         animate={{ opacity: 1 }}
         style={{ display: "grid", width: "100%", gap: "1rem" }}
       >
-        <BrowseBlueprintsContainer
+        <BrowseAllBlueprintsLayout
           childToParentFilterValues={childToParentFilterValues}
         >
           {this.state.blueprints.length === 0 &&
@@ -158,7 +158,7 @@ export default class index extends Component {
               </>
             ))
           )}
-        </BrowseBlueprintsContainer>
+        </BrowseAllBlueprintsLayout>
       </motion.div>
     );
   }
