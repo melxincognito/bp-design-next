@@ -176,7 +176,11 @@ Dependencies List:
 <h3>FilterBlueprintsAppBar </h3>
 <ul>
 <li> FilterBlueprintsAppBar is an app bar component that is imported into the BrowseByStyles layout. It is used to filter blueprints by different categories such as number of beds, baths, stories, sqft, etc. </li>
-<li> This component passes data upwards to two parent components, <b> BrowseStylesLayout </b> and the Browse by Style pages in <b>/pages/browsebpbystyle/[style]/index.js </b></li>
+<li> This component passes data upwards to two parent components. 
+    <ul>
+    <li> To filter plans while browsing through all blueprint plans, data is passed through two components located in the pages/allBlueprints/index.js file. Theres a component for the <b> BrowseAllStylesLayout</b> and a component that renders the page with this layout under the class <b>index</b>.</li>
+    <li> To filter plans while browsing through blueprints by their style name, data is passed through two components, <b> BrowseStylesLayout </b> and the Browse by Style pages in <b>/pages/browsebpbystyle/[style]/index.js </b></li> </li>
+    </ul>
 <li> The component passes the data by passing a <b>childToParent</b> function as a prop. This function is triggered after clicking the 'filter blueprints' button and passes all the user input information upwards.</li>
 </ul>
 <h3>BrowseStylesLayout: </h3>
