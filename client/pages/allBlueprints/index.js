@@ -131,11 +131,15 @@ export default class index extends Component {
           childToParentFilterValues={childToParentFilterValues}
           resetFiltersOnClick={resetFiltersOnClick}
         >
+          {/* If theres no items in the blueprints state, this is for error catching/nothing 
+          being returned from the database, or if the filterOn state is set to true 
+          AND no items have been returned to the filterBlueprints state, this is to notify 
+          the user that no items have been found according to the filters set.  */}
           {this.state.blueprints.length === 0 ||
           (this.state.filterBlueprints.length === 0 &&
             this.state.filterOn === true) ? (
             <NoBlueprintsFoundMessage />
-          ) : this.state.filterOn === true ? (
+          ) : this.state.filterOn === true ? ( // render items from the filterBlueprints state when the filterOn has been set to On
             this.state.filterBlueprints.map((blueprint, index) => (
               <>
                 <BlueprintCard
@@ -153,6 +157,7 @@ export default class index extends Component {
               </>
             ))
           ) : (
+            // render items from the blueprints state in all other cases
             this.state.blueprints.map((blueprint, index) => (
               <>
                 <BlueprintCard
