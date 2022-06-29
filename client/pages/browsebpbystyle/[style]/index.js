@@ -62,11 +62,11 @@ export default withRouter(
           ) {
             filteredList.push(blueprint);
           }
+
           return filteredList;
         });
 
         this.setState({ filterBlueprints: filteredList });
-        console.log("blueprints state" + this.state.blueprints);
       };
       return (
         <BrowseStylesLayout

@@ -10,14 +10,14 @@ import {
   CardActionArea,
 } from "@mui/material";
 
-function StyleSelectionCard(props) {
+function StyleSelectionCard({ Delay, Route, Image, StyleName }) {
   return (
     <motion.div
-      transition={{ delay: props.Delay }}
+      transition={{ delay: Delay }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <Link href={`/browsebpbystyle/${props.Route}`}>
+      <Link href={`/browsebpbystyle/${Route}`}>
         <Card
           sx={{ maxWidth: 345, boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.36)" }}
         >
@@ -25,16 +25,16 @@ function StyleSelectionCard(props) {
             <CardMedia
               component="img"
               height="200"
-              image={`${props.Image}`}
-              alt={`${props.StyleName}`}
+              image={`${Image}`}
+              alt={`${StyleName}`}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {props.StyleName}
+                {StyleName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Check out our beautiful collection of <b>{props.StyleName} </b>{" "}
-                style homes
+                Check out our beautiful collection of <b>{StyleName} </b> style
+                homes
               </Typography>
             </CardContent>
           </CardActionArea>
