@@ -12,10 +12,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-function FeaturedBlueprintCard(props) {
+function FeaturedBlueprintCard({ Delay, image, planNumber, planStyle }) {
   return (
     <motion.div
-      transition={{ delay: props.Delay }}
+      transition={{ delay: Delay }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
@@ -25,15 +25,15 @@ function FeaturedBlueprintCard(props) {
         <CardMedia
           component="img"
           height="200"
-          image={`${props.image}`}
-          alt={`${props.planNumber}`}
+          image={`${image}`}
+          alt={`${planNumber}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Plan # {props.planNumber}
+            Plan # {planNumber}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {props.planStyle} style home floor plan
+            {planStyle} style home floor plan
           </Typography>
         </CardContent>
         <CardActions>
@@ -45,7 +45,7 @@ function FeaturedBlueprintCard(props) {
   );
 }
 
-function BuildHouseTile(props) {
+function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
   return (
     <motion.div whileHover={{ scale: 1.1 }}>
       <Card
@@ -55,20 +55,20 @@ function BuildHouseTile(props) {
           width: "300px",
           padding: 1,
           boxShadow: "0px 1px 15px 5px rgba(0,0,0,0.12)",
-          backgroundColor: props.backgroundColor,
+          backgroundColor: backgroundColor,
         }}
       >
         <CardContent>
           <Typography variant="h4" color="#0b03b0">
             {" "}
-            {props.stepNumber}{" "}
+            {stepNumber}{" "}
           </Typography>
         </CardContent>
         <CardContent sx={{ display: "grid" }}>
-          <Typography variant="h6"> {props.title} </Typography>
+          <Typography variant="h6"> {title} </Typography>
           <Typography variant="body1" color="primary.light">
             {" "}
-            {props.description}{" "}
+            {description}{" "}
           </Typography>
         </CardContent>
       </Card>
@@ -133,9 +133,10 @@ export default function Home() {
             />
             <motion.div
               id="blueprints-form-container"
-              initial={{ x: "-230vh" }}
-              animate={{ x: 0 }}
-              transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
+              transition={{ delay: 0.9 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               style={{
                 position: "absolute",
                 right: "15%",
@@ -149,7 +150,7 @@ export default function Home() {
 
         <motion.div
           className="container2"
-          transition={{ delay: 1.7 }}
+          transition={{ delay: 1.3 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -166,7 +167,7 @@ export default function Home() {
 
         <motion.div
           className="container3-featured-blueprints"
-          transition={{ delay: 1.9 }}
+          transition={{ delay: 1.6 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           style={{
@@ -273,7 +274,7 @@ const featuredPlans = [
     planStyle: "Spanish Colonial",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-    delay: 2.4,
+    delay: 2.0,
   },
   {
     index: 1,
@@ -281,7 +282,7 @@ const featuredPlans = [
     planStyle: "Luxury",
     planImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80",
-    delay: 2.7,
+    delay: 2.3,
   },
   {
     index: 2,
@@ -289,7 +290,7 @@ const featuredPlans = [
     planStyle: "Modern",
     planImage:
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
-    delay: 3.0,
+    delay: 2.6,
   },
   {
     index: 3,
@@ -297,7 +298,7 @@ const featuredPlans = [
     planStyle: "Ranch",
     planImage:
       "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80",
-    delay: 3.3,
+    delay: 2.9,
   },
 ];
 
