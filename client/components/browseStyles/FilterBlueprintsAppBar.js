@@ -16,7 +16,10 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 
-export default function FilterBlueprintsAppBar() {
+// childToParent used to pass data from selected beds, baths and stories to the parent
+// component onClick of the 'FILTER BLUEPRINTS' button
+
+export default function FilterBlueprintsAppBar({ childToParent }) {
   // opening and closing the mobile menu
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -87,13 +90,6 @@ export default function FilterBlueprintsAppBar() {
     "&:hover": { backgroundColor: "highlight.main" },
   };
 
-  const submitFilterBlueprints = (e) => {
-    e.preventDefault();
-    console.log("Beds " + beds);
-    console.log("Baths " + baths);
-    console.log("Stories " + stories);
-    console.log("Sq Feet " + squareFeet);
-  };
   return (
     <AppBar position="static" maxWidth="xl" sx={appBarStyles}>
       <Container maxWidth="xl">
@@ -167,7 +163,9 @@ export default function FilterBlueprintsAppBar() {
                   </Box>
                 ))}
                 <Button
-                  onClick={submitFilterBlueprints}
+                  onClick={() =>
+                    childToParent(beds, baths, stories, squareFeet)
+                  }
                   variant="contained"
                   sx={filterBlueprintsButtonStyles}
                 >
@@ -176,7 +174,7 @@ export default function FilterBlueprintsAppBar() {
               </Box>
             </Menu>
           </Box>
-
+          {/* Desktop Menu items */}
           <Box
             className="DesktopMenuDisplay"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, gap: 3 }}
@@ -220,7 +218,7 @@ export default function FilterBlueprintsAppBar() {
             ))}
 
             <Button
-              onClick={submitFilterBlueprints}
+              onClick={() => childToParent(beds, baths, stories, squareFeet)}
               variant="contained"
               sx={filterBlueprintsButtonStyles}
             >
