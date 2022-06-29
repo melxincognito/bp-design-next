@@ -79,8 +79,9 @@ export default withRouter(
           childToParentFilterValues={childToParentFilterValues}
           resetFiltersOnClick={resetFiltersOnClick}
         >
-          {this.state.blueprints.length === 0 &&
-          this.state.filterBlueprints.length === 0 ? (
+          {this.state.blueprints.length === 0 ||
+          (this.state.filterBlueprints.length === 0 &&
+            this.state.filterOn === true) ? (
             <NoBlueprintsMessage />
           ) : this.state.filterOn === true ? (
             this.state.filterBlueprints.map((blueprint, index) => (
