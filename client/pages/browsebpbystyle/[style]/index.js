@@ -53,7 +53,7 @@ export default withRouter(
 
       // TODO add square feet filter, don't forget it
       const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
-        this.setState({ filter: true });
+        this.setState({ filterOn: true });
         this.state.blueprints.forEach((blueprint) => {
           if (
             blueprint.beds === beds &&
