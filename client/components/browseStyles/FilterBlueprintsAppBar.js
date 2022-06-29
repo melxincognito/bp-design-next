@@ -92,7 +92,7 @@ export default function FilterBlueprintsAppBar({
     backgroundColor: "secondary.main",
     color: "black",
     boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
-    "&:hover": { backgroundColor: "highlight.main" },
+    "&:hover": { backgroundColor: "highlight.main", color: "white" },
   };
   const resetFilterBlueprintsButtonStyles = {
     backgroundColor: "highlight.dark",
