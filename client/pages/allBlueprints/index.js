@@ -18,7 +18,11 @@ function NoBlueprintsFoundMessage() {
   );
 }
 
-function BrowseAllBlueprintsLayout({ children, childToParentFilterValues }) {
+function BrowseAllBlueprintsLayout({
+  children,
+  childToParentFilterValues,
+  resetFiltersOnClick,
+}) {
   const childToParent = (beds, baths, stories, squareFeet) => {
     childToParentFilterValues(beds, baths, stories, squareFeet);
   };
@@ -55,6 +59,7 @@ function BrowseAllBlueprintsLayout({ children, childToParentFilterValues }) {
       <FilterBlueprintsAppBar
         handleClick={() => parentToChild()}
         childToParent={childToParent}
+        resetFiltersOnClick={resetFiltersOnClick}
       />
       <Box
         className="stylesSelectionContainer"
@@ -109,6 +114,11 @@ export default class index extends Component {
       );
     };
 
+    const resetFiltersOnClick = () => {
+      this.setState({ filterOn: false });
+      this.setState({ filterBlueprints: [] });
+    };
+
     return (
       <motion.div
         className="mainContainer"
@@ -119,6 +129,7 @@ export default class index extends Component {
       >
         <BrowseAllBlueprintsLayout
           childToParentFilterValues={childToParentFilterValues}
+          resetFiltersOnClick={resetFiltersOnClick}
         >
           {this.state.blueprints.length === 0 &&
           this.state.filterBlueprints.length === 0 ? (
