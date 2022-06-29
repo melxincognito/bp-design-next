@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Link from "next/link";
 import Axios from "axios";
 import { Box, Typography, ListItem, Button } from "@mui/material";
 
@@ -186,7 +186,14 @@ export default class FavoriteItemCard extends Component {
                 </Button>
               </div>
               <div style={viewBlueprintButtonContainerStyles}>
-                <Button variant="contained"> View Blueprint</Button>
+                <Button variant="contained">
+                  <Link
+                    passHref
+                    href={`/browsebpbystyle/${this.state.style}/${this.state.planNumber}`}
+                  >
+                    View Blueprint
+                  </Link>
+                </Button>{" "}
               </div>
             </Box>
           </Box>
