@@ -29,6 +29,8 @@ export default function BlueprintItemPageLayout({
   stories,
   sq_ft,
   garages,
+  previewImageOne,
+  previewImageOneAlt,
 }) {
   const [planSetOptions, setPlanSetOptions] = useState("");
   const [foundationOptions, setFoundationOptions] = useState("");
@@ -182,7 +184,10 @@ export default function BlueprintItemPageLayout({
         </Box>
 
         <Box className="mobileGallery" sx={mobileImagesContainerStyles}>
-          <ImageGalleryMobile />
+          <ImageGalleryMobile
+            previewImageOne={previewImageOne}
+            previewImageOneAlt={previewImageOneAlt}
+          />
         </Box>
       </motion.div>{" "}
       <motion.div

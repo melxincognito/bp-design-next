@@ -1,34 +1,50 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import mobileGalleryStyles from "./ImageGalleryMobile.module.css";
 
-export default function ImageGallery() {
-  const [previewImage, setPreviewImage] = useState(images[0].img);
-  const [previewImageAlt, setPreviewImageAlt] = useState(images[0].alt);
-  return (
-    <div className={mobileGalleryStyles.mainContainer}>
-      <div className={mobileGalleryStyles.viewImageContainer}>
-        <img src={previewImage} alt={previewImageAlt} />
-      </div>
+export default class ImageGalleryMobile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      previewImage: "",
+      previewImageAlt: "",
+    };
+  }
+  componentDidMount() {
+    this.setState({
+      previewImage: this.props.previewImageOne,
+      previewImageAlt: `${this.props.previewImageOneAlt}`,
+    });
+  }
 
-      <div className={mobileGalleryStyles.slidesContainer}>
-        <div className={mobileGalleryStyles.slides}>
-          {images.map((image, index) => (
-            <>
-              <img
-                key={index}
-                src={image.img}
-                alt={image.alt}
-                onClick={() => {
-                  setPreviewImage(image.img);
-                  setPreviewImageAlt(image.alt);
-                }}
-              />
-            </>
-          ))}
+  render() {
+    return (
+      <div className={mobileGalleryStyles.mainContainer}>
+        <div className={mobileGalleryStyles.viewImageContainer}>
+          <img src={this.state.previewImage} alt={this.state.previewImageAlt} />
+        </div>
+
+        <div className={mobileGalleryStyles.slidesContainer}>
+          <div className={mobileGalleryStyles.slides}>
+            {images.map((image, index) => (
+              <>
+                <img
+                  key={index}
+                  src={image.img}
+                  alt={image.alt}
+                  onClick={() => {
+                    this.setState({
+                      previewImage: image.img,
+                      previewImageAlt: image.alt,
+                    });
+                  }}
+                />
+              </>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 const images = [
