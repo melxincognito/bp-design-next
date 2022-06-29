@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Axios from "axios";
 import {
@@ -6,7 +6,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
   Dialog,
   List,
   Slide,
@@ -39,95 +38,85 @@ function NoFavoritesMessage() {
   );
 }
 
-export default class FavoritesDialog extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: props.open,
-      favoritesItems: [],
-    };
-  }
+export default function FavoritesDialog({ open }) {
+  const [favoritesItems, setFavoritesItems] = useState([]);
+  const [isOpen, setIsOpen] = useState(open);
 
-  handleClose = () => {
-    this.setState({ open: false });
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
-  componentDidMount() {
+  useEffect(() => {
     Axios.get("http://localhost:3002/api/get_favorites_test").then(
       (response) => {
         try {
-          this.setState({
-            favoritesItems: response.data,
-          });
+          setFavoritesItems(response.data);
         } catch (error) {
           console.log(error);
         }
       }
     );
-  }
+  });
+  return (
+    <div>
+      <Dialog
+        fullScreen
+        open={isOpen}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: "relative" }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography
+              sx={{
+                ml: 2,
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+              variant="h6"
+              component="div"
+            >
+              <FavoriteBorderIcon /> My Favorites
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-  render() {
-    return (
-      <div>
-        <Dialog
-          fullScreen
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={Transition}
-        >
-          <AppBar sx={{ position: "relative" }}>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                onClick={this.handleClose}
-                aria-label="close"
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography
-                sx={{
-                  ml: 2,
-                  flex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                }}
-                variant="h6"
-                component="div"
-              >
-                <FavoriteBorderIcon /> My Favorites
-              </Typography>
-            </Toolbar>
-          </AppBar>
-
-          <List>
-            {this.state.favoritesItems.length === 0 ? (
-              <NoFavoritesMessage />
-            ) : (
-              this.state.favoritesItems.map((item, index) => (
-                <>
-                  <FavoriteItemCard
-                    key={index}
-                    image={item.image}
-                    planNumber={item.plan_number}
-                    beds={item.beds}
-                    squareFeet={item.sq_ft}
-                    baths={item.baths}
-                    garages={item.garages}
-                    stories={item.stories}
-                    description={item.description}
-                    style={item.style}
-                  />
-                  <Divider />
-                </>
-              ))
-            )}
-          </List>
-        </Dialog>
-      </div>
-    );
-  }
+        <List>
+          {favoritesItems.length === 0 ? (
+            <NoFavoritesMessage />
+          ) : (
+            favoritesItems.map((item, index) => (
+              <>
+                <FavoriteItemCard
+                  key={index}
+                  image={item.image}
+                  planNumber={item.plan_number}
+                  beds={item.beds}
+                  squareFeet={item.sq_ft}
+                  baths={item.baths}
+                  garages={item.garages}
+                  stories={item.stories}
+                  description={item.description}
+                  style={item.style}
+                />
+                <Divider />
+              </>
+            ))
+          )}
+        </List>
+      </Dialog>
+    </div>
+  );
 }
 
 FavoritesDialog.defaultProps = {
