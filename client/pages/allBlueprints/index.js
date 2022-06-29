@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import FilterBlueprintsAppBar from "../../components/browseStyles/FilterBlueprintsAppBar";
 import BlueprintCard from "../../components/cards/BlueprintCard";
 import { Typography, Box } from "@mui/material";
@@ -18,7 +18,11 @@ function NoBlueprintsFoundMessage() {
   );
 }
 
-function BrowseBlueprintsContainer(props) {
+function BrowseBlueprintsContainer({ children, childToParentFilterValues }) {
+  const childToParent = (beds, baths, stories, squareFeet) => {
+    childToParentFilterValues(beds, baths, stories, squareFeet);
+  };
+
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -48,61 +52,114 @@ function BrowseBlueprintsContainer(props) {
         <Typography variant="h3"> Browse All Blueprints</Typography>
         <hr width="100%" />
       </div>
-      <FilterBlueprintsAppBar />
+      <FilterBlueprintsAppBar
+        handleClick={() => parentToChild()}
+        childToParent={childToParent}
+      />
       <Box
         className="stylesSelectionContainer"
         sx={styleSelectionContainerStyles}
       >
-        {props.children}
+        {children}
       </Box>
     </>
   );
 }
 
-export default function allBlueprints() {
-  const [blueprints, setBlueprints] = useState([]);
+export default class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      blueprints: [],
+      filterOn: false,
+      filterBlueprints: [],
+    };
+  }
 
-  useEffect(() => {
+  componentDidMount() {
     Axios.get("http://localhost:3002/api/get").then((response) => {
       try {
-        setBlueprints(response.data);
+        this.setState({ blueprints: response.data });
       } catch (error) {
         console.log(error);
       }
     });
-  }, []);
+  }
 
-  return (
-    <motion.div
-      className="mainContainer"
-      transition={{ delay: 0.17 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      style={{ display: "grid", width: "100%", gap: "1rem" }}
-    >
-      <BrowseBlueprintsContainer>
-        {blueprints.length === 0 ? (
-          <NoBlueprintsFoundMessage />
-        ) : (
-          blueprints.map((blueprint, index) => (
-            <>
-              <BlueprintCard
-                key={index}
-                image={blueprint.image}
-                planNumber={blueprint.plan_number}
-                beds={blueprint.beds}
-                baths={blueprint.baths}
-                sqFt={blueprint.sq_ft}
-                stories={blueprint.stories}
-                slug="browsebpbystyle"
-                style={blueprint.style}
-                garages={blueprint.garages}
-                description={blueprint.description}
-              />
-            </>
-          ))
-        )}
-      </BrowseBlueprintsContainer>
-    </motion.div>
-  );
+  render() {
+    const filteredList = [];
+
+    const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
+      this.setState({ filterOn: true });
+      this.state.blueprints.forEach((blueprint) => {
+        if (
+          blueprint.beds === beds &&
+          blueprint.baths === baths &&
+          blueprint.stories === stories
+        ) {
+          filteredList.push(blueprint);
+        }
+        console.log("filtered List " + filteredList);
+        return filteredList;
+      });
+
+      this.setState({ filterBlueprints: filteredList });
+      console.log(
+        "filterblueprints state " + JSON.stringify(this.state.filterBlueprints)
+      );
+    };
+
+    return (
+      <motion.div
+        className="mainContainer"
+        transition={{ delay: 0.17 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        style={{ display: "grid", width: "100%", gap: "1rem" }}
+      >
+        <BrowseBlueprintsContainer
+          childToParentFilterValues={childToParentFilterValues}
+        >
+          {this.state.blueprints.length === 0 &&
+          this.state.filterBlueprints.length === 0 ? (
+            <NoBlueprintsFoundMessage />
+          ) : this.state.filterOn === true ? (
+            this.state.filterBlueprints.map((blueprint, index) => (
+              <>
+                <BlueprintCard
+                  key={index}
+                  image={blueprint.image}
+                  planNumber={blueprint.plan_number}
+                  beds={blueprint.beds}
+                  baths={blueprint.baths}
+                  sqFt={blueprint.sq_ft}
+                  stories={blueprint.stories}
+                  garages={blueprint.garages}
+                  slug="browsebpbystyle"
+                  style={blueprint.style}
+                />
+              </>
+            ))
+          ) : (
+            this.state.blueprints.map((blueprint, index) => (
+              <>
+                <BlueprintCard
+                  key={index}
+                  image={blueprint.image}
+                  planNumber={blueprint.plan_number}
+                  beds={blueprint.beds}
+                  baths={blueprint.baths}
+                  sqFt={blueprint.sq_ft}
+                  stories={blueprint.stories}
+                  garages={blueprint.garages}
+                  slug="browsebpbystyle"
+                  style={blueprint.style}
+                />
+              </>
+            ))
+          )}
+        </BrowseBlueprintsContainer>
+      </motion.div>
+    );
+  }
 }
