@@ -21,7 +21,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 // Information is passed to BrowseStylesLayout component and
 // /pages/browsebpbystyle / [style] / index.js
 
-export default function FilterBlueprintsAppBar({ childToParent }) {
+export default function FilterBlueprintsAppBar({
+  childToParent,
+  resetFiltersOnClick,
+}) {
   // opening and closing the mobile menu
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -90,6 +93,12 @@ export default function FilterBlueprintsAppBar({ childToParent }) {
     color: "black",
     boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
     "&:hover": { backgroundColor: "highlight.main" },
+  };
+  const resetFilterBlueprintsButtonStyles = {
+    backgroundColor: "highlight.dark",
+    color: "white",
+    boxShadow: "-5px 5px 15px 5px rgba(0,0,0,0.24)",
+    "&:hover": { backgroundColor: "primary.light" },
   };
 
   return (
@@ -225,6 +234,13 @@ export default function FilterBlueprintsAppBar({ childToParent }) {
               sx={filterBlueprintsButtonStyles}
             >
               <Typography> Filter Blueprints</Typography>
+            </Button>
+            <Button
+              onClick={resetFiltersOnClick}
+              variant="contained"
+              sx={resetFilterBlueprintsButtonStyles}
+            >
+              <Typography> Reset filters</Typography>
             </Button>
           </Box>
         </Toolbar>
