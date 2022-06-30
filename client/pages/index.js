@@ -128,7 +128,7 @@ export default function Home() {
             <Image
               src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
               height="600px"
-              width="1400px"
+              width="1300px"
               layout="fixed"
             />
             <motion.div
@@ -141,6 +141,7 @@ export default function Home() {
                 position: "absolute",
                 right: "15%",
                 top: "26%",
+                padding: "1rem",
               }}
             >
               <FilterBlueprintsForm />
