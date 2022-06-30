@@ -53,6 +53,7 @@ export default class BlueprintCard extends Component {
 
   addToCart = () => {
     this.setState({ cartAdded: true });
+
     Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.props.image,
       planNumber: this.props.planNumber,
@@ -92,6 +93,13 @@ export default class BlueprintCard extends Component {
         alert("deleted from favorites");
       }
     );
+  };
+
+  removeFromCart = (plan) => {
+    this.setState({ cartAdded: false });
+    Axios.delete(`http://localhost:3002/api/delete_cart/${plan}`).then(() => {
+      alert("deleted from favorites");
+    });
   };
 
   render() {
@@ -156,7 +164,7 @@ export default class BlueprintCard extends Component {
           {this.state.cartAdded ? (
             <Button
               size="small"
-              onClick={() => this.setState({ cartAdded: false })}
+              onClick={() => this.removeFromCart(this.state.planNumber)}
             >
               <AddShoppingCartOutlinedIcon sx={{ color: "success.main" }} />
             </Button>
