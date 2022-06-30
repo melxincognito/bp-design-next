@@ -41,6 +41,7 @@ export default class BlueprintCard extends Component {
       description: this.props.description,
       favorite: props.favorite,
       planNumber: props.planNumber,
+      cartAdded: false,
     };
   }
   // state for description is set because it doesn't need to be displayed on the card but it
@@ -51,6 +52,7 @@ export default class BlueprintCard extends Component {
       the page onClick*/
 
   addToCart = () => {
+    this.setState({ cartAdded: true });
     Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.props.image,
       planNumber: this.props.planNumber,
@@ -144,16 +146,26 @@ export default class BlueprintCard extends Component {
               size="small"
               onClick={() => this.removeFromFavorites(this.state.planNumber)}
             >
-              <FavoriteIcon />
+              <FavoriteIcon sx={{ color: "error.main" }} />
             </Button>
           ) : (
             <Button size="small" onClick={this.addToFavorites}>
               <FavoriteBorderOutlinedIcon />
             </Button>
           )}
-          <Button size="small" onClick={this.addToCart}>
-            <AddShoppingCartOutlinedIcon />
-          </Button>
+          {this.state.cartAdded ? (
+            <Button
+              size="small"
+              onClick={() => this.setState({ cartAdded: false })}
+            >
+              <AddShoppingCartOutlinedIcon sx={{ color: "success.main" }} />
+            </Button>
+          ) : (
+            <Button size="small" onClick={this.addToCart}>
+              <AddShoppingCartOutlinedIcon />
+            </Button>
+          )}
+
           <Button size="small">
             {/* example for link href would be browsebpbystyle/luxury/1007 */}
             <Link
