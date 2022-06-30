@@ -165,6 +165,7 @@ export default class FavoriteItemCard extends Component {
                   {this.state.favorite ? (
                     <FavoriteIcon
                       fontSize="large"
+                      sx={{ color: "error.main" }}
                       onClick={() =>
                         this.removeFromFavorites(this.state.planNumber)
                       }
