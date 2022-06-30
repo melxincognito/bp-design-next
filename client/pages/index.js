@@ -251,7 +251,10 @@ export default function Home() {
               Found a plan you like but want to fix a few details? We can help
               with that! We offer our customers the ability to submit a
               <Link href="/customplanrequest" passHref>
-                <a style={{ color: "purple" }}> custom plan requests </a>
+                <a style={{ color: "orange" }}>
+                  {" "}
+                  <u>custom plan request</u>{" "}
+                </a>
               </Link>
               to our team. We'll review your request and get back to you to go
               over the details so we can help create the perfect home.
