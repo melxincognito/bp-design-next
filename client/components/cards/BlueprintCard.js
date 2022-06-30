@@ -28,7 +28,6 @@ const CustomizedCard = styled(Card)`
   justify-content: center;
   justify-items: center;
   text-align: center;
-
   :hover {
     color: rgba(0, 0, 0, 0.55);
   }
