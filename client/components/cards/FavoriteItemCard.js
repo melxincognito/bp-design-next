@@ -20,6 +20,7 @@ export default class FavoriteItemCard extends Component {
     super(props);
     this.state = {
       favorite: true,
+      cartAdded: false,
       planNumber: this.props.planNumber,
       image: this.props.image,
       beds: this.props.beds,
@@ -60,6 +61,7 @@ export default class FavoriteItemCard extends Component {
   };
 
   addToCart = () => {
+    this.setState({ cartAdded: true });
     Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.state.image,
       planNumber: this.state.planNumber,
@@ -74,6 +76,14 @@ export default class FavoriteItemCard extends Component {
       alert("inserted into database");
     });
   };
+
+  removeFromCart = (plan) => {
+    this.setState({ cartAdded: false });
+    Axios.delete(`http://localhost:3002/api/delete_cart/${plan}`).then(() => {
+      alert("deleted from favorites");
+    });
+  };
+
   render() {
     const cartItemContainerStyles = {
       display: "flex",
@@ -178,13 +188,20 @@ export default class FavoriteItemCard extends Component {
                   )}
                 </Button>
 
-                <Button
-                  onClick={() => {
-                    this.addToCart(this.state.planNumber);
-                  }}
-                >
-                  <AddShoppingCartOutlinedIcon fontSize="large" />
-                </Button>
+                {this.state.cartAdded ? (
+                  <Button
+                    size="small"
+                    onClick={() => this.removeFromCart(this.state.planNumber)}
+                  >
+                    <AddShoppingCartOutlinedIcon
+                      sx={{ color: "success.main" }}
+                    />
+                  </Button>
+                ) : (
+                  <Button size="small" onClick={this.addToCart}>
+                    <AddShoppingCartOutlinedIcon />
+                  </Button>
+                )}
               </div>
               <div style={viewBlueprintButtonContainerStyles}>
                 <Button variant="contained">
