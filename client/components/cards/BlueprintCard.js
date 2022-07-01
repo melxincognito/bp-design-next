@@ -52,7 +52,6 @@ export default class BlueprintCard extends Component {
 
   addToCart = () => {
     this.setState({ cartAdded: true });
-
     Axios.post("http://localhost:3002/api/insert_cart_items", {
       image: this.props.image,
       planNumber: this.props.planNumber,
