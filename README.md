@@ -50,7 +50,21 @@ MY_SQL_PASSWORD
 MY_SQL_DATABASE
 ```
 
-### 4. Start the application
+### 4. Create a .env.local file in the CLIENT directory to configure your local environment
+
+```
+touch .env.local
+```
+
+### 5. Configure the following keys in your local environment:
+
+```
+EMAIL_JS_SERVICE_ID
+EMAIL_JS_TEMPLATE_ID
+EMAIL_JS_PUBLIC_KEY
+```
+
+### 6. Start the application
 
 To run the application locally, you'll need to open two terminals to run your client and server directories simultaneously.
 In the first terminal, assuming you're in the main folder, change to the client directory
@@ -68,7 +82,7 @@ cd server
 npm run devStart
 ```
 
-### 5. View application locally
+### 7. View application locally
 
 Open your browser to <b>localhost:3000</b> to view the application locally
 
