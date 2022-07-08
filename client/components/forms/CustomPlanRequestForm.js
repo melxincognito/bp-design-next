@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import emailjs from "@emailjs/browser";
 import {
   Button,
@@ -23,10 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CustomPlanRequestForm() {
-  const form = useRef();
-
   const [open, setOpen] = React.useState(false);
-
   const [requestorName, setRequestorName] = useState("");
   const [requestorPhone, setRequestorPhone] = useState("");
   const [sqFootage, setSqFootage] = useState("");
@@ -56,6 +54,15 @@ export default function CustomPlanRequestForm() {
       name: "lot_size",
     },
   ];
+  const form = useRef();
+  const router = useRouter();
+  const handleClickOpenDialog = () => {
+    setOpen(true);
+  };
+  const handleCloseDialog = () => {
+    setOpen(false);
+    router.push("/");
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -70,19 +77,12 @@ export default function CustomPlanRequestForm() {
       .then(
         (result) => {
           console.log(result.text);
+          handleClickOpenDialog();
         },
         (error) => {
           console.log(error.text);
         }
       );
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const cardStyles = {
@@ -183,7 +183,7 @@ export default function CustomPlanRequestForm() {
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={handleCloseDialog}
         sx={{ textAlign: "center" }}
       >
         <DialogTitle>{"Request Sent!"}</DialogTitle>
@@ -193,7 +193,7 @@ export default function CustomPlanRequestForm() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleCloseDialog}>Close</Button>
         </DialogActions>
       </Dialog>
     </>
