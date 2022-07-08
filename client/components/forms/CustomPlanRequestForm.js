@@ -16,16 +16,13 @@ import {
   DialogTitle,
   Slide,
 } from "@mui/material";
-import { grid } from "@mui/system";
-
-// TODO - add email js to send the message to the bp design email
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function CustomPlanRequestForm() {
-  const [open, setOpen] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   const [style, setStyle] = useState("Luxury Style");
   const [projectType, setProjectType] = useState("New Construction Project");
@@ -33,32 +30,28 @@ export default function CustomPlanRequestForm() {
   const planRequestInputs = [
     {
       label: "Contact Name",
-
       name: "contact_name",
     },
     {
       label: "Contact Phone",
-
       name: "contact_phone",
     },
     {
       label: "Est. Project Sq. Footage",
-
       name: "sq_footage",
     },
     {
       label: "Lot Size (Acres or Sq.Ft)",
-
       name: "lot_size",
     },
   ];
   const form = useRef();
   const router = useRouter();
   const handleClickOpenDialog = () => {
-    setOpen(true);
+    setOpenDialog(true);
   };
   const handleCloseDialog = () => {
-    setOpen(false);
+    setOpenDialog(false);
     router.push("/");
   };
 
@@ -180,7 +173,7 @@ export default function CustomPlanRequestForm() {
       </Card>
 
       <Dialog
-        open={open}
+        open={openDialog}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleCloseDialog}
