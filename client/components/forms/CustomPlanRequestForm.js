@@ -16,6 +16,7 @@ import {
   DialogTitle,
   Slide,
 } from "@mui/material";
+import { grid } from "@mui/system";
 
 // TODO - add email js to send the message to the bp design email
 
@@ -25,32 +26,29 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function CustomPlanRequestForm() {
   const [open, setOpen] = React.useState(false);
-  const [requestorName, setRequestorName] = useState("");
-  const [requestorPhone, setRequestorPhone] = useState("");
-  const [sqFootage, setSqFootage] = useState("");
-  const [lotSize, setLotSize] = useState("");
+
   const [style, setStyle] = useState("Luxury Style");
   const [projectType, setProjectType] = useState("New Construction Project");
 
   const planRequestInputs = [
     {
       label: "Contact Name",
-      onChangeValue: setRequestorName,
+
       name: "contact_name",
     },
     {
       label: "Contact Phone",
-      onChangeValue: setRequestorPhone,
+
       name: "contact_phone",
     },
     {
       label: "Est. Project Sq. Footage",
-      onChangeValue: setSqFootage,
+
       name: "sq_footage",
     },
     {
       label: "Lot Size (Acres or Sq.Ft)",
-      onChangeValue: setLotSize,
+
       name: "lot_size",
     },
   ];
@@ -98,6 +96,10 @@ export default function CustomPlanRequestForm() {
     textAlign: "center",
   };
 
+  const formMarginBottomStyles = {
+    marginBottom: "1rem",
+  };
+
   return (
     <>
       <Card sx={cardStyles}>
@@ -107,34 +109,30 @@ export default function CustomPlanRequestForm() {
         <hr size="1" width="90%" color="gray" />
 
         <CardContent>
-          <form
-            ref={form}
-            onSubmit={submit}
-            style={{ display: "grid", gap: "1rem" }}
-          >
+          <form ref={form} onSubmit={submit}>
             <Box
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "center",
+                justifyItems: "center",
                 gap: 1,
+                marginBottom: "1rem",
               }}
             >
               {planRequestInputs.map((input, index) => (
-                <div key={index} style={{ width: { xs: "100%", md: "24.3%" } }}>
+                <>
                   <TextField
-                    fullWidth
+                    key={index}
+                    sx={{ width: { xs: "120%", md: "100%" } }}
                     label={input.label}
-                    onChange={(e) => {
-                      input.onChangeValue(e.target.value);
-                    }}
                     name={input.name}
                   />
-                </div>
+                </>
               ))}
             </Box>
 
-            <div className="houseStyleInput">
+            <div className="houseStyleInput" style={formMarginBottomStyles}>
               <TextField
                 fullWidth
                 select
@@ -143,6 +141,7 @@ export default function CustomPlanRequestForm() {
                 onChange={(e) => {
                   setStyle(e.target.value);
                 }}
+                name="style"
                 required
               >
                 {houseStyleOptions.map((option, index) => (
@@ -153,7 +152,7 @@ export default function CustomPlanRequestForm() {
               </TextField>
             </div>
 
-            <div className="projectTypeInput">
+            <div className="projectTypeInput" style={formMarginBottomStyles}>
               <TextField
                 fullWidth
                 select
@@ -162,6 +161,7 @@ export default function CustomPlanRequestForm() {
                 onChange={(e) => {
                   setProjectType(e.target.value);
                 }}
+                name="project_type"
                 required
               >
                 {projectTypeOptions.map((option, index) => (
@@ -172,7 +172,7 @@ export default function CustomPlanRequestForm() {
               </TextField>
             </div>
 
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" fullWidth>
               Submit
             </Button>
           </form>
