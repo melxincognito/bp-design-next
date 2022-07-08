@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Button,
   Card,
@@ -22,6 +23,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function CustomPlanRequestForm() {
+  const form = useRef();
+
   const [open, setOpen] = React.useState(false);
 
   const [requestorName, setRequestorName] = useState("");
@@ -35,29 +38,43 @@ export default function CustomPlanRequestForm() {
     {
       label: "Contact Name",
       onChangeValue: setRequestorName,
+      name: "contact_name",
     },
     {
       label: "Contact Phone",
       onChangeValue: setRequestorPhone,
+      name: "contact_phone",
     },
     {
       label: "Est. Project Sq. Footage",
       onChangeValue: setSqFootage,
+      name: "sq_footage",
     },
     {
       label: "Lot Size (Acres or Sq.Ft)",
       onChangeValue: setLotSize,
+      name: "lot_size",
     },
   ];
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(requestorName);
-    console.log(requestorPhone);
-    console.log(sqFootage + " sqft");
-    console.log(lotSize);
-    console.log(style);
-    console.log(projectType);
+
+    emailjs
+      .sendForm(
+        `${process.env.email_js_service_id}`,
+        `${process.env.email_js_template_id}`,
+        form.current,
+        `${process.env.email_js_public_key}`
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   const handleClickOpen = () => {
@@ -90,7 +107,11 @@ export default function CustomPlanRequestForm() {
         <hr size="1" width="90%" color="gray" />
 
         <CardContent>
-          <form style={{ display: "grid", gap: "1rem" }}>
+          <form
+            ref={form}
+            onSubmit={submit}
+            style={{ display: "grid", gap: "1rem" }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -107,6 +128,7 @@ export default function CustomPlanRequestForm() {
                     onChange={(e) => {
                       input.onChangeValue(e.target.value);
                     }}
+                    name={input.name}
                   />
                 </div>
               ))}
@@ -150,7 +172,7 @@ export default function CustomPlanRequestForm() {
               </TextField>
             </div>
 
-            <Button variant="contained" onClick={handleClickOpen}>
+            <Button variant="contained" type="submit">
               Submit
             </Button>
           </form>
