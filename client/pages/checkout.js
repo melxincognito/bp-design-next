@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
-import Paper from "@mui/material/Paper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  CssBaseline,
+  AppBar,
+  Box,
+  Container,
+  Toolbar,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  Link,
+  Typography,
+} from "@mui/material";
+
 import AddressForm from "../components/forms/checkout/AddressForm";
 import PaymentForm from "../components/forms/checkout/PaymentForm";
 import Review from "../components/forms/checkout/Review";
@@ -44,8 +46,6 @@ function getStepContent(step) {
   }
 }
 
-const theme = createTheme();
-
 export default function checkout() {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -58,7 +58,7 @@ export default function checkout() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -71,7 +71,7 @@ export default function checkout() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            BP Design Studio
           </Typography>
         </Toolbar>
       </AppBar>
@@ -126,6 +126,6 @@ export default function checkout() {
         </Paper>
         <Copyright />
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
