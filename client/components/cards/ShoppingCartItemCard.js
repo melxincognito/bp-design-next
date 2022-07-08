@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Link from "next/link";
 import Axios from "axios";
 import { Box, Typography, ListItem, Button } from "@mui/material";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
@@ -152,6 +151,7 @@ export default class ShoppingCartItemCard extends Component {
                 <Button>
                   {this.state.favorite ? (
                     <FavoriteIcon
+                      sx={{ color: "error.main" }}
                       fontSize="large"
                       onClick={() =>
                         this.removeFromFavorites(this.state.planNumber)
