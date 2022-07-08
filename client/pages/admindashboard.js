@@ -1,6 +1,5 @@
 import React, { useState, useReducer } from "react";
 import Axios from "axios";
-import Image from "next/image";
 
 function Counter(props) {
   function reducer(state, action) {
