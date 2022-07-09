@@ -28,13 +28,23 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function checkout() {
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
-  const [amount, setAmount] = useState(0.01);
   const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(1.03);
+  // cart total is set to 1.03 because if it's at 0 to start there is an error idk why.
+  const getTotal = () => {
+    let total = 0;
+    cartItems.map((item) => {
+      total += item.price;
+    });
+    setCartTotal(total);
+    return total;
+  };
 
   useEffect(() => {
     Axios.get("http://localhost:3002/api/get_cart_items").then((response) => {
       try {
         setCartItems(response.data);
+        getTotal();
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +64,7 @@ export default function checkout() {
       purchase_units: [
         {
           amount: {
-            value: amount,
+            value: cartTotal,
           },
         },
       ],
@@ -104,7 +114,7 @@ export default function checkout() {
             {cartItems.map((item, index) => (
               <ListItem key={index} sx={{ py: 1, px: 0 }}>
                 <ListItemText primary={"Plan #" + item.plan_number} />
-                <Typography variant="body2">$10.99</Typography>
+                <Typography variant="body2">${item.price}</Typography>
               </ListItem>
             ))}
 
@@ -114,7 +124,7 @@ export default function checkout() {
                 variant="subtitle1"
                 sx={{ fontWeight: 700, color: "highlight.dark" }}
               >
-                $34.06
+                ${cartTotal}
               </Typography>
             </ListItem>
           </List>
@@ -126,9 +136,14 @@ export default function checkout() {
               }}
             >
               <PayPalButtons
+                fundingSource="paypal"
                 createOrder={(data, actions) => createOrder(data, actions)}
                 onApprove={(data, actions) => onApprove(data, actions)}
-                style={{ layout: "vertical", color: "black" }}
+                style={{
+                  layout: "vertical",
+                  label: "pay",
+                  shape: "pill",
+                }}
               />
             </PayPalScriptProvider>
           </div>
