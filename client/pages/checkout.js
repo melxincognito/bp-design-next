@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useRouter } from "next/router";
 import {
   CssBaseline,
   AppBar,
@@ -6,12 +8,31 @@ import {
   Toolbar,
   Paper,
   Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  Button,
 } from "@mui/material";
 
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function checkout() {
-  const [amount, setAmount] = useState(0.17);
+  const router = useRouter();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [amount, setAmount] = useState(0.01);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    router.push("/");
+  };
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -27,7 +48,7 @@ export default function checkout() {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(() => {
-      alert("Transaction completed ");
+      handleClickOpenDialog();
     });
   };
 
@@ -80,6 +101,24 @@ export default function checkout() {
           </div>
         </Paper>
       </Container>
+      <Dialog
+        open={openDialog}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleCloseDialog}
+        sx={{ textAlign: "center" }}
+      >
+        <DialogTitle>{"Payment Successful!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ display: "flex", flexWrap: "wrap" }}>
+            Thank you for your purchase. Check your inbox for a copy of your
+            receipt.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
