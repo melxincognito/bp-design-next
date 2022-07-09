@@ -36,6 +36,10 @@ export default function checkout() {
   const [cartPlusTaxTotal, setCartPlusTaxTotal] = useState(null);
 
   const getTotal = () => {
+    // variables have an extra I at the end because they get confused
+    // with the state variables above. They need their own variables
+    // in this function so you can set them to a fixed decimal on display.
+
     let total = 0;
     let taxTotalI = 0;
     let cartPlusTaxTotalI = 0;
@@ -195,6 +199,7 @@ export default function checkout() {
           </div>
         </Paper>
       </Container>
+      {/* PAYMENT SUCCESSFUL CONFIRMATION DIALOG */}
       <Dialog
         open={openDialog}
         TransitionComponent={Transition}
