@@ -3,10 +3,7 @@ import Axios from "axios";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";
 import {
-  CssBaseline,
-  AppBar,
   Container,
-  Toolbar,
   Paper,
   Typography,
   Dialog,
@@ -114,22 +111,6 @@ export default function checkout() {
 
   return (
     <>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: "relative",
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            BP Design Studio
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"
