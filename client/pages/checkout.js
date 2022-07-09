@@ -30,6 +30,8 @@ export default function checkout() {
   const [openDialog, setOpenDialog] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(1.03);
+  const [taxTotal, setTaxTotal] = useState(0);
+  const [cartPlusTaxTotal, setCartPlusTaxTotal] = useState(1.03);
   // cart total is set to 1.03 because if it's at 0 to start there is an error idk why.
   const getTotal = () => {
     let total = 0;
@@ -40,11 +42,27 @@ export default function checkout() {
     return total;
   };
 
+  const calculateTax = () => {
+    // TODO CHECK WHAT OTHER TAXES NEED TO GET IMPLEMENTED INTO THE CALCULATION
+    let cityTax = 0.5;
+    let stateTax = 0.2;
+    let itemsTotal = cartTotal;
+    let taxTotal = itemsTotal * cityTax + itemsTotal * stateTax;
+    let total = 0;
+
+    total = taxTotal + itemsTotal;
+
+    setTaxTotal(taxTotal.toFixed(2));
+
+    setCartPlusTaxTotal(total.toFixed(2));
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:3002/api/get_cart_items").then((response) => {
       try {
         setCartItems(response.data);
         getTotal();
+        calculateTax();
       } catch (error) {
         console.log(error);
       }
@@ -119,12 +137,30 @@ export default function checkout() {
             ))}
 
             <ListItem sx={{ py: 1, px: 0 }}>
-              <ListItemText primary="Total" sx={{ fontWeight: 700 }} />
+              <ListItemText primary="Cart" sx={{ fontWeight: 700 }} />
               <Typography
                 variant="subtitle1"
                 sx={{ fontWeight: 700, color: "highlight.dark" }}
               >
                 ${cartTotal}
+              </Typography>
+            </ListItem>
+            <ListItem sx={{ py: 1, px: 0 }}>
+              <ListItemText primary="Tax" sx={{ fontWeight: 700 }} />
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 700, color: "highlight.dark" }}
+              >
+                ${taxTotal}
+              </Typography>
+            </ListItem>
+            <ListItem sx={{ py: 1, px: 0 }}>
+              <ListItemText primary="Total" sx={{ fontWeight: 700 }} />
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 700, color: "highlight.dark" }}
+              >
+                ${cartPlusTaxTotal}
               </Typography>
             </ListItem>
           </List>
