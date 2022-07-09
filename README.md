@@ -62,6 +62,7 @@ touch .env.local
 EMAIL_JS_SERVICE_ID
 EMAIL_JS_TEMPLATE_ID
 EMAIL_JS_PUBLIC_KEY
+PAYPAL_CLIENT_ID
 ```
 
 ### 6. Start the application
