@@ -94,13 +94,14 @@ Open your browser to <b>localhost:3000</b> to view the application locally
 Dependencies List:
 
 <ul>
-<li>framer-motion </li>
-<li>mui/material </li>
-<li>emotion/react </li>
-<li>emotion/styled </li>
-<li>mui/system </li>
-<li>mui/icons-material </li>
-<li>emailjs/browser</li>
+<li>@framer-motion </li>
+<li>@mui/material </li>
+<li>@emotion/react </li>
+<li>@emotion/styled </li>
+<li>@mui/system </li>
+<li>@mui/icons-material </li>
+<li>@emailjs/browser</li>
+<li>@paypal/react-paypal-js</li>
 <li>axios </li>
 <li>next 12.1.6 </li>
 <li>react 18.1.0 </li>
