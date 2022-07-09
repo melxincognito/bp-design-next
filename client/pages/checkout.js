@@ -50,7 +50,7 @@ export default function checkout() {
 
     setCartTotal(total);
     taxTotalI = total * cityTax + total * stateTax + total * salesTax;
-    cartPlusTaxTotalI = cartTotal + taxTotalI;
+    cartPlusTaxTotalI = cartTotal + Number(taxTotalI);
     setTaxTotal(taxTotalI.toFixed(2));
     setCartPlusTaxTotal(cartPlusTaxTotalI.toFixed(2));
 
@@ -77,35 +77,51 @@ export default function checkout() {
   };
 
   const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: cartPlusTaxTotal,
+    try {
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: cartPlusTaxTotal,
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onApprove = (data, actions) => {
-    return actions.order.capture().then(() => {
-      handleClickOpenDialog();
-    });
+    try {
+      return actions.order.capture().then(() => {
+        handleClickOpenDialog();
+      });
+    } catch (error) {
+      alert("Transaction failed");
+    }
+    {
+      return actions.order.capture().then(() => {
+        handleClickOpenDialog();
+      });
+    }
   };
 
   var pricingItems = [
     {
       label: "Cart",
       price: cartTotal,
+      color: "primary.main",
     },
     {
       label: "Tax",
       price: taxTotal,
+      color: "highlight.dark",
     },
     {
       label: "Total",
       price: cartPlusTaxTotal,
+      color: "success.main",
     },
   ];
 
@@ -120,6 +136,7 @@ export default function checkout() {
             display: "grid",
             gap: "1rem",
             alignItems: "center",
+            boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.41)",
           }}
         >
           <Typography component="h1" variant="h4" align="center">
@@ -149,7 +166,7 @@ export default function checkout() {
                     />
                     <Typography
                       variant="subtitle1"
-                      sx={{ fontWeight: 700, color: "highlight.dark" }}
+                      sx={{ fontWeight: 700, color: `${item.color}` }}
                     >
                       {item.price < 0 ? "$0.00" : "$" + `${item.price}`}
                     </Typography>
@@ -160,7 +177,15 @@ export default function checkout() {
           )}
 
           <hr width="100%" />
-          <div>
+          <div
+            style={{
+              boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.41)",
+              borderRadius: "40px",
+              display: "block",
+              alignItems: "center",
+              backgroundColor: "black",
+            }}
+          >
             <PayPalScriptProvider
               options={{
                 "client-id": `${process.env.paypal_client_id}`,
