@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, forwardRef } from "react";
 import { useRouter } from "next/router";
 import emailjs from "@emailjs/browser";
 import {
@@ -17,12 +17,12 @@ import {
   Slide,
 } from "@mui/material";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function CustomPlanRequestForm() {
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const [style, setStyle] = useState("Luxury Style");
   const [projectType, setProjectType] = useState("New Construction Project");

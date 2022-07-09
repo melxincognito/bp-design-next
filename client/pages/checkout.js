@@ -2,59 +2,33 @@ import React, { useState } from "react";
 import {
   CssBaseline,
   AppBar,
-  Box,
   Container,
   Toolbar,
   Paper,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Link,
   Typography,
 } from "@mui/material";
 
-import AddressForm from "../components/forms/checkout/AddressForm";
-import PaymentForm from "../components/forms/checkout/PaymentForm";
-import Review from "../components/forms/checkout/Review";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const steps = ["Shipping address", "Payment details", "Review your order"];
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function checkout() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [amount, setAmount] = useState(0.17);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: amount,
+          },
+        },
+      ],
+    });
   };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(() => {
+      alert("Transaction completed ");
+    });
   };
 
   return (
@@ -78,53 +52,33 @@ export default function checkout() {
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          sx={{
+            my: { xs: 3, md: 6 },
+            p: { xs: 2, md: 3 },
+            display: "grid",
+            gap: "1rem",
+            alignItems: "center",
+          }}
         >
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
+          <hr width="100%" />
 
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                  </Button>
-                </Box>
-              </React.Fragment>
-            )}
-          </React.Fragment>
+          <div>
+            <PayPalScriptProvider
+              options={{
+                "client-id": `${process.env.paypal_client_id}`,
+              }}
+            >
+              <PayPalButtons
+                createOrder={(data, actions) => createOrder(data, actions)}
+                onApprove={(data, actions) => onApprove(data, actions)}
+                style={{ layout: "vertical", color: "black" }}
+              />
+            </PayPalScriptProvider>
+          </div>
         </Paper>
-        <Copyright />
       </Container>
     </>
   );
