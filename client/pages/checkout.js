@@ -1,4 +1,5 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
+import Axios from "axios";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";
 import {
@@ -15,6 +16,9 @@ import {
   DialogTitle,
   Slide,
   Button,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -25,6 +29,17 @@ export default function checkout() {
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
   const [amount, setAmount] = useState(0.01);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3002/api/get_cart_items").then((response) => {
+      try {
+        setCartItems(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  });
 
   const handleClickOpenDialog = () => {
     setOpenDialog(true);
@@ -85,7 +100,25 @@ export default function checkout() {
             Checkout
           </Typography>
           <hr width="100%" />
+          <List disablePadding>
+            {cartItems.map((item, index) => (
+              <ListItem key={index} sx={{ py: 1, px: 0 }}>
+                <ListItemText primary={"Plan #" + item.plan_number} />
+                <Typography variant="body2">$10.99</Typography>
+              </ListItem>
+            ))}
 
+            <ListItem sx={{ py: 1, px: 0 }}>
+              <ListItemText primary="Total" sx={{ fontWeight: 700 }} />
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 700, color: "highlight.dark" }}
+              >
+                $34.06
+              </Typography>
+            </ListItem>
+          </List>
+          <hr width="100%" />
           <div>
             <PayPalScriptProvider
               options={{
