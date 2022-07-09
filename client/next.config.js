@@ -9,5 +9,6 @@ module.exports = {
     email_js_service_id: `${process.env.EMAIL_JS_SERVICE_ID}`,
     email_js_template_id: `${process.env.EMAIL_JS_TEMPLATE_ID}`,
     email_js_public_key: `${process.env.EMAIL_JS_PUBLIC_KEY}`,
+    paypal_client_id: `${process.env.PAYPAL_CLIENT_ID}`,
   },
 };
