@@ -5,50 +5,27 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 export default function admindashboard() {
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [ErrorMessage, setErrorMessage] = useState("");
-  const [orderID, setOrderID] = useState(false);
+  const [amount, setAmount] = useState(0);
 
   // creates a paypal order
   const createOrder = (data, actions) => {
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            description: "Item",
-            amount: {
-              currency_code: "USD",
-              value: 70,
-            },
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: amount,
           },
-        ],
-        // not needed if a shipping address is actually needed
-        application_context: {
-          shipping_preference: "NO_SHIPPING",
         },
-      })
-      .then((orderID) => {
-        setOrderID(orderID);
-        return orderID;
-      });
-  };
-
-  // check Approval
-  const onApprove = (data, actions) => {
-    return actions.order.capture().then(function (details) {
-      const { payer } = details;
-      setSuccess(true);
+      ],
     });
   };
-  //capture likely error
-  const onError = (data, actions) => {
-    setErrorMessage("An Error occured with your payment ");
+
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(() => {
+      alert("Transaction completed ");
+    });
   };
 
-  useEffect(() => {
-    if (success) {
-      alert("Payment successful!!");
-    }
-  }, [success]);
   return (
     <>
       <div className="wrapper">
@@ -77,7 +54,11 @@ export default function admindashboard() {
 
           <div className="product-price-btn">
             <p>
-              <span>$20</span>
+              <input
+                type="text"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
             </p>
             <button type="submit" onClick={() => setShow(true)}>
               Buy now
@@ -93,9 +74,9 @@ export default function admindashboard() {
         >
           {show ? (
             <PayPalButtons
-              createOrder={createOrder}
-              onApprove={onApprove}
-              style={{ layout: "vertical", color: "black" }}
+              createOrder={(data, actions) => createOrder(data, actions)}
+              onApprove={(data, actions) => onApprove(data, actions)}
+              style={{ layout: "vertical", color: "black", shape: "pill" }}
             />
           ) : null}
         </PayPalScriptProvider>
