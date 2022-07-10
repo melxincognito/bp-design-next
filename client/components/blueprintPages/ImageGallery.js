@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import galleryStyles from "./ImageGallery.module.css";
 
 export default class ImageGallery extends Component {
-  constructor(props) {
-    super(props);
+  // add state for images to be uploaded from the backend
+  constructor() {
+    super();
     this.state = {
       previewImage: images[0].img,
       previewImageAlt: images[0].alt,
