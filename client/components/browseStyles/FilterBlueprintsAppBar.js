@@ -37,14 +37,12 @@ export default function FilterBlueprintsAppBar({
   };
 
   // states for the filter form
-
   const [beds, setBeds] = useState("");
   const [baths, setBaths] = useState("");
   const [stories, setStories] = useState("");
   const [squareFeet, setSquareFeet] = useState("");
 
   // filter options to create their dropdown menus
-
   const filterOptions = [
     {
       label: "Beds",
@@ -73,7 +71,6 @@ export default function FilterBlueprintsAppBar({
   ];
 
   // styles variables
-
   const appBarStyles = {
     padding: 2,
     border: "solid black 7px",
@@ -87,7 +84,6 @@ export default function FilterBlueprintsAppBar({
     gap: 2,
     padding: 2,
   };
-
   const filterBlueprintsButtonStyles = {
     backgroundColor: "secondary.main",
     color: "black",
