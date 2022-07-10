@@ -68,7 +68,6 @@ export default withRouter(
           ) {
             filteredList.push(blueprint);
           }
-
           return filteredList;
         });
 
