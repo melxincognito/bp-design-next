@@ -51,14 +51,20 @@ export default withRouter(
       // BrowseStylesLayout. The BrowseStylesLayout component is grabbing the data
       // from its child component of the FilterBlueprintsAppBar Component
 
-      // TODO add square feet filter, don't forget it
       const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
         this.setState({ filterOn: true });
+
+        var sqfootage = squareFeet.split("-");
+        var minSqfootage = Number(sqfootage[0]);
+        var maxSqfootage = Number(sqfootage[1]);
+
         this.state.blueprints.forEach((blueprint) => {
           if (
             blueprint.beds === beds &&
             blueprint.baths === baths &&
-            blueprint.stories === stories
+            blueprint.stories === stories &&
+            blueprint.sq_ft >= minSqfootage &&
+            blueprint.sq_ft <= maxSqfootage
           ) {
             filteredList.push(blueprint);
           }
