@@ -96,22 +96,25 @@ export default class index extends Component {
 
     const childToParentFilterValues = (beds, baths, stories, squareFeet) => {
       this.setState({ filterOn: true });
+
+      var sqfootage = squareFeet.split("-");
+      var minSqfootage = Number(sqfootage[0]);
+      var maxSqfootage = Number(sqfootage[1]);
+
       this.state.blueprints.forEach((blueprint) => {
         if (
           blueprint.beds === beds &&
           blueprint.baths === baths &&
-          blueprint.stories === stories
+          blueprint.stories === stories &&
+          blueprint.sq_ft >= minSqfootage &&
+          blueprint.sq_ft <= maxSqfootage
         ) {
           filteredList.push(blueprint);
         }
-        console.log("filtered List " + filteredList);
         return filteredList;
       });
 
       this.setState({ filterBlueprints: filteredList });
-      console.log(
-        "filterblueprints state " + JSON.stringify(this.state.filterBlueprints)
-      );
     };
 
     const resetFiltersOnClick = () => {
