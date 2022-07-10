@@ -42,9 +42,7 @@ export default function CustomPlanRequestForm() {
   }
 
   const handlePhoneInput = (e) => {
-    // this is where we'll call the phoneNumberFormatter function
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
-    // we'll set the input value using our setInputValue
     setPhoneInputValue(formattedPhoneNumber);
   };
 
