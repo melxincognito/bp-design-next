@@ -26,7 +26,35 @@ export default function CustomPlanRequestForm() {
 
   const [style, setStyle] = useState("Luxury Style");
   const [projectType, setProjectType] = useState("New Construction Project");
+  const [phoneInputValue, setPhoneInputValue] = React.useState("");
 
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+
+    const phoneNumber = value.replace(/[^\d]/g, "");
+
+    const phoneNumberLength = phoneNumber.length;
+
+    if (phoneNumberLength < 4) return phoneNumber;
+
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`;
+  }
+
+  const handlePhoneInput = (e) => {
+    // this is where we'll call the phoneNumberFormatter function
+    const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    // we'll set the input value using our setInputValue
+    setPhoneInputValue(formattedPhoneNumber);
+  };
+
+  // Contact Phone has onChange and value because it needs them to be formatted
   const planRequestInputs = [
     {
       label: "Contact Name",
@@ -35,6 +63,8 @@ export default function CustomPlanRequestForm() {
     {
       label: "Contact Phone",
       name: "contact_phone",
+      onChange: handlePhoneInput,
+      value: phoneInputValue,
     },
     {
       label: "Est. Project Sq. Footage",
@@ -120,6 +150,8 @@ export default function CustomPlanRequestForm() {
                     sx={{ width: { xs: "120%", md: "100%" } }}
                     label={input.label}
                     name={input.name}
+                    onChange={input.onChange}
+                    value={input.value}
                   />
                 </>
               ))}
