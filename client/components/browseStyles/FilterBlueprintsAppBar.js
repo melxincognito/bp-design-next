@@ -74,6 +74,7 @@ export default function FilterBlueprintsAppBar({
   const appBarStyles = {
     padding: 2,
     border: "solid black 7px",
+    boxShadow: "inset 0px 0px 15px 5px rgba(0,0,0,0.28)",
   };
   const mobileMenuContainerStyles = {
     width: "20rem",
