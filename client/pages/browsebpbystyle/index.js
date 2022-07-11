@@ -53,7 +53,6 @@ export default function browsebpbystyle() {
     height: "100%",
     width: "100%",
     border: "solid black 15px",
-    borderStyle: "inset",
     borderRadius: 1,
     justifyContent: "center",
     alignContent: "center",
