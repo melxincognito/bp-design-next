@@ -23,7 +23,7 @@ On the landing page for a specific blueprint plan, all the information will be d
 
 ## Getting Started
 
-### 1. Clone the repository and install the dependencies in the client directory <b>AND</b> the server directory.
+### 1. Clone the repository and install the dependencies in the client directory <b>AND</b> the server directory using NPM.
 
 ```
 git clone https://github.com/melxincognito/bp-design-next.git
