@@ -7,7 +7,6 @@ import {
   CardMedia,
   Button,
 } from "@mui/material";
-import FilterBlueprintsForm from "../components/forms/FilterBlueprintsForm";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -96,6 +95,17 @@ export default function Home() {
     boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.50)",
   };
 
+  const pictureBannerContainerStyles = {
+    position: "absolute",
+    width: "1300px",
+    height: "20%",
+    top: "57%",
+    backgroundColor: "rgba(255, 255, 255, 0.56)",
+    display: "grid",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  };
   const textContentContainerStyles = {
     backgroundColor: "primary.main",
     color: "white",
@@ -131,21 +141,16 @@ export default function Home() {
               width="1300px"
               layout="fixed"
             />
-            <motion.div
-              id="blueprints-form-container"
-              transition={{ delay: 0.9 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              style={{
-                position: "absolute",
-                right: "15%",
-                top: "26%",
-                padding: "1rem",
-              }}
+            <div
+              id="picture-banner-container"
+              style={pictureBannerContainerStyles}
             >
-              <FilterBlueprintsForm />
-            </motion.div>{" "}
+              <Typography variant="h4"> BP Design Studio </Typography>
+              <Typography variant="h4">
+                {" "}
+                Over 25 years of experience designing Custom Luxury Homes{" "}
+              </Typography>
+            </div>{" "}
           </Box>
         </motion.div>
 
