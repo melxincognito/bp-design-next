@@ -1,86 +1,100 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Axios from "axios";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function admindashboard() {
-  const [show, setShow] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [amount, setAmount] = useState(0);
+  const [data, setData] = useState([]);
+  const [otherData, setOtherData] = useState([]);
+  const [otherData2, setOtherData2] = useState([]);
 
-  // creates a paypal order
-  const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: amount,
-          },
-        },
-      ],
-    });
+  const person = {
+    name: "Mel Incognito",
+    location: "Barcelona, ES",
   };
 
-  const onApprove = (data, actions) => {
-    return actions.order.capture().then(() => {
-      alert("Transaction completed ");
-    });
+  const personI = {
+    name: "Burrito Incognito",
+    location: "Madrid, ES",
+  };
+
+  const personII = {
+    name: "Orian Incognito",
+    location: "Barcelona, ES",
+    occupation: "Developer",
+  };
+
+  const sendToLocal = () => {
+    window.localStorage.setItem("user", JSON.stringify(person));
+  };
+
+  const sendToLocalI = () => {
+    window.localStorage.setItem("userI", JSON.stringify(personI));
+  };
+
+  const sendToLocalII = () => {
+    window.localStorage.setItem("userII", JSON.stringify(personII));
+  };
+  const getFromLocal = () => {
+    const thisIt = JSON.parse(window.localStorage.getItem("user"));
+
+    setData(thisIt);
+  };
+
+  const getFromLocalI = () => {
+    const thisIt = JSON.parse(window.localStorage.getItem("userI"));
+
+    setOtherData(thisIt);
+  };
+
+  const getFromLocalII = () => {
+    const thisIt = JSON.parse(window.localStorage.getItem("userII"));
+
+    setOtherData2(thisIt);
+  };
+
+  const deleteMel = () => {
+    window.localStorage.removeItem("user");
+  };
+
+  const clearAll = () => {
+    window.localStorage.clear();
   };
 
   return (
     <>
-      <div className="wrapper">
-        <div className="product-img">
-          <img
-            src="https://cdn.pixabay.com/photo/2021/08/15/06/54/sunflower-6546993_1280.jpg"
-            alt="SunFlower"
-            height="420"
-            width="327"
-          />
-        </div>
-        <div className="product-info">
-          <div className="product-text">
-            <h1>Sunflower</h1>
-            <h2>POPULAR HOUSE PLANT</h2>
-            <p>
-              Sunflowers are usually tall annual or perennial plants.
-              <br />
-              Each "flower" is actually a
-              <br />
-              disc made up of tiny flowers,
-              <br />
-              to better attract pollinators.{" "}
-            </p>
-          </div>
+      <button onClick={sendToLocal}> send to local storage</button>
+      <button onClick={sendToLocalI}> Send II</button>
+      <button onClick={sendToLocalII}> Send III</button>
+      <button onClick={getFromLocal}> Get from local storage</button>
+      <button onClick={getFromLocalI}> Get II</button>
+      <button onClick={getFromLocalII}> Get III</button>
+      <button onClick={deleteMel}>Delete Mel</button>
+      <button onClick={clearAll}> Clear all</button>
 
-          <div className="product-price-btn">
-            <p>
-              <input
-                type="text"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-              />
-            </p>
-            <button type="submit" onClick={() => setShow(true)}>
-              Buy now
-            </button>
-          </div>
-        </div>
-      </div>
-      <div>
-        <PayPalScriptProvider
-          options={{
-            "client-id": `${process.env.paypal_client_id}`,
-          }}
-        >
-          {show ? (
-            <PayPalButtons
-              createOrder={(data, actions) => createOrder(data, actions)}
-              onApprove={(data, actions) => onApprove(data, actions)}
-              style={{ layout: "vertical", color: "black", shape: "pill" }}
-            />
-          ) : null}
-        </PayPalScriptProvider>
-      </div>
+      {<p>{JSON.stringify(data)}</p>}
+      {<p>{JSON.stringify(otherData)}</p>}
+      {<p>{JSON.stringify(otherData2)}</p>}
+
+      {otherData === null ? (
+        <p> No data for your love</p>
+      ) : (
+        <p style={{ textDecoration: "underline" }}>
+          Name and Location
+          {Object.keys(otherData).map((key) => {
+            return <p> {otherData[key]}</p>;
+          })}
+        </p>
+      )}
+
+      {otherData2 === null ? (
+        <p> No data bitch</p>
+      ) : (
+        <p>
+          {" "}
+          {Object.keys(otherData2).map((key) => {
+            return <p>{otherData2[key]}</p>;
+          })}
+        </p>
+      )}
     </>
   );
 }
