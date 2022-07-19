@@ -148,7 +148,7 @@ export default function Home() {
             >
               <Typography variant="h4"> BP Design Studio </Typography>
               <Typography variant="h4">
-                Over 25 years of experience designing Custom Luxury Homes{" "}
+                Over 25 years of experience designing custom Luxury homes{" "}
               </Typography>
             </div>{" "}
           </Box>
