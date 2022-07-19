@@ -105,6 +105,7 @@ export default function Home() {
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
+    boxShadow: "inset 5px 5px 15px 5px rgba(0,0,0,0.50)",
   };
   const textContentContainerStyles = {
     backgroundColor: "primary.main",
@@ -147,7 +148,6 @@ export default function Home() {
             >
               <Typography variant="h4"> BP Design Studio </Typography>
               <Typography variant="h4">
-                {" "}
                 Over 25 years of experience designing Custom Luxury Homes{" "}
               </Typography>
             </div>{" "}
