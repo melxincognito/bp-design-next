@@ -51,6 +51,9 @@ function HeaderBanner() {
   const iconStyles = {
     cursor: "pointer",
   };
+  const searchButtonStyles = {
+    color: "white",
+  };
 
   const textFieldContainerStyles = {
     display: "flex",
@@ -75,7 +78,8 @@ function HeaderBanner() {
         <Box sx={textFieldContainerStyles}>
           <TextField
             variant="standard"
-            placeholder="Search by plan #"
+            placeholder="Search by plan number"
+            aria-label="plan number"
             sx={textFieldStyles}
             value={planNumber}
             inputProps={{ maxLength: 4 }}
@@ -83,7 +87,13 @@ function HeaderBanner() {
               setPlanNumber(e.target.value);
             }}
           />
-          <Search sx={iconStyles} onClick={searchByPlanNumber} />
+          <Button
+            aria-label="search"
+            onClick={searchByPlanNumber}
+            sx={searchButtonStyles}
+          >
+            <Search />
+          </Button>
         </Box>
       </Container>
     </>
