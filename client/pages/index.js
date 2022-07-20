@@ -6,8 +6,8 @@ import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
 // TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
 // TODO: PAGE: take off the motion divs. it's causing too much commotion. Change it to one motion div to slowly fade in content on page load.
-// TODO: ACCESSIBILITY: FeaturedBlueprintCard: research what you need to do to make sure the content is accessible and change alt text to be descriptive instead of the plan number
-// TODO: FeaturedBlueprintCard: have them link to actual plans that exist in the database and change what is in the description for the tile to the plans key features(beds, baths, etc)
+
+// TODO: FeaturedBlueprintCard: have them link to actual plans that exist in the database
 
 // TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
@@ -175,7 +175,11 @@ export default function Home() {
                   planNumber={plan.planNumber}
                   image={plan.planImage}
                   planStyle={plan.planStyle}
-                  Delay={plan.delay}
+                  beds={plan.beds}
+                  baths={plan.baths}
+                  sqFt={plan.sqFt}
+                  stories={plan.stories}
+                  garages={plan.garages}
                 />{" "}
               </>
             ))}
@@ -246,6 +250,11 @@ const featuredPlans = [
     planStyle: "Spanish Colonial",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    beds: 2,
+    baths: 3,
+    sqFt: 1000,
+    stories: 3,
+    garages: 4,
   },
   {
     index: 1,
@@ -253,6 +262,11 @@ const featuredPlans = [
     planStyle: "Luxury",
     planImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80",
+    beds: 3,
+    baths: 3,
+    sqFt: 2000,
+    stories: 3,
+    garages: 4,
   },
   {
     index: 2,
@@ -260,6 +274,11 @@ const featuredPlans = [
     planStyle: "Modern",
     planImage:
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
+    beds: 4,
+    baths: 3,
+    sqFt: 4000,
+    stories: 3,
+    garages: 4,
   },
   {
     index: 3,
@@ -267,6 +286,11 @@ const featuredPlans = [
     planStyle: "Ranch",
     planImage:
       "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80",
+    beds: 7,
+    baths: 3,
+    sqFt: 7000,
+    stories: 3,
+    garages: 4,
   },
 ];
 
