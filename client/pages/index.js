@@ -15,7 +15,7 @@ import Link from "next/link";
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
 
 // TODO: ACCESSIBILITY: FeaturedBlueprintCard: research what you need to do to make sure the content is accessible and change alt text to be descriptive instead of the plan number
-// TODO: ACCESSIBILITY: CustomPlanRequest Tile: Take off the link and reword it to redirect them to the custom plan. I dont think putting clickable links are accessible. Research.
+// TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
 function FeaturedBlueprintCard({ Delay, image, planNumber, planStyle }) {
   return (
@@ -261,15 +261,10 @@ export default function Home() {
           <Box sx={textContentContainerStyles}>
             <Typography variant="h6">
               Found a plan you like but want to fix a few details? We can help
-              with that! We offer our customers the ability to submit a
-              <Link href="/customplanrequest" passHref>
-                <a style={{ color: "orange" }}>
-                  {" "}
-                  <u>custom plan request</u>{" "}
-                </a>
-              </Link>
-              to our team. We'll review your request and get back to you to go
-              over the details so we can help create the perfect home.
+              with that! We offer our customers the ability to submit a custom
+              plan request to our team. We'll review your request and get back
+              to you to go over the details so we can help create the perfect
+              home.
             </Typography>
           </Box>{" "}
         </motion.div>
