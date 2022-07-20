@@ -53,6 +53,7 @@ function HeaderBanner() {
   };
   const searchButtonStyles = {
     color: "white",
+    padding: 0.3,
   };
 
   const textFieldContainerStyles = {
@@ -140,6 +141,7 @@ export default class NavBar extends Component {
   };
 
   render() {
+    // styles variables
     const tabsContainerStyles = {
       flexGrow: 1,
       justifyContent: "flex-start",
@@ -166,10 +168,26 @@ export default class NavBar extends Component {
       width: "100%",
       padding: "18px 20px",
     };
+
+    const favoritesButtonStyles = {
+      color: "white",
+      padding: 0.3,
+      backgroundColor: "primary.light",
+      boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.45)",
+    };
+
+    const shoppingCartButtonStyles = {
+      color: "white",
+      padding: 0.3,
+      backgroundColor: "highlight.dark",
+      boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.45)",
+    };
+
     const loginButtonStyles = {
       color: "primary.main",
       padding: 0.3,
       bgcolor: "secondary.main",
+      boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.45)",
       "&:hover": {
         color: "white",
       },
@@ -233,31 +251,42 @@ export default class NavBar extends Component {
               </Box>
 
               <Box sx={tabsContainerStyles}>
-                <Tabs
-                  variant="scrollable"
-                  value={this.state.value}
-                  indicatorColor="secondary"
-                >
-                  {tabsItems.map((tab) => (
-                    <div key={tab.id} onClick={() => this.handleChange(tab.id)}>
-                      <Link href={tab.link} passHref>
-                        <Tab label={tab.label} sx={tabsStyles} />
-                      </Link>
-                    </div>
-                  ))}
-                </Tabs>
+                <nav>
+                  <Tabs
+                    variant="scrollable"
+                    value={this.state.value}
+                    indicatorColor="secondary"
+                  >
+                    {tabsItems.map((tab) => (
+                      <Button
+                        key={tab.id}
+                        onClick={() => this.handleChange(tab.id)}
+                      >
+                        <Link href={tab.link} passHref>
+                          <Tab label={tab.label} sx={tabsStyles} />
+                        </Link>
+                      </Button>
+                    ))}
+                  </Tabs>
+                </nav>
               </Box>
               <Box
                 display="flex"
                 sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
               >
-                <Box onClick={this.handleClickOpenFavorites}>
+                <Button
+                  sx={favoritesButtonStyles}
+                  onClick={this.handleClickOpenFavorites}
+                >
                   <FavoriteBorderIcon sx={iconStyles} />
-                </Box>
+                </Button>
 
-                <Box onClick={this.handleClickOpenShoppingCart}>
+                <Button
+                  sx={shoppingCartButtonStyles}
+                  onClick={this.handleClickOpenShoppingCart}
+                >
                   <ShoppingCartOutlinedIcon sx={iconStyles} />
-                </Box>
+                </Button>
 
                 <Button variant="contained" sx={loginButtonStyles}>
                   <Link href="/login">Login</Link>
