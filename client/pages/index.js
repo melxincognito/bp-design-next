@@ -6,9 +6,7 @@ import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
 // TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
 // TODO: PAGE: take off the motion divs. it's causing too much commotion. Change it to one motion div to slowly fade in content on page load.
-
 // TODO: FeaturedBlueprintCard: have them link to actual plans that exist in the database
-
 // TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
 function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
@@ -174,7 +172,7 @@ export default function Home() {
                   key={plan.index}
                   planNumber={plan.planNumber}
                   image={plan.planImage}
-                  planStyle={plan.planStyle}
+                  style={plan.planStyle}
                   beds={plan.beds}
                   baths={plan.baths}
                   sqFt={plan.sqFt}
@@ -246,8 +244,8 @@ export default function Home() {
 const featuredPlans = [
   {
     index: 0,
-    planNumber: 10001,
-    planStyle: "Spanish Colonial",
+    planNumber: 1017,
+    planStyle: "spanish",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
     beds: 2,
@@ -258,8 +256,8 @@ const featuredPlans = [
   },
   {
     index: 1,
-    planNumber: 10002,
-    planStyle: "Luxury",
+    planNumber: 1234,
+    planStyle: "spanish",
     planImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80",
     beds: 3,
@@ -270,8 +268,8 @@ const featuredPlans = [
   },
   {
     index: 2,
-    planNumber: 10003,
-    planStyle: "Modern",
+    planNumber: 1040,
+    planStyle: "ranch",
     planImage:
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
     beds: 4,
@@ -282,8 +280,8 @@ const featuredPlans = [
   },
   {
     index: 3,
-    planNumber: 10004,
-    planStyle: "Ranch",
+    planNumber: 1013,
+    planStyle: "ranch",
     planImage:
       "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80",
     beds: 7,
