@@ -1,11 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Box, Typography, Container, Link, MenuItem } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-// TODO figure out how to get social links to have their font size set to medium dynamically
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
@@ -24,30 +23,38 @@ export default function Footer() {
     { label: "Browse All Plans", link: "/allBlueprints", id: 1 },
     { label: "Browse by Style", link: "/browsebpbystyle", id: 2 },
     { label: "Custom Plan Request", link: "/customplanrequest", id: 3 },
+    { label: "Custom Home Tips", link: "/customhometips", id: 4 },
   ];
 
   const socialLinks = [
     {
       label: "Instagram",
-      link: "www.instagram.com",
-      socialIcon: <InstagramIcon />,
+      link: "https://www.instagram.com",
+      socialIcon: <InstagramIcon fontSize="large" />,
     },
     {
       label: "Facebook",
-      link: "www.instagram.com",
-      socialIcon: <FacebookIcon />,
+      link: "https://www.facebook.com",
+      socialIcon: <FacebookIcon fontSize="large" />,
     },
     {
       label: "Twitter",
-      link: "www.instagram.com",
-      socialIcon: <TwitterIcon />,
+      link: "https://www.twitter.com",
+      socialIcon: <TwitterIcon fontSize="large" />,
     },
     {
       label: "LinkedIn",
-      link: "www.instagram.com",
-      socialIcon: <LinkedInIcon />,
+      link: "https://www.linkedin.com",
+      socialIcon: <LinkedInIcon fontSize="large" />,
     },
   ];
+
+  // styles variables
+
+  const navigationUlStyles = {
+    listStyle: "none",
+    paddingLeft: "0pt",
+  };
 
   return (
     <Box
@@ -72,19 +79,22 @@ export default function Footer() {
           aria-label="Main"
         >
           <nav>
-            {navigationSelections.map((tab) => (
-              <MenuItem key={tab.id}>
-                <Link href={tab.link}>
-                  <Typography textAlign="center">{tab.label}</Typography>
-                </Link>
-              </MenuItem>
-            ))}
+            <ul style={navigationUlStyles}>
+              {navigationSelections.map((tab) => (
+                <li key={tab.id}>
+                  <Link href={tab.link}>
+                    <Typography textAlign="center">{tab.label}</Typography>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
         </Container>{" "}
         <Container
           className="socialLinksContainerIcon"
           role="navigation"
           aria-label="Social Links Navigation"
+          sx={{ display: "flex" }}
         >
           {socialLinks.map((socialLink, index) => (
             <div
