@@ -1,54 +1,15 @@
-import {
-  Box,
-  Card,
-  Typography,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-} from "@mui/material";
+import { Box, Card, Typography, CardContent } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
 
 // TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
-
+// TODO: PAGE: take off the motion divs. it's causing too much commotion. Change it to one motion div to slowly fade in content on page load.
 // TODO: ACCESSIBILITY: FeaturedBlueprintCard: research what you need to do to make sure the content is accessible and change alt text to be descriptive instead of the plan number
-// TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
+// TODO: FeaturedBlueprintCard: have them link to actual plans that exist in the database and change what is in the description for the tile to the plans key features(beds, baths, etc)
 
-function FeaturedBlueprintCard({ Delay, image, planNumber, planStyle }) {
-  return (
-    <motion.div
-      transition={{ delay: Delay }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      <Card
-        sx={{ maxWidth: 345, boxShadow: "0px 3px 15px 5px rgba(0,0,0,0.3)" }}
-      >
-        <CardMedia
-          component="img"
-          height="200"
-          image={`${image}`}
-          alt={`${planNumber}`}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Plan # {planNumber}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {planStyle} style home floor plan
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Share Floor Plan</Button>
-          <Button size="small">View Floor Plan</Button>
-        </CardActions>
-      </Card>
-    </motion.div>
-  );
-}
+// TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
 function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
   return (
@@ -285,7 +246,6 @@ const featuredPlans = [
     planStyle: "Spanish Colonial",
     planImage:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-    delay: 2.0,
   },
   {
     index: 1,
@@ -293,7 +253,6 @@ const featuredPlans = [
     planStyle: "Luxury",
     planImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80",
-    delay: 2.3,
   },
   {
     index: 2,
@@ -301,7 +260,6 @@ const featuredPlans = [
     planStyle: "Modern",
     planImage:
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
-    delay: 2.6,
   },
   {
     index: 3,
@@ -309,7 +267,6 @@ const featuredPlans = [
     planStyle: "Ranch",
     planImage:
       "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80",
-    delay: 2.9,
   },
 ];
 
