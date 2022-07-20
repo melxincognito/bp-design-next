@@ -11,6 +11,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+// TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
+// TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
+
+// TODO: ACCESSIBILITY: FeaturedBlueprintCard: research what you need to do to make sure the content is accessible and change alt text to be descriptive instead of the plan number
+// TODO: ACCESSIBILITY: CustomPlanRequest Tile: Take off the link and reword it to redirect them to the custom plan. I dont think putting clickable links are accessible. Research.
+
 function FeaturedBlueprintCard({ Delay, image, planNumber, planStyle }) {
   return (
     <motion.div
@@ -141,6 +147,7 @@ export default function Home() {
               height="600px"
               width="1300px"
               layout="fixed"
+              alt="Backyard of a Luxury Spanish home with a pool, jacuzzi and a deck"
             />
             <div
               id="picture-banner-container"
