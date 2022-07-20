@@ -14,7 +14,8 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 
-// TODO: ACCESSIBILITY: FeaturedBlueprintCard: research what you need to do to make sure the content is accessible and change alt text to be descriptive instead of the plan number
+// TODO: ACCESSIBILITY: research what you need to do to make sure the content is accessible
+// TODO: ACCESSIBILITY: Change alt text to be descriptive instead of the plan number.
 
 export default class FeaturedBlueprintCard extends Component {
   render() {
@@ -87,3 +88,14 @@ export default class FeaturedBlueprintCard extends Component {
     );
   }
 }
+
+FeaturedBlueprintCard.defaultProps = {
+  beds: 0,
+  baths: 0,
+  sqFt: 0,
+  stories: 0,
+  garages: 0,
+  planNumber: 0,
+  image:
+    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+};
