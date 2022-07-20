@@ -95,6 +95,7 @@ const tabsItems = [
   { label: "Browse All Plans", link: "/allBlueprints", id: 1 },
   { label: "Browse by Style", link: "/browsebpbystyle", id: 2 },
   { label: "Custom Plan Request", link: "/customplanrequest", id: 3 },
+  { label: "Custom Home Tips", link: "/customhometips", id: 4 },
 ];
 
 export default class NavBar extends Component {
