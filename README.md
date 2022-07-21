@@ -63,6 +63,13 @@ EMAIL_JS_SERVICE_ID
 EMAIL_JS_TEMPLATE_ID
 EMAIL_JS_PUBLIC_KEY
 PAYPAL_CLIENT_ID
+FIREBASE_API_KEY
+FIREBASE_AUTH_DOMAIN
+FIREBASE_PROJECT_ID
+FIREBASE_STORAGE_BUCKET
+FIREBASE_MESSAGING_SENDER_ID
+FIREBASE_APP_ID
+
 ```
 
 ### 6. Start the application
@@ -106,6 +113,7 @@ Dependencies List:
 <li>next 12.1.6 </li>
 <li>react 18.1.0 </li>
 <li>react-dom 18.1.0 </li>
+<li>firebase</li>
 </ul>
 
 <ins><i> App wont load data correctly if you don't have the database running at the same time. Read getting started to see how to run application in the client and server directories. </i></ins>
