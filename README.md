@@ -168,6 +168,39 @@ Dependencies List:
     <li>The FavoriteItemCard component is imported into the <b>FavoritesDialog</b> component in the <i>navigation</i> folder </li>
 </ul>
 
+<h3>FeaturedBlueprintCard</h3>
+
+<ul>
+    <li> Reusable component to be used in the <b>desktop</b> view of the homepage to show the top blueprints the business wants to promote. This card will display an image of the blueprint followed by the plan number, key features and buttons that allow users the ability to share the floor plan or view the floor plans page. </li>
+    <li> The card needs the following props to be passed:  </li>
+    <ul>
+        <li>image </li>
+        <li>planNumber </li>
+        <li>beds</li>
+        <li>baths</li>
+        <li>stories</li>
+        <li>sqFt</li>
+        <li>garages</li>
+    </ul>
+</ul>
+
+<h3> MobileFeaturedBlueprintCard </h3>
+
+<ul>
+<li>Reusable component to be used in the <b>mobile</b> view of the homepage to show the top blueprints the business wants to promote. On the initial page load it is a button with the blueprint items featured image set as the buttons background. If the button is clicked, a dialog will open showing the user an image with the blueprints key features, the plan number and two action buttons allowing the user to share the floor plan or view its page.  </li>
+ <li> The card needs the following props to be passed:  </li>
+    <ul>
+        <li>image </li>
+        <li>planNumber </li>
+        <li>beds</li>
+        <li>baths</li>
+        <li>stories</li>
+        <li>sqFt</li>
+        <li>garages</li>
+    </ul>
+
+</ul>
+
 ## Navigation Components
 
 <h3> FavoritesDialog</h3>
