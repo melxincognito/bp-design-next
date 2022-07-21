@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <Header />
       <NavBar />
-      <div className={layoutStyles.container}>
+      <div>
         <main className={layoutStyles.main}>{children}</main>
       </div>
       <Footer />
