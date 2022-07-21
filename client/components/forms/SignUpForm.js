@@ -1,72 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
+import { useRouter } from "next/router";
 import {
   Card,
   Typography,
   CardContent,
   TextField,
   Button,
+  CardActions,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
 } from "@mui/material";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
+import { auth } from "../../firebase-config";
+
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+
+// TODO: Add email verification
+
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function SignUpForm() {
-  const [signUpFirstName, setSignUpFirstName] = useState("");
-  const [signUpLastName, setSignUpLastName] = useState("");
-  const [signUpCompanyName, setSignUpCompanyName] = useState("");
-  const [signUpEmail, setsignUpEmail] = useState("");
+  const [openDialog, setOpenDialog] = useState(false);
+  const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
   const [confirmSignUpPassword, setConfirmSignUpPassword] = useState("");
-
-  const userSignUpInformation = [
-    {
-      label: "First Name",
-      onChangeFunc: setSignUpFirstName,
-      index: 0,
-    },
-    {
-      label: "Last Name",
-      onChangeFunc: setSignUpLastName,
-      index: 1,
-    },
-    {
-      label: "Company Name",
-      onChangeFunc: setSignUpCompanyName,
-      index: 2,
-    },
-  ];
-  // the email will be what's used for the login, and the sign up information is just for
-  // tracking personal information of users
-
-  const userSignupLoginInformation = [
-    {
-      label: "Email",
-      type: "email",
-      onChangeFunc: setsignUpEmail,
-      index: 0,
-      id: "emailInput",
-    },
-    {
-      label: "Password",
-      type: "password",
-      onChangeFunc: setSignUpPassword,
-      index: 1,
-      id: "signupPasswordInput",
-    },
-    {
-      label: "Confirm Password",
-      type: "password",
-      onChangeFunc: setConfirmSignUpPassword,
-      index: 2,
-      id: "confirmSignupPasswordInput",
-    },
-  ];
-
-  const logit = (e) => {
-    e.preventDefault();
-    console.log("Name: " + signUpFirstName + " " + signUpLastName);
-    console.log("Company Name: " + signUpCompanyName);
-    console.log("email: " + signUpEmail);
-    console.log("password: " + signUpPassword);
-    console.log("confirm password: " + confirmSignUpPassword);
+  const [showPasswordSignUp, setShowPasswordSignUp] = useState(false);
+  const [showConfirmPasswordSignUp, setShowConfirmPasswordSignUp] =
+    useState(false);
+  const router = useRouter();
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
   };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    router.push("/login");
+  };
+
+  const signUpUser = (e) => {
+    e.preventDefault();
+    if (signUpPassword === confirmSignUpPassword) {
+      try {
+        createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+        handleOpenDialog();
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      alert("Passwords do not match");
+    }
+  };
+
+  const showPassword = () => {
+    setShowPasswordSignUp(!showPasswordSignUp);
+    var x = document.getElementById("password-input");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  };
+
+  const showConfirmPassword = () => {
+    setShowConfirmPasswordSignUp(!showConfirmPasswordSignUp);
+    var x = document.getElementById("confirm-password-input");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  };
+
+  // styles variables
   const cardStyles = {
     padding: 5,
     borderRadius: 2,
@@ -85,11 +100,6 @@ export default function SignUpForm() {
     gap: 10,
   };
 
-  const boxStyles = {
-    display: "grid",
-    gap: 10,
-  };
-
   return (
     <>
       {" "}
@@ -99,43 +109,97 @@ export default function SignUpForm() {
         </CardContent>
         <hr size="1" width="100%" color="gray" />
         <CardContent>
-          <form style={contentContainerStyle} onSubmit={logit}>
-            <div style={boxStyles}>
-              {userSignUpInformation.map((item) => (
-                <TextField
-                  key={item.index}
-                  variant="outlined"
-                  label={item.label}
-                  onChange={(e) => {
-                    item.onChangeFunc(e.target.value);
-                  }}
-                  fullWidth
-                />
-              ))}
-            </div>
-            <div style={boxStyles}>
-              {userSignupLoginInformation.map((item) => (
-                <TextField
-                  key={item.index}
-                  variant="outlined"
-                  label={item.label}
-                  type={item.type}
-                  id={item.id}
-                  onChange={(e) => {
-                    item.onChangeFunc(e.target.value);
-                  }}
-                  fullWidth
-                />
-              ))}
-            </div>
+          <form style={contentContainerStyle}>
+            <TextField
+              className="email-input"
+              aria-label="sign up email"
+              placeholder="Email"
+              onChange={(e) => {
+                setSignUpEmail(e.target.value);
+              }}
+              fullWidth
+            />
+
+            <TextField
+              className="sign-up-password"
+              id="password-input"
+              aria-label="sign up password"
+              placeholder="Password"
+              onChange={(e) => {
+                setSignUpPassword(e.target.value);
+              }}
+              type="password"
+              InputProps={{
+                endAdornment: (
+                  <Button onClick={showPassword} title="Show Password">
+                    {showPasswordSignUp ? (
+                      <VisibilityIcon />
+                    ) : (
+                      <VisibilityOffIcon />
+                    )}
+                  </Button>
+                ),
+              }}
+              fullWidth
+            />
+            <TextField
+              className="confirm-sign-up-password"
+              id="confirm-password-input"
+              aria-label="confirm sign up password"
+              placeholder="Confirm Password"
+              onChange={(e) => {
+                setConfirmSignUpPassword(e.target.value);
+              }}
+              type="password"
+              InputProps={{
+                endAdornment: (
+                  <Button
+                    onClick={showConfirmPassword}
+                    title="Show Confirm Password"
+                  >
+                    {showConfirmPasswordSignUp ? (
+                      <VisibilityIcon />
+                    ) : (
+                      <VisibilityOffIcon />
+                    )}
+                  </Button>
+                ),
+              }}
+              fullWidth
+            />
           </form>
         </CardContent>
-
-        <Button fullWidth variant="contained" type="submit" onClick={logit}>
-          {" "}
-          Sign Up
-        </Button>
+        <CardActions>
+          <Button
+            fullWidth
+            variant="contained"
+            type="submit"
+            onClick={signUpUser}
+            aria-label="sign up button"
+          >
+            {" "}
+            Sign Up
+          </Button>
+        </CardActions>
       </Card>
+      <Dialog
+        open={openDialog}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleCloseDialog}
+        sx={{ textAlign: "center" }}
+      >
+        <DialogTitle>{"Account Successfully Created"}</DialogTitle>
+        <hr width="90%" />
+        <DialogContent>
+          <DialogContentText sx={{ display: "flex", flexWrap: "wrap" }}>
+            Check your email at {signUpEmail} to verify your account
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
