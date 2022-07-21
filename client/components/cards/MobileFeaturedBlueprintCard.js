@@ -7,6 +7,7 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 
+// TODO add the aria labels and all the accessibility things so it can be read by screen readers & navigated with the keyboard
 export default function MobileFeaturedBlueprintCard({
   image,
   planNumber,
@@ -17,6 +18,11 @@ export default function MobileFeaturedBlueprintCard({
   garages,
 }) {
   const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -30,6 +36,15 @@ export default function MobileFeaturedBlueprintCard({
   ];
 
   // styles variables
+
+  const blueprintButtonStyles = {
+    width: "150px",
+    height: "150px",
+    background: `url('${image}') no-repeat center center`,
+    backgroundSize: "150px 150px",
+    borderRadius: "50%",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+  };
 
   const dialogContentStyles = {
     padding: "0.3rem",
@@ -63,17 +78,9 @@ export default function MobileFeaturedBlueprintCard({
 
   return (
     <div>
-      <Button
-        onClick={() => {
-          setOpenDialog(true);
-        }}
-      >
-        Click me
-      </Button>
+      <Button sx={blueprintButtonStyles} onClick={handleClickOpenDialog} />
       <Dialog onClose={handleCloseDialog} open={openDialog}>
         <DialogContent sx={dialogContentStyles}>
-          <Typography variant="h4"> Plan #{planNumber}</Typography>
-          <hr width="90%" />
           <div
             className="image-key-features-container"
             style={imageKeyFeaturesContainerStyles}
@@ -106,6 +113,9 @@ export default function MobileFeaturedBlueprintCard({
               ))}{" "}
             </div>
           </div>
+          <hr width="90%" />
+          <Typography variant="h4"> Plan #{planNumber}</Typography>
+          <hr width="90%" />
           <div className="actions-container" style={actionsContainerStyles}>
             <Button variant="contained"> Share Floor Plan</Button>
             <Button variant="contained"> View Floor plan</Button>
@@ -117,7 +127,7 @@ export default function MobileFeaturedBlueprintCard({
 }
 
 MobileFeaturedBlueprintCard.defaultProps = {
-  beds: 7,
+  beds: 0,
   baths: 0,
   sqFt: 0,
   stories: 0,
