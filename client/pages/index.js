@@ -1,8 +1,8 @@
-import { Box, Card, Typography, CardContent } from "@mui/material";
+import { Box, Card, Typography, CardContent, Paper } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
-
+import MobileFeaturedBlueprintCard from "../components/cards/MobileFeaturedBlueprintCard";
 // TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
 // TODO: PAGE: take off the motion divs. it's causing too much commotion. Change it to one motion div to slowly fade in content on page load.
@@ -10,18 +10,18 @@ import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
 // TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
 function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
+  const cardStyles = {
+    display: "flex",
+    height: "13rem",
+    width: "300px",
+    padding: 1,
+    boxShadow: "0px 1px 15px 5px rgba(0,0,0,0.12)",
+    backgroundColor: backgroundColor,
+  };
+
   return (
-    <motion.div whileHover={{ scale: 1.1 }}>
-      <Card
-        sx={{
-          display: "flex",
-          height: "13rem",
-          width: "300px",
-          padding: 1,
-          boxShadow: "0px 1px 15px 5px rgba(0,0,0,0.12)",
-          backgroundColor: backgroundColor,
-        }}
-      >
+    <>
+      <Card sx={cardStyles}>
         <CardContent>
           <Typography variant="h4" color="#0b03b0">
             {" "}
@@ -36,7 +36,7 @@ function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
           </Typography>
         </CardContent>
       </Card>
-    </motion.div>
+    </>
   );
 }
 
@@ -46,10 +46,12 @@ export default function Home() {
     gridTemplateRows: "auto auto auto auto auto",
     justifyItems: "center",
     gap: "4rem",
+    padding: "0 2rem",
   };
 
   const mobileContainerStyles = {
-    display: { xs: "flex", md: "none" },
+    display: { xs: "grid", md: "none" },
+    gap: "2rem",
   };
 
   const headerImageContainerStyles = {
@@ -88,60 +90,44 @@ export default function Home() {
   };
 
   return (
-    <>
+    <motion.div
+      transition={{ delay: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {/*Desktop page view */}
       <Box className="desktop-container" sx={desktopContainerStyles}>
-        <motion.div
-          transition={{ delay: 0.3 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Box
-            className="header-image-container"
-            sx={headerImageContainerStyles}
+        <Box className="header-image-container" sx={headerImageContainerStyles}>
+          <Image
+            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
+            height="600px"
+            width="1300px"
+            layout="fixed"
+            alt="Backyard of a Luxury Spanish home with a pool, jacuzzi and a deck"
+          />
+          <div
+            id="picture-banner-container"
+            style={pictureBannerContainerStyles}
           >
-            <Image
-              src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
-              height="600px"
-              width="1300px"
-              layout="fixed"
-              alt="Backyard of a Luxury Spanish home with a pool, jacuzzi and a deck"
-            />
-            <div
-              id="picture-banner-container"
-              style={pictureBannerContainerStyles}
-            >
-              <Typography variant="h4"> BP Design Studio </Typography>
-              <Typography variant="h4">
-                Over 25 years of experience designing custom Luxury homes{" "}
-              </Typography>
-            </div>{" "}
-          </Box>
-        </motion.div>
-
-        <motion.div
-          className="container2"
-          transition={{ delay: 1.3 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Box sx={textContentContainerStyles}>
-            <Typography variant="h6">
-              {" "}
-              From Spanish Colonial to Modern Style, we have a wide variety of
-              options to choose from. Browse through our blueprint designs to
-              find the perfect home for you and your family.
+            <Typography variant="h4"> BP Design Studio </Typography>
+            <Typography variant="h4">
+              Over 25 years of experience designing custom Luxury homes{" "}
             </Typography>
-          </Box>
-        </motion.div>
+          </div>{" "}
+        </Box>
 
-        <motion.div
+        <Box sx={textContentContainerStyles} className="container2">
+          <Typography variant="h6">
+            {" "}
+            From Spanish Colonial to Modern Style, we have a wide variety of
+            options to choose from. Browse through our blueprint designs to find
+            the perfect home for you and your family.
+          </Typography>
+        </Box>
+
+        <div
           className="container3-featured-blueprints"
-          transition={{ delay: 1.6 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           style={{
             display: "grid",
             justifyContent: "center",
@@ -182,17 +168,14 @@ export default function Home() {
               </>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           style={{
             display: "grid",
             textAlign: "center",
             gap: "1rem",
           }}
-          transition={{ delay: 3.7 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
         >
           <Typography variant="h4"> How to plan a new home build: </Typography>
           <hr width="90%" />
@@ -212,15 +195,9 @@ export default function Home() {
               </>
             ))}
           </Box>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="container4"
-          transition={{ delay: 4.2 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <div className="container4">
           <Box sx={textContentContainerStyles}>
             <Typography variant="h6">
               Found a plan you like but want to fix a few details? We can help
@@ -230,14 +207,129 @@ export default function Home() {
               home.
             </Typography>
           </Box>{" "}
-        </motion.div>
+        </div>
       </Box>
 
       {/*Mobile page view */}
       <Box className="mobile-container" sx={mobileContainerStyles}>
-        <Typography> Hello world II</Typography>
+        <div
+          className="mobile-header-image-container"
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+          }}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
+            width="800px"
+            height="500px"
+            alt="Backyard of a Luxury Spanish home with a pool, jacuzzi and a deck"
+          />
+
+          <Paper
+            className="mobile-picture-banner-container"
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.56)",
+              width: "100%",
+              position: "absolute",
+              top: "40%",
+              textAlign: "center",
+              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.29)",
+            }}
+          >
+            <Typography variant="h4"> BP Design Studio </Typography>
+          </Paper>
+        </div>
+        <div className="mobile-credentials-container">
+          <Paper
+            sx={{
+              backgroundColor: "primary.main",
+              color: "white",
+              textAlign: "center",
+              padding: "2rem",
+              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+            }}
+          >
+            <Typography variant="h6">
+              Our studio has over 25 years of experience designing custom luxury
+              homes. From Spanish Colonial to Modern Style, we have a wide
+              variety of options to choose from. Browse through our blueprint
+              designs to find the perfect home for you and your family!
+            </Typography>
+          </Paper>
+        </div>
+        <div className="mobile-featured-blueprints-container">
+          <Paper
+            sx={{
+              backgroundColor: "primary.light",
+              display: "grid",
+              justifyContent: "center",
+              justifyItems: "center",
+              textAlign: "center",
+              color: "white",
+              padding: "2rem",
+              gap: "2rem",
+              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+            }}
+          >
+            <Box>
+              <Typography variant="h5"> Featured Floor Plans</Typography>
+            </Box>
+            <hr width="90%" />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+
+                gap: "1rem",
+                justifyContent: "center",
+                justifyItems: "center",
+              }}
+            >
+              <img
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+                }}
+                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+              />
+              <img
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+                }}
+                src="https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80"
+              />
+              <img
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+                }}
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80"
+              />
+              <img
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+                }}
+                src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"
+              />
+            </Box>
+          </Paper>
+          <MobileFeaturedBlueprintCard image="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60" />
+        </div>
       </Box>
-    </>
+    </motion.div>
   );
 }
 
