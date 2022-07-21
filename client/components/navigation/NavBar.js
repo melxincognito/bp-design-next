@@ -172,7 +172,7 @@ export default class NavBar extends Component {
     const favoritesButtonStyles = {
       color: "white",
       padding: 0.3,
-      backgroundColor: "primary.light",
+      backgroundColor: "error.main",
       boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.45)",
     };
 
