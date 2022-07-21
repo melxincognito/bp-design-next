@@ -11,6 +11,16 @@ export default function BrowseStylesLayout({
   resetFiltersOnClick,
   children,
 }) {
+  const mainContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    textAlign: "center",
+    padding: "1rem",
+    gap: 10,
+  };
+
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -44,37 +54,27 @@ export default function BrowseStylesLayout({
         </Link>
       </div>
       <motion.div
-        className="mainContainer"
         transition={{ delay: 0.17 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        style={{ display: "grid", width: "100%", gap: "1rem" }}
       >
-        <div
-          style={{
-            display: "grid",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
+        <div className="main-container" style={mainContainerStyles}>
           <Typography variant="h3"> {StyleName} Style Homes</Typography>
           <hr width="100%" />
-        </div>
-        <FilterBlueprintsAppBar
-          handleClick={() => parentToChild()}
-          childToParent={childToParent}
-          resetFiltersOnClick={resetFiltersOnClick}
-        />
+          <FilterBlueprintsAppBar
+            handleClick={() => parentToChild()}
+            childToParent={childToParent}
+            resetFiltersOnClick={resetFiltersOnClick}
+          />
 
-        <Box
-          className="stylesSelectionContainer"
-          sx={styleSelectionContainerStyles}
-        >
-          {children}
-        </Box>
+          <Box
+            className="stylesSelectionContainer"
+            sx={styleSelectionContainerStyles}
+          >
+            {children}
+          </Box>
+        </div>
       </motion.div>
     </div>
   );

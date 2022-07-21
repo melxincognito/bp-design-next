@@ -45,6 +45,16 @@ function StyleSelectionCard({ Delay, Route, Image, StyleName }) {
 }
 
 export default function browsebpbystyle() {
+  const mainContainerStyles = {
+    display: "grid",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    textAlign: "center",
+    padding: "1rem",
+    gap: 10,
+  };
+
   const styleSelectionContainerStyles = {
     display: "flex",
     flexWrap: "wrap",
@@ -69,35 +79,26 @@ export default function browsebpbystyle() {
       exit={{ opacity: 0 }}
       style={{ display: "grid", width: "100%", gap: "1rem" }}
     >
-      <div
-        style={{
-          display: "grid",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
+      <div style={mainContainerStyles}>
         <Typography variant="h3"> Browse Blueprints by Style</Typography>
-
         <hr width="100%" />
+        <Box
+          className="stylesSelectionContainer"
+          sx={styleSelectionContainerStyles}
+        >
+          {stylesOptions.map((option) => (
+            <>
+              <StyleSelectionCard
+                key={option.index}
+                StyleName={option.style}
+                Image={option.image}
+                Delay={option.delay}
+                Route={option.route}
+              />
+            </>
+          ))}
+        </Box>
       </div>
-      <Box
-        className="stylesSelectionContainer"
-        sx={styleSelectionContainerStyles}
-      >
-        {stylesOptions.map((option) => (
-          <>
-            <StyleSelectionCard
-              key={option.index}
-              StyleName={option.style}
-              Image={option.image}
-              Delay={option.delay}
-              Route={option.route}
-            />
-          </>
-        ))}
-      </Box>
     </motion.div>
   );
 }

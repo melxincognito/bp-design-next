@@ -33,6 +33,8 @@ function BrowseAllBlueprintsLayout({
     alignItems: "center",
     width: "100%",
     textAlign: "center",
+    padding: "1rem",
+    gap: 10,
   };
 
   const styleSelectionContainerStyles = {
@@ -54,18 +56,18 @@ function BrowseAllBlueprintsLayout({
       <div style={mainContainerStyles}>
         <Typography variant="h3"> Browse All Blueprints</Typography>
         <hr width="100%" />
+        <FilterBlueprintsAppBar
+          handleClick={() => parentToChild()}
+          childToParent={childToParent}
+          resetFiltersOnClick={resetFiltersOnClick}
+        />
+        <Box
+          className="stylesSelectionContainer"
+          sx={styleSelectionContainerStyles}
+        >
+          {children}
+        </Box>
       </div>
-      <FilterBlueprintsAppBar
-        handleClick={() => parentToChild()}
-        childToParent={childToParent}
-        resetFiltersOnClick={resetFiltersOnClick}
-      />
-      <Box
-        className="stylesSelectionContainer"
-        sx={styleSelectionContainerStyles}
-      >
-        {children}
-      </Box>
     </>
   );
 }
