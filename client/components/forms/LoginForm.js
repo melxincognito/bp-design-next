@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase-config";
+
 import {
   Card,
   Typography,
@@ -6,12 +9,25 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function LoginForm() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const loginUser = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      alert("logged in");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   const showPasswordLogin = () => {
+    setShowPassword(!showPassword);
     var x = document.getElementById("loginPasswordInput");
     if (x.type === "password") {
       x.type = "text";
@@ -48,14 +64,7 @@ export default function LoginForm() {
           </div>
 
           <hr size="1" width="100%" color="gray" />
-          <form
-            style={contentStyle}
-            onSubmit={() => {
-              console.log(
-                "email: " + loginEmail + " Password: " + loginPassword
-              );
-            }}
-          >
+          <form style={contentStyle} onSubmit={loginUser}>
             <TextField
               variant="outlined"
               label="Email"
@@ -72,12 +81,14 @@ export default function LoginForm() {
               onChange={(e) => {
                 setLoginPassword(e.target.value);
               }}
+              InputProps={{
+                endAdornment: (
+                  <Button onClick={showPasswordLogin} title="Show Password">
+                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  </Button>
+                ),
+              }}
             />
-
-            <div style={{ display: "inline-block" }}>
-              <input type="checkbox" onClick={showPasswordLogin} />{" "}
-              <label>Show password</label>
-            </div>
 
             <Button variant="contained" type="submit">
               {" "}
