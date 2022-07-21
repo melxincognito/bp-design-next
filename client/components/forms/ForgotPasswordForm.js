@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase-config";
 import {
   Button,
   Card,
@@ -21,15 +24,26 @@ export default function ForgotPasswordForm() {
   const [open, setOpen] = useState(false);
   // email input state
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+  const router = useRouter();
 
   const openPopupModal = () => {
     setOpen(true);
-    console.log(forgotPasswordEmail);
   };
 
   const closePopupModal = () => {
     setOpen(false);
+    router.push("/login");
   };
+
+  const sendResetEmail = async () => {
+    try {
+      await sendPasswordResetEmail(auth, forgotPasswordEmail);
+      await openPopupModal();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  // styles variables
 
   const cardStyles = {
     padding: 1,
@@ -41,6 +55,13 @@ export default function ForgotPasswordForm() {
     textAlign: "center",
   };
 
+  const formStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 10,
+    justifyContent: "center",
+  };
+
   return (
     <>
       <Card sx={cardStyles}>
@@ -50,14 +71,7 @@ export default function ForgotPasswordForm() {
         <hr size="1" width="90%" color="gray" />
 
         <CardContent>
-          <form
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 10,
-              justifyContent: "center",
-            }}
-          >
+          <form style={formStyles} onSubmit={sendResetEmail}>
             <label>
               {" "}
               Enter your account email and we will send you a link to reset your
@@ -69,7 +83,7 @@ export default function ForgotPasswordForm() {
               onChange={(e) => setForgotPasswordEmail(e.target.value)}
               fullWidth
             />
-            <Button variant="contained" fullWidth>
+            <Button variant="contained" type="submit" fullWidth>
               {" "}
               Reset Password
             </Button>
