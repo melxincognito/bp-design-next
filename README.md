@@ -187,7 +187,7 @@ Dependencies List:
 <h3> MobileFeaturedBlueprintCard </h3>
 
 <ul>
-<li>Reusable component to be used in the <u><b>mobile</b></u> view of the homepage to show the top blueprints the business wants to promote. On the initial page load it is a button with the blueprint items featured image set as the buttons background. If the button is clicked, a dialog will open showing the user an image with the blueprints key features, the plan number and two action buttons allowing the user to share the floor plan or view its page.  </li>
+<li>Reusable component to be used in the <u>mobile</u> view of the homepage to show the top blueprints the business wants to promote. On the initial page load it is a button with the blueprint items featured image set as the buttons background. If the button is clicked, a dialog will open showing the user an image with the blueprints key features, the plan number and two action buttons allowing the user to share the floor plan or view its page.  </li>
  <li> The card needs the following props to be passed:  </li>
     <ul>
         <li>image </li>
