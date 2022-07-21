@@ -113,7 +113,8 @@ export default function SignUpForm() {
             <TextField
               className="email-input"
               aria-label="sign up email"
-              placeholder="Email"
+              label="E-mail"
+              placeholder="email@gmail.com"
               onChange={(e) => {
                 setSignUpEmail(e.target.value);
               }}
@@ -124,7 +125,8 @@ export default function SignUpForm() {
               className="sign-up-password"
               id="password-input"
               aria-label="sign up password"
-              placeholder="Password"
+              label="Password"
+              placeholder="P@ssword123"
               onChange={(e) => {
                 setSignUpPassword(e.target.value);
               }}
@@ -146,7 +148,8 @@ export default function SignUpForm() {
               className="confirm-sign-up-password"
               id="confirm-password-input"
               aria-label="confirm sign up password"
-              placeholder="Confirm Password"
+              label="Confirm Password"
+              placeholder="P@ssword123"
               onChange={(e) => {
                 setConfirmSignUpPassword(e.target.value);
               }}
