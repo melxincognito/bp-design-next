@@ -24,8 +24,6 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
-// TODO: Add email verification
-
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -52,6 +50,7 @@ export default function SignUpForm() {
     if (signUpPassword === confirmSignUpPassword) {
       try {
         createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+        sendEmailVerification(auth.currentUser);
         handleOpenDialog();
       } catch (error) {
         console.log(error.message);
