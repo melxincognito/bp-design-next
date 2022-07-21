@@ -8,6 +8,8 @@ import GarageOutlinedIcon from "@mui/icons-material/GarageOutlined";
 import StairsOutlinedIcon from "@mui/icons-material/StairsOutlined";
 
 // TODO add the aria labels and all the accessibility things so it can be read by screen readers & navigated with the keyboard
+// TODO add x button to close the dialog
+
 export default function MobileFeaturedBlueprintCard({
   image,
   planNumber,
