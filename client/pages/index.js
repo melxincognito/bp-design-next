@@ -288,45 +288,24 @@ export default function Home() {
                 justifyItems: "center",
               }}
             >
-              <img
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-                }}
-                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
-              />
-              <img
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-                }}
-                src="https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80"
-              />
-              <img
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-                }}
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2675&q=80"
-              />
-              <img
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-                }}
-                src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"
-              />
+              {featuredPlans.map((plan, index) => {
+                return (
+                  <>
+                    <MobileFeaturedBlueprintCard
+                      key={index}
+                      planNumber={plan.planNumber}
+                      image={plan.planImage}
+                      beds={plan.beds}
+                      baths={plan.baths}
+                      sqFt={plan.sqFt}
+                      stories={plan.stories}
+                      garages={plan.garages}
+                    />
+                  </>
+                );
+              })}
             </Box>
           </Paper>
-          <MobileFeaturedBlueprintCard image="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60" />
         </div>
       </Box>
     </motion.div>
