@@ -41,17 +41,13 @@ function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
 }
 
 export default function Home() {
+  // desktop styles variables
   const desktopContainerStyles = {
     display: { xs: "none", md: "grid" },
     gridTemplateRows: "auto auto auto auto auto",
     justifyItems: "center",
     gap: "4rem",
     padding: "0 2rem",
-  };
-
-  const mobileContainerStyles = {
-    display: { xs: "grid", md: "none" },
-    gap: "2rem",
   };
 
   const headerImageContainerStyles = {
@@ -87,6 +83,56 @@ export default function Home() {
     padding: "4rem",
     borderRadius: 3,
     boxShadow: "5px 5px 15px 5px rgba(0,0,0,0.50)",
+  };
+
+  // mobile styles variables
+  const mobileContainerStyles = {
+    display: { xs: "grid", md: "none" },
+    gap: "2rem",
+  };
+
+  const mobileHeaderImageContainerStyles = {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+  };
+
+  const mobileHeaderImageBannerContainerStyles = {
+    backgroundColor: "rgba(255, 255, 255, 0.56)",
+    width: "100%",
+    position: "absolute",
+    top: "40%",
+    textAlign: "center",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.29)",
+  };
+
+  const mobileCredentialsPaperStyles = {
+    backgroundColor: "primary.main",
+    color: "white",
+    textAlign: "center",
+    padding: "2rem",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+  };
+
+  const mobileFeaturedBlueprintsContainerStyles = {
+    backgroundColor: "primary.light",
+    display: "grid",
+    justifyContent: "center",
+    justifyItems: "center",
+    textAlign: "center",
+    color: "white",
+    padding: "2rem",
+    gap: "1rem",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+  };
+
+  const mobileFeaturedBlueprintsSelectionsContainerStyles = {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "1rem",
+    justifyContent: "center",
+    justifyItems: "center",
   };
 
   return (
@@ -214,12 +260,7 @@ export default function Home() {
       <Box className="mobile-container" sx={mobileContainerStyles}>
         <div
           className="mobile-header-image-container"
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-          }}
+          style={mobileHeaderImageContainerStyles}
         >
           <Image
             src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832"
@@ -229,28 +270,16 @@ export default function Home() {
           />
 
           <Paper
-            className="mobile-picture-banner-container"
-            sx={{
-              backgroundColor: "rgba(255, 255, 255, 0.56)",
-              width: "100%",
-              position: "absolute",
-              top: "40%",
-              textAlign: "center",
-              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.29)",
-            }}
+            className="mobile-header-image-banner-container"
+            sx={mobileHeaderImageBannerContainerStyles}
           >
             <Typography variant="h4"> BP Design Studio </Typography>
           </Paper>
         </div>
         <div className="mobile-credentials-container">
           <Paper
-            sx={{
-              backgroundColor: "primary.main",
-              color: "white",
-              textAlign: "center",
-              padding: "2rem",
-              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-            }}
+            className="mobile-credentials-paper"
+            sx={mobileCredentialsPaperStyles}
           >
             <Typography variant="h6">
               Our studio has over 25 years of experience designing custom luxury
@@ -261,32 +290,14 @@ export default function Home() {
           </Paper>
         </div>
         <div className="mobile-featured-blueprints-container">
-          <Paper
-            sx={{
-              backgroundColor: "primary.light",
-              display: "grid",
-              justifyContent: "center",
-              justifyItems: "center",
-              textAlign: "center",
-              color: "white",
-              padding: "2rem",
-              gap: "2rem",
-              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-            }}
-          >
+          <Paper sx={mobileFeaturedBlueprintsContainerStyles}>
             <Box>
-              <Typography variant="h5"> Featured Floor Plans</Typography>
+              <Typography variant="h4"> Featured Floor Plans</Typography>
             </Box>
             <hr width="90%" />
             <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-
-                gap: "1rem",
-                justifyContent: "center",
-                justifyItems: "center",
-              }}
+              className="mobile-featured-blueprints-selections-container"
+              sx={mobileFeaturedBlueprintsSelectionsContainerStyles}
             >
               {featuredPlans.map((plan, index) => {
                 return (
