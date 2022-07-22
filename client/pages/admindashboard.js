@@ -1,17 +1,22 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Axios from "axios";
-import { auth } from "../firebase-config";
+import { database } from "../firebase-config";
+import { ref, set } from "firebase/database";
 
 export default function admindashboard() {
-  const user = auth.currentUser;
-
-  const onClicked = () => {
-    console.log(user);
-  };
+  function writeUserData(userId, name, email) {
+    set(ref(database, "users/" + userId), {
+      username: name,
+      email: email,
+    });
+  }
 
   return (
     <div>
-      <button onClick={onClicked}> click me</button>
+      <button onClick={() => writeUserData("1", "Me", "me@gmail.com")}>
+        {" "}
+        click me
+      </button>
     </div>
   );
 }
@@ -33,7 +38,7 @@ export default function admindashboard() {
   };
 
   const personII = {
-    name: "Orian Incognito",
+    name: "O Incognito",
     location: "Barcelona, ES",
     occupation: "Developer",
   };
