@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { ref, set, remove } from "firebase/database";
+import { database } from "../../firebase-config";
 import Link from "next/link";
 import Axios from "axios";
 import {
@@ -33,6 +35,8 @@ const CustomizedCard = styled(Card)`
   }
 `;
 
+// TODO - configure the auth to grab the users uid and store the favorites based by the users uid.
+// TODO - pass description to rt database, currently throwing an error
 export default class BlueprintCard extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +56,7 @@ export default class BlueprintCard extends Component {
 
   addToCart = () => {
     this.setState({ cartAdded: true });
-    Axios.post("http://localhost:3002/api/insert_cart_items", {
+    set(ref(database, "cart/" + this.props.planNumber), {
       image: this.props.image,
       planNumber: this.props.planNumber,
       beds: this.props.beds,
@@ -61,15 +65,13 @@ export default class BlueprintCard extends Component {
       style: this.props.style,
       garages: this.props.garages,
       stories: this.props.stories,
-      description: this.state.description,
-    }).then(() => {
-      alert("inserted into database");
     });
   };
 
   addToFavorites = () => {
     this.setState({ favorite: true });
-    Axios.post("http://localhost:3002/api/insert_favorites", {
+
+    set(ref(database, "favorites/" + this.props.planNumber), {
       image: this.props.image,
       planNumber: this.props.planNumber,
       beds: this.props.beds,
@@ -78,26 +80,19 @@ export default class BlueprintCard extends Component {
       style: this.props.style,
       garages: this.props.garages,
       stories: this.props.stories,
-      description: this.state.description,
-    }).then(() => {
-      alert("inserted into database");
     });
   };
 
   removeFromFavorites = (plan) => {
     this.setState({ favorite: false });
-    Axios.delete(`http://localhost:3002/api/delete_favorites/${plan}`).then(
-      () => {
-        alert("deleted from favorites");
-      }
-    );
+
+    remove(ref(database, "favorites/" + this.props.planNumber));
   };
 
   removeFromCart = (plan) => {
     this.setState({ cartAdded: false });
-    Axios.delete(`http://localhost:3002/api/delete_cart/${plan}`).then(() => {
-      alert("deleted from favorites");
-    });
+
+    remove(ref(database, "cart/" + this.props.planNumber));
   };
 
   render() {
