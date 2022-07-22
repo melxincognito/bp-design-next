@@ -1,6 +1,22 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Axios from "axios";
+import { auth } from "../firebase-config";
 
+export default function admindashboard() {
+  const user = auth.currentUser;
+
+  const onClicked = () => {
+    console.log(user);
+  };
+
+  return (
+    <div>
+      <button onClick={onClicked}> click me</button>
+    </div>
+  );
+}
+
+/*
 export default function admindashboard() {
   const [data, setData] = useState([]);
   const [otherData, setOtherData] = useState([]);
@@ -98,7 +114,7 @@ export default function admindashboard() {
     </>
   );
 }
-
+*/
 /*
 function Counter(props) {
   function reducer(state, action) {
