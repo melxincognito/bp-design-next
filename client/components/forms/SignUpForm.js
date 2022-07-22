@@ -22,6 +22,7 @@ import { auth } from "../../firebase-config";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -45,18 +46,29 @@ export default function SignUpForm() {
     router.push("/login");
   };
 
-  const signUpUser = (e) => {
-    e.preventDefault();
-    if (signUpPassword === confirmSignUpPassword) {
-      try {
-        createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
-        sendEmailVerification(auth.currentUser);
-        handleOpenDialog();
-      } catch (error) {
-        console.log(error.message);
-      }
-    } else {
+  const verifyPassword = () => {
+    if (
+      signUpPassword === confirmSignUpPassword &&
+      signUpPassword.length > 6 &&
+      confirmSignUpPassword.length > 6
+    ) {
+      createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+      sendEmailVerification(auth.currentUser);
+      handleOpenDialog();
+    } else if (signUpPassword !== confirmSignUpPassword) {
       alert("Passwords do not match");
+    } else if (signUpPassword.length < 7 || confirmSignUpPassword.length < 7) {
+      alert("Password must be at least 7 characters");
+    } else {
+      alert("Something went wrong");
+    }
+  };
+
+  const signUpUser = async () => {
+    try {
+      verifyPassword();
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -176,8 +188,8 @@ export default function SignUpForm() {
             fullWidth
             variant="contained"
             type="submit"
-            onClick={signUpUser}
             aria-label="sign up button"
+            onClick={signUpUser}
           >
             {" "}
             Sign Up
