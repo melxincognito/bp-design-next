@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { database } from "../../firebase-config";
+import { ref, onValue } from "firebase/database";
 import Axios from "axios";
 import {
   AppBar,
@@ -45,17 +47,32 @@ export default function FavoritesDialog({ open }) {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    Axios.get("http://localhost:3002/api/get_favorites_test").then(
-      (response) => {
-        try {
-          setFavoritesItems(response.data);
-        } catch (error) {
-          console.log(error);
-        }
+  /*  useEffect(() => {
+    onValue(ref(database, "favorite/"), (snapshot) => {
+      setFavoritesItems([]);
+      const data = snapshot.val();
+      if (data !== null) {
+        Object.values(data).map((favorite) => {
+          setFavoritesItems((oldArray) => [...oldArray, favorite]);
+          return favorite;
+        });
       }
-    );
+    });
+  }, []);*/
+
+  useEffect(() => {
+    onValue(ref(database, "favorites/"), (snapshot) => {
+      setFavoritesItems([]);
+      const data = snapshot.val();
+      if (data !== null) {
+        Object.values(data).map((favorite) => {
+          setFavoritesItems((oldArray) => [...oldArray, favorite]);
+          return favorite;
+        });
+      }
+    });
   });
+
   return (
     <div>
       <Dialog
@@ -94,21 +111,9 @@ export default function FavoritesDialog({ open }) {
           {favoritesItems.length === 0 ? (
             <NoFavoritesMessage />
           ) : (
-            favoritesItems.map((item, index) => (
+            favoritesItems.map((item) => (
               <>
-                <FavoriteItemCard
-                  key={index}
-                  image={item.image}
-                  planNumber={item.plan_number}
-                  beds={item.beds}
-                  squareFeet={item.sq_ft}
-                  baths={item.baths}
-                  garages={item.garages}
-                  stories={item.stories}
-                  description={item.description}
-                  style={item.style}
-                />
-                <Divider />
+                <h1> {item.planNumber}</h1>
               </>
             ))
           )}

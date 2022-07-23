@@ -22,6 +22,26 @@ export default function admindashboard() {
 }
 
 /*
+
+  favoritesItems.map((item, index) => (
+              <>
+                <FavoriteItemCard
+                  key={index}
+                  image={item.image}
+                  planNumber={item.plan_number}
+                  beds={item.beds}
+                  squareFeet={item.sq_ft}
+                  baths={item.baths}
+                  garages={item.garages}
+                  stories={item.stories}
+                  description={item.description}
+                  style={item.style}
+                />
+                <Divider />
+              </>
+            ))
+     
+
 export default function admindashboard() {
   const [data, setData] = useState([]);
   const [otherData, setOtherData] = useState([]);
