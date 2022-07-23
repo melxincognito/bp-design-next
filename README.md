@@ -209,6 +209,30 @@ Dependencies List:
 
 </ul>
 
+<h3>BuildHouseStepsTile</h3>
+<ul>
+    <li>Reusable component to be used in the <b>desktop</b> view of the homepage to display the basic steps a customer should take if they are planning to build a new home. The card isn't interactive, it's just used to display information</li>
+    <li>The card needs the following props to be passed: </li>
+    <ul>
+        <li>backgroundColor </li>
+        <li>stepNumber </li>
+        <li>title</li>
+        <li>description</li>
+    </ul>
+</ul>
+
+<h3>MobileBuildHouseStepsTile</h3>
+<ul>
+    <li>Reusable component to be used in the <b>mobile</b> view of the homepage to display the basic steps a customer should take if they are planning to build a new home. The card isn't interactive, it's just used to display information</li>
+    <li>The card needs the following props to be passed: </li>
+    <ul>
+        <li>backgroundColor </li>
+        <li>stepNumber </li>
+        <li>title</li>
+        <li>description</li>
+    </ul>
+</ul>
+
 ## Navigation Components
 
 <h3> FavoritesDialog</h3>
