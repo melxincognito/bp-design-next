@@ -20,7 +20,6 @@ export default function LoginForm() {
   const loginUser = async () => {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      alert("logged in");
     } catch (error) {
       alert(error.message);
     }
