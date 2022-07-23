@@ -1,8 +1,12 @@
+import React, { Fragment } from "react";
 import { Box, Card, Typography, CardContent, Paper } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import FeaturedBlueprintCard from "../components/cards/FeaturedBlueprintCard";
+import BuildHouseStepsTile from "../components/cards/BuildHouseStepsTile";
 import MobileFeaturedBlueprintCard from "../components/cards/MobileFeaturedBlueprintCard";
+import MobileBuildHouseStepsTile from "../components/cards/MobileBuildHouseStepsTile";
+
 // TODO: ACCESSIBILITY: NAV BAR: review EVERYTHING in nav bar to make sure it's accessible by screen readers & the sorts
 // TODO: ACCESSIBILITY: PAGE: change divs to have the right HTML semantics for each content
 // TODO: PAGE: take off the motion divs. it's causing too much commotion. Change it to one motion div to slowly fade in content on page load.
@@ -12,37 +16,6 @@ import MobileFeaturedBlueprintCard from "../components/cards/MobileFeaturedBluep
 // TODO: MOBILE DISPLAY - mobile-custom-blueprint-request-promotion-container - LINK - change the pink link to a better color. Something w good contrast.
 
 // TODO: ACCESSIBILITY/COLOR PALLET - Check what colors colorblind people don't typically see.
-
-function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
-  const cardStyles = {
-    display: "flex",
-    height: "13rem",
-    width: "300px",
-    padding: 1,
-    boxShadow: "0px 1px 15px 5px rgba(0,0,0,0.12)",
-    backgroundColor: backgroundColor,
-  };
-
-  return (
-    <>
-      <Card sx={cardStyles}>
-        <CardContent>
-          <Typography variant="h4" color="#0b03b0">
-            {" "}
-            {stepNumber}{" "}
-          </Typography>
-        </CardContent>
-        <CardContent sx={{ display: "grid" }}>
-          <Typography variant="h6"> {title} </Typography>
-          <Typography variant="body1" color="primary.light">
-            {" "}
-            {description}{" "}
-          </Typography>
-        </CardContent>
-      </Card>
-    </>
-  );
-}
 
 export default function Home() {
   // desktop styles variables
@@ -149,6 +122,7 @@ export default function Home() {
     boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
     padding: "1rem",
   };
+
   return (
     <motion.div
       transition={{ delay: 1 }}
@@ -245,7 +219,7 @@ export default function Home() {
           >
             {buildHouseSteps.map((step) => (
               <>
-                <BuildHouseTile
+                <BuildHouseStepsTile
                   key={step.index}
                   stepNumber={step.step}
                   title={step.title}
@@ -344,32 +318,14 @@ export default function Home() {
             <hr width="90%" />
 
             {buildHouseSteps.map((step, index) => (
-              <>
-                <Box
-                  key={index}
-                  sx={{
-                    backgroundColor: `${step.color} `,
-                    width: "95%",
-                    padding: "1rem",
-                    color: "black",
-                    boxShadow: " inset 0px 0px 15px 5px rgba(0,0,0,0.29)",
-                    borderRadius: "5px",
-                  }}
-                >
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      textDecoration: "underline",
-                    }}
-                  >
-                    {step.step}
-                    {"."} {step.title}
-                  </Typography>
-                  <Box className="assess-content" sx={{ paddingLeft: "2rem" }}>
-                    <Typography variant="body1">{step.description}</Typography>
-                  </Box>
-                </Box>
-              </>
+              <Fragment key={index}>
+                <MobileBuildHouseStepsTile
+                  backgroundColor={step.color}
+                  stepNumber={step.step}
+                  title={step.title}
+                  description={step.description}
+                />
+              </Fragment>
             ))}
           </Paper>
         </div>
