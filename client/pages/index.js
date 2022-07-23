@@ -9,6 +9,10 @@ import MobileFeaturedBlueprintCard from "../components/cards/MobileFeaturedBluep
 // TODO: FeaturedBlueprintCard: have them link to actual plans that exist in the database
 // TODO: ACCESSIBILITY: CustomPlanRequest Tile: Reword it to include the fact they can accept entire custom home requests + add directions on how to get to the page to submit their request
 
+// TODO: MOBILE DISPLAY - mobile-custom-blueprint-request-promotion-container - LINK - change the pink link to a better color. Something w good contrast.
+
+// TODO: ACCESSIBILITY/COLOR PALLET - Check what colors colorblind people don't typically see.
+
 function BuildHouseTile({ backgroundColor, stepNumber, title, description }) {
   const cardStyles = {
     display: "flex",
@@ -318,6 +322,124 @@ export default function Home() {
             </Box>
           </Paper>
         </div>
+
+        <div className="mobile-plan-custom-home-tips-container">
+          <Paper
+            sx={{
+              backgroundColor: "primary.main",
+              display: "grid",
+              justifyContent: "center",
+              justifyItems: "center",
+              color: "white",
+              gap: "1rem",
+              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+              padding: "1rem",
+            }}
+          >
+            <Typography
+              sx={{ margin: "1rem", textAlign: "center" }}
+              variant="h4"
+            >
+              Planning a new home build:{" "}
+            </Typography>
+            <hr width="90%" />
+
+            {buildHouseSteps.map((step, index) => (
+              <>
+                <Box
+                  key={index}
+                  sx={{
+                    backgroundColor: `${step.color} `,
+                    width: "95%",
+                    padding: "1rem",
+                    color: "black",
+                    boxShadow: " inset 0px 0px 15px 5px rgba(0,0,0,0.29)",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      textDecoration: "underline",
+                    }}
+                  >
+                    {step.step}
+                    {"."} {step.title}
+                  </Typography>
+                  <Box className="assess-content" sx={{ paddingLeft: "2rem" }}>
+                    <Typography variant="body1">{step.description}</Typography>
+                  </Box>
+                </Box>
+              </>
+            ))}
+          </Paper>
+        </div>
+        <div className="mobile-popular-blueprint-plans-container">
+          <Paper
+            sx={{
+              backgroundColor: "highlight.dark",
+              display: "grid",
+              justifyContent: "center",
+              justifyItems: "center",
+              textAlign: "center",
+              color: "white",
+              padding: "2rem",
+              gap: "1rem",
+              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+            }}
+          >
+            <Box>
+              <Typography variant="h4"> Most Popular Floor Plans</Typography>
+            </Box>
+            <hr width="90%" />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "1rem",
+                justifyContent: "center",
+                justifyItems: "center",
+              }}
+            >
+              {featuredPlans.map((plan, index) => {
+                return (
+                  <>
+                    <MobileFeaturedBlueprintCard
+                      key={index}
+                      planNumber={plan.planNumber}
+                      image={plan.planImage}
+                      beds={plan.beds}
+                      baths={plan.baths}
+                      sqFt={plan.sqFt}
+                      stories={plan.stories}
+                      garages={plan.garages}
+                    />
+                  </>
+                );
+              })}
+            </Box>
+          </Paper>
+        </div>
+
+        <div className="mobile-custom-blueprint-request-promotion-container">
+          <Paper sx={mobileCredentialsPaperStyles}>
+            <Typography variant="h6">
+              Like a floor plan but want to change a few details? Not a problem!
+              Our team welcomes{" "}
+              <a
+                href="/customplanrequest"
+                target="_blank"
+                style={{ color: "magenta" }}
+              >
+                {" "}
+                customization requests{" "}
+              </a>{" "}
+              where we can alter any existing plans to suit your needs. We're
+              also able to take custom plan requests for entire blueprints if
+              you're looking for a 100% personalized home!
+            </Typography>
+          </Paper>
+        </div>
       </Box>
     </motion.div>
   );
@@ -379,7 +501,7 @@ const buildHouseSteps = [
     index: 0,
     step: 1,
     title: "Assess",
-    color: "#f5f5f5",
+    color: "rgb(155, 155, 155)",
     description:
       "Asses your current needs, financial situation, location and future plans.",
   },
@@ -388,7 +510,7 @@ const buildHouseSteps = [
     index: 1,
     step: 2,
     title: "Plan",
-    color: "#e8e8e8",
+    color: "rgb(127, 127, 127)",
     description:
       "Decide on factors like number of beds/baths, style preferences, budget and lot location options.",
   },
@@ -397,7 +519,7 @@ const buildHouseSteps = [
     index: 2,
     step: 3,
     title: "Select",
-    color: "#d6d6d6",
+    color: "rgb(155, 155, 155)",
     description:
       "Select the floor plans that best fit your needs, budget and location.",
   },
@@ -405,7 +527,7 @@ const buildHouseSteps = [
     index: 3,
     step: 4,
     title: "Build",
-    color: "#bfbfbf",
+    color: "rgb(127, 127, 127)",
     description: "Build the perfect home suited to fit your needs.",
   },
 ];
