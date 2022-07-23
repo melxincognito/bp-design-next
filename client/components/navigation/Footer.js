@@ -6,14 +6,21 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 function Copyright() {
+  const copyrightContainerStyles = {
+    width: "100%",
+    textAlign: "center",
+    boxShadow: " inset 0px 0px 15px 5px rgba(0,0,0,0.29)",
+    borderRadius: "5px",
+    color: "text.secondary",
+  };
+
   return (
-    <Typography variant="body2" color="text.secondary">
+    <Typography sx={copyrightContainerStyles} variant="body2">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/" target="_blank">
         BP Design Studio
       </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+      - {new Date().getFullYear()}
     </Typography>
   );
 }
@@ -30,22 +37,22 @@ export default function Footer() {
     {
       label: "Instagram",
       link: "https://www.instagram.com",
-      socialIcon: <InstagramIcon fontSize="large" />,
+      socialIcon: <InstagramIcon sx={{ fontSize: "43px" }} />,
     },
     {
       label: "Facebook",
       link: "https://www.facebook.com",
-      socialIcon: <FacebookIcon fontSize="large" />,
+      socialIcon: <FacebookIcon sx={{ fontSize: "43px" }} />,
     },
     {
       label: "Twitter",
       link: "https://www.twitter.com",
-      socialIcon: <TwitterIcon fontSize="large" />,
+      socialIcon: <TwitterIcon sx={{ fontSize: "43px" }} />,
     },
     {
       label: "LinkedIn",
       link: "https://www.linkedin.com",
-      socialIcon: <LinkedInIcon fontSize="large" />,
+      socialIcon: <LinkedInIcon sx={{ fontSize: "43px" }} />,
     },
   ];
 
@@ -94,7 +101,11 @@ export default function Footer() {
           className="socialLinksContainerIcon"
           role="navigation"
           aria-label="Social Links Navigation"
-          sx={{ display: "flex" }}
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: "50%",
+          }}
         >
           {socialLinks.map((socialLink, index) => (
             <div
