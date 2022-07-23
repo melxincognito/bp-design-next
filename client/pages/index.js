@@ -139,6 +139,16 @@ export default function Home() {
     justifyItems: "center",
   };
 
+  const mobilePlanCustomHomeTipsContainerStyles = {
+    backgroundColor: "primary.main",
+    display: "grid",
+    justifyContent: "center",
+    justifyItems: "center",
+    color: "white",
+    gap: "1rem",
+    boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
+    padding: "1rem",
+  };
   return (
     <motion.div
       transition={{ delay: 1 }}
@@ -324,18 +334,7 @@ export default function Home() {
         </div>
 
         <div className="mobile-plan-custom-home-tips-container">
-          <Paper
-            sx={{
-              backgroundColor: "primary.main",
-              display: "grid",
-              justifyContent: "center",
-              justifyItems: "center",
-              color: "white",
-              gap: "1rem",
-              boxShadow: "0px 0px 15px 5px rgba(0,0,0,0.49)",
-              padding: "1rem",
-            }}
-          >
+          <Paper sx={mobilePlanCustomHomeTipsContainerStyles}>
             <Typography
               sx={{ margin: "1rem", textAlign: "center" }}
               variant="h4"
